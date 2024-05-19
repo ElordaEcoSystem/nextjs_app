@@ -1,33 +1,20 @@
-"use client";
+// "use client";
 
-import { YMaps, Map, Placemark } from "@pbe/react-yandex-maps";
+// import { YMaps, Map, Placemark } from "@pbe/react-yandex-maps";
 import { PhoneIcon } from "./icons/PhoneIcon";
 import { MailIcon } from "./icons/MailIcon";
 import { FacebookIcon } from "./icons/FacebookIcon";
 import { InstaIcon } from "./icons/InstaIcon";
 import { TelegramIcon } from "./icons/TelegramIcon";
+import { MyMap } from "./map";
+import { fetchFooter } from "@/app/[locale]/needed/services";
 
-const infoArr = [
-  {
-    icon: PhoneIcon,
-    text: "+7 7172 918453",
-  },
-  {
-    icon: MailIcon,
-    text: "elordaecosystem@mail.ru",
-  },
-];
+import { useLocale } from "next-intl";
 
-const InfoItem = ({ text, children }) => {
-  return (
-    <div className="flex items-center gap-2">
-      {children}
-      <div className="text-white text-xs">{text}</div>
-    </div>
-  );
-};
-
-export const Footer = () => {
+export const Footer = async () => {
+  const locale = useLocale();
+  const Footer_info = await fetchFooter(locale);
+  const Footer_data = await Footer_info.data[0].attributes;
   return (
     <>
       <div className="bg-prime py-10">
@@ -37,33 +24,34 @@ export const Footer = () => {
             <div className="flex flex-col gap-7">
               <div>
                 <div className="text-sm text-white font-medium">
-                  Юридический адрес предприятия:
+                  {Footer_data.title_address}
                 </div>
-                <div className="text-white text-xs">
-                  Республика Казахстан, г. Астана, ул. Жетиген, 24
-                </div>
+                <div className="text-white text-xs">{Footer_data.address}</div>
               </div>
               <div className="flex flex-col gap-1">
-                {infoArr.map((item) => {
-                  return (
-                    <InfoItem key={item.icon} text={item.text}>
-                      <item.icon className="h-5 w-5" />
-                    </InfoItem>
-                  );
-                })}
+                <div className="flex items-center gap-2">
+                  <PhoneIcon className="h-5 w-5" />
+                  <div className="text-white text-xs">{Footer_data.number}</div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <MailIcon className="h-5 w-5" />
+                  <div className="text-white text-xs">{Footer_data.email}</div>
+                </div>
               </div>
 
               <div className="">
-                <div className="text-white text-xs">
+                {/* <div className="text-white text-xs">
                   Написать обращение на сайте
-                </div>
+                </div> */}
                 <div className="text-white text-xs">
-                  Написать обращение на портале eOtinish
+                  {Footer_data.link_eOtinish}
                 </div>
               </div>
 
               <div>
-                <div className="text-sm text-white font-medium">Мы есть </div>
+                <div className="text-sm text-white font-medium">
+                  {Footer_data.title_social}
+                </div>
                 <div className="flex gap-5">
                   <FacebookIcon className="w-5 h-5" />
                   <InstaIcon className="w-5 h-5" />
@@ -72,36 +60,11 @@ export const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="text-sm text-white text-center mt-6">
+          {/* <div className="text-sm text-white text-center mt-6">
             ©2022 - Qala Digital.kz. Все права защищены
-          </div>
+          </div> */}
         </div>
       </div>
     </>
-  );
-};
-
-const MyMap = () => {
-  return (
-    <YMaps>
-      <Map
-        className="h-80 w-[600px]"
-        defaultState={{
-          center: [51.128201, 71.430429],
-          zoom: 10.4,
-          controls: ["zoomControl", "fullscreenControl"],
-        }}
-        modules={["control.ZoomControl", "control.FullscreenControl"]}
-      >
-        <Placemark
-          modules={["geoObject.addon.balloon"]}
-          properties={{
-            balloonContentBody:
-              "This is balloon loaded by the Yandex.Maps API module system",
-          }}
-          defaultGeometry={[51.181868, 71.477778]}
-        />
-      </Map>
-    </YMaps>
   );
 };

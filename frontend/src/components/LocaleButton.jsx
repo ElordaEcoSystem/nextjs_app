@@ -7,7 +7,7 @@ export const LocaleButton = ({ locale }) => {
   const pathname = usePathname();
   const router = useRouter();
   function onChangeLangeage(currentLanguage) {
-    console.log(currentLanguage);
+    // console.log(currentLanguage);
     const newLanguage = currentLanguage === "kk" ? "ru" : "kk";
     if (!pathname) return "/";
     const segments = pathname.split("/");

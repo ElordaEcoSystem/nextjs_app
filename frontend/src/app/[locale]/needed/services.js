@@ -68,7 +68,7 @@ export async function fetchPerformBlocks(locale) {
       options
     );
     const response = await res.json();
-    console.log("response", response);
+    // console.log("response", response);
     return response;
   } catch (err) {
     console.error(err);
@@ -85,11 +85,51 @@ export async function fetchMainPage(locale) {
   };
   try {
     const res = await fetch(
-      `http://0.0.0.0:1337/api/main-pages?populate=button&locale=${locale}`, //
+      `http://0.0.0.0:1337/api/main-pages?populate=button&locale=${locale}`,
       options
     );
     const response = await res.json();
-    console.log("response", response);
+    // console.log("response", response);
+    return response;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export async function fetchFooter(locale) {
+  const options = {
+    headers: {
+      Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
+    },
+  };
+  try {
+    const res = await fetch(
+      `http://0.0.0.0:1337/api/footers?populate=item_social&locale=${locale}`,
+      options
+    );
+    console.log("locale", locale);
+    const response = await res.json();
+    // console.log("response", response);
+    return response;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export async function fetchAbout(locale) {
+  const options = {
+    headers: {
+      Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
+    },
+  };
+  try {
+    const res = await fetch(
+      `http://0.0.0.0:1337/api/abouts?populate=director&populate=director.photo&locale=${locale}`,
+      options
+    );
+    console.log("locale", locale);
+    const response = await res.json();
+    // console.log("response", response);
     return response;
   } catch (err) {
     console.error(err);

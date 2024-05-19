@@ -5,8 +5,9 @@ import { News } from "@/components/News";
 import { Perform } from "@/components/Perform/Perform";
 import { useTranslations } from "next-intl";
 
-export default function Home() {
+export default function Home({ locale }) {
   const t = useTranslations("Index");
+
   return (
     <main className="">
       <Banner />
