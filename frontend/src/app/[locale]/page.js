@@ -3,16 +3,19 @@
 import { Banner } from "@/components/Banner";
 import { News } from "@/components/News";
 import { Perform } from "@/components/Perform/Perform";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { fetchMainPage } from "./needed/services";
 
-export default function Home({ locale }) {
-  const t = useTranslations("Index");
+export default async function Home() {
+  // const t = useTranslations("Index");
+  const locale = useLocale();
+  const data = await fetchMainPage(locale);
 
   return (
     <main className="">
-      <Banner />
+      <Banner data={data} />
       {/* <Perform /> */}
-      <News />
+      <News data={data} />
     </main>
   );
 }

@@ -16,7 +16,10 @@ export default async function About() {
   //   about.data[0].attributes.director[0].photo.data.attributes.url
   // );
   const domain = "http://127.0.0.1:1337";
-
+  // console.log(
+  //   "ABOUT",
+  //   about.data[0].attributes.director[0].photo.data.attributes.url
+  // );
   return (
     <>
       <section className="bg-prime">
@@ -37,7 +40,14 @@ export default async function About() {
             {about.data[0].attributes.sub_title}
           </h2>
           {about.data[0].attributes.director.map(
-            ({ position, full_name, reception_schedule, number }) => {
+            ({
+              position,
+              full_name,
+              reception_schedule,
+              number,
+              title_number,
+              title_reception_schedule,
+            }) => {
               const imageUrl =
                 domain +
                 about.data[0].attributes.director[0].photo.data?.attributes
@@ -51,6 +61,8 @@ export default async function About() {
                     full_name,
                     reception_schedule,
                     number,
+                    title_number,
+                    title_reception_schedule,
                   })}
                 </div>
               );
@@ -68,6 +80,8 @@ const DirectorCard = ({
   reception_schedule,
   number,
   imageUrl,
+  title_number,
+  title_reception_schedule,
 }) => {
   return (
     <div className="shadow-lg p-5 flex gap-4  ">
@@ -83,11 +97,11 @@ const DirectorCard = ({
         <div className=" text-3xl text-prime font-bold">{full_name}</div>
         {/* <div className="  text-base mt-4">dasd</div> */}
         <div className=" text-base text-black mt-1 flex">
-          Телефон: &nbsp;
+          {title_number} &nbsp;
           <div className="text-prime font-medium">{number}</div>
         </div>
         <div className="flex">
-          График приема граждан:&nbsp;
+          {title_reception_schedule}&nbsp;
           <div className="text-prime font-medium">{reception_schedule}</div>
         </div>
         {/* <div>

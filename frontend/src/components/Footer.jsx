@@ -10,6 +10,7 @@ import { fetchFooter } from "@/app/[locale]/needed/services";
 
 import { useLocale } from "next-intl";
 import { MyMap } from "./Map";
+import Link from "next/link";
 
 export const Footer = async () => {
   const locale = useLocale();
@@ -43,19 +44,30 @@ export const Footer = async () => {
                 {/* <div className="text-white text-xs">
                   Написать обращение на сайте
                 </div> */}
-                <div className="text-white text-xs">
+                <Link
+                  href="https://eotinish.kz/kk"
+                  className="text-white text-xs"
+                >
                   {Footer_data.link_eOtinish}
-                </div>
+                </Link>
               </div>
 
               <div>
                 <div className="text-sm text-white font-medium">
                   {Footer_data.title_social}
                 </div>
-                <div className="flex gap-5">
-                  <FacebookIcon className="w-5 h-5" />
-                  <InstaIcon className="w-5 h-5" />
-                  <TelegramIcon className="w-5 h-5" />
+                <div className="flex gap-3 mt-2">
+                  <Link href="https://www.instagram.com/press_elordaecosystem/">
+                    <InstaIcon className="w-5 h-5 hover:scale-110 active:scale-95 transition-all" />
+                  </Link>
+                  <Link
+                    className="flex flex-col justify-center "
+                    href="https://www.facebook.com/ElordaEcoSystem/"
+                  >
+                    <FacebookIcon className="w-4 h-4 hover:scale-110 active:scale-95 transition-all" />
+                  </Link>
+
+                  {/* <TelegramIcon className="w-5 h-5" /> */}
                 </div>
               </div>
             </div>

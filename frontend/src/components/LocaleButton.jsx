@@ -21,7 +21,7 @@ export const LocaleButton = ({ locale }) => {
     <button
       key={locale}
       value={locale}
-      className="text-prime font-semibold text-base "
+      className="text-prime font-semibold  block w-12  hover:bg-secondary transition-all text-sm"
       onClick={(e) => {
         onChangeLangeage(e.target.value);
       }}

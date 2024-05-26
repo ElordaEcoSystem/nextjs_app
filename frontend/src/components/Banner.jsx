@@ -2,29 +2,27 @@ import { fetchMainPage } from "@/app/[locale]/needed/services";
 import { Logo } from "./icons/Logo";
 import { useLocale } from "next-intl";
 import Link from "next/link";
-export const Banner = async () => {
+export const Banner = async ({ data }) => {
   const locale = useLocale();
-  const main_page = await fetchMainPage(locale);
-
-  // console.log("for test", main_page.data[0].attributes.button);
   return (
     <section id="banner" className="bg-prime">
       <div className="container flex justify-between gap-8">
         <div className="flex flex-col max-w-md  py-32">
-          <div className="text-white text-4xl font-semibold">
-            {/* ГКП на ПХВ <br />
-            "ELORDA ECO SYSTEM" <br /> акимата города Астана */}
-            {main_page.data[0].attributes.title}
+          <div className="text-white text-4xl font-semibold flex flex-col">
+            {data.data[0].attributes.title.map((item) => {
+              return <div>{item.children[0].text}</div>;
+            })}
           </div>
           <div className="text-white text-sm font-normal mt-10">
-            {main_page.data[0].attributes.description}
+            {data.data[0].attributes.description}
           </div>
           <div className=" mt-10 flex gap-4">
-            {main_page.data[0].attributes.button.map((btn) => {
+            {data.data[0].attributes.button.map((btn) => {
               return (
                 <Link
-                  href={`/${btn.link}`}
-                  className="px-5 py-1 bg-white rounded-sm text-prime font-semibold text-sm hover:scale-105 transition-all duration-300"
+                  href={`/${locale}/${btn.link}`}
+                  className="px-5 py-1 bg-white rounded-sm text-prime font-semibold text-sm hover:scale-105 transition-all duration-300 active:scale-95"
+                  key={btn.title + btn.link}
                 >
                   {btn.title}
                 </Link>

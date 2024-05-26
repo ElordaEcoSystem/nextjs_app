@@ -1,19 +1,32 @@
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
 import Link from "next/link";
 import React from "react";
+import { fetchProcurement } from "../needed/services";
+import { useLocale } from "next-intl";
 
-export default function Procurement() {
+export default async function Procurement() {
+  const locale = useLocale();
+  const data = await fetchProcurement(locale);
+  const domain = "http://127.0.0.1:1337";
+  // console.log("ANTIKOR", data.data[0].attributes.title);
+  console.log("PROCUREMENT", data.data[0].attributes);
   return (
-    <div className="container py-10">
-      <h2 className="text-3xl font-bold text-prime">
-        Планы закупок товаров, работ и услуг
+    <section className="mb-auto container py-12">
+      <h2 className="text-3xl font-bold text-prime ">
+        {data.data[0].attributes.title}
       </h2>
-      <div className="flex flex-col gap-3 mt-4">
-        <Link href="/document_procurment/План-2023.xls">План 2023</Link>
-        <Link href="/document_procurment/Приказ_2023.pdf">Приказ 2023</Link>
+      <div className="mt-4">
+        {data.data[0].attributes.document_2.map((item) => {
+          return (
+            <Link
+              className="hover:text-prime hover:bg-secondary transition-all"
+              href={domain + item.item_document.data.attributes.url}
+            >
+              {item.title}
+            </Link>
+          );
+        })}
       </div>
-    </div>
+    </section>
   );
 }
 // "use client";
