@@ -47,14 +47,16 @@ export default async function About() {
               number,
               title_number,
               title_reception_schedule,
+              photo: {
+                data: {
+                  attributes: { url },
+                },
+              },
             }) => {
-              const imageUrl =
-                domain +
-                about.data[0].attributes.director[0].photo.data?.attributes
-                  ?.url;
+              const imageUrl = domain + url;
 
               return (
-                <div className="mt-5">
+                <div className="mt-5" key={full_name}>
                   {DirectorCard({
                     position,
                     imageUrl,

@@ -32,7 +32,7 @@ export default async function PressCenter() {
                   {post.attributes.title}
                 </Link>
                 <p className="text-sm mt-2 line-clamp-5 break-all">
-                  {post.attributes.description}
+                  {post?.attributes?.description}
                 </p>
                 <div className="text-gray-400 text-sm mt-2">
                   {post.attributes.date_of_publication}

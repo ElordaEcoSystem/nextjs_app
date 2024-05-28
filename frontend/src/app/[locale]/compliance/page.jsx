@@ -16,7 +16,7 @@ export default async function Compliance() {
         {data.data[0].attributes.document.map((item) => {
           return (
             <Link
-              className="hover:text-prime hover:bg-secondary transition-all "
+              className="hover:text-prime hover:bg-secondary transition-all table"
               href={domain + item.item_document.data.attributes.url}
             >
               {item.title}
