@@ -3,7 +3,8 @@ import { fetchAntikor } from "../needed/services";
 import Link from "next/link";
 
 export default async function Compliance() {
-  const domain = "http://127.0.0.1:1337";
+  // const domain = "http://127.0.0.1:1337";
+  const domain = process.env.API_WEBSITE;
   const locale = useLocale();
   const data = await fetchAntikor(locale);
   return (
