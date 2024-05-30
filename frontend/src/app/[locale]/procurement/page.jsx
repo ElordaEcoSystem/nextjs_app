@@ -6,7 +6,7 @@ import { useLocale } from "next-intl";
 export default async function Procurement() {
   const locale = useLocale();
   const data = await fetchProcurement(locale);
-  const domain = "http://127.0.0.1:1337";
+  const domain = process.env.API_WEBSITE;
   // console.log("ANTIKOR", data.data[0].attributes.title);
   console.log("PROCUREMENT", data.data[0].attributes);
   return (
