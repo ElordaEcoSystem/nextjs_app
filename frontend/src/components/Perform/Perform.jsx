@@ -7,7 +7,7 @@ import Image from "next/image";
 
 export const Perform = ({ perform_data }) => {
   const [activeYear, setActiveYear] = useState(2023);
-  const domain = "http://127.0.0.1:1337";
+  const domain = process.env.API_WEBSITE;
   console.log(perform_data.data[0].attributes.number);
   return (
     <section id="perform" className="py-10">
@@ -49,8 +49,6 @@ const PerfromItem = ({ title, icon, numberAndYear, unit, activeYear }) => {
         {/* <PerformIcon key={icon} icon={icon} className="w-12" /> */}
         <Image
           src={icon}
-          width={0}
-          height={0}
           sizes="100vw"
           className="w-12 object-cover justify-center"
         ></Image>

@@ -8,7 +8,7 @@ export default async function Procurement() {
   const data = await fetchProcurement(locale);
   const domain = process.env.API_WEBSITE;
   // console.log("ANTIKOR", data.data[0].attributes.title);
-  console.log("PROCUREMENT", data.data[0].attributes);
+  // console.log("PROCUREMENT", data.data[0].attributes);
   return (
     <section className="mb-auto container py-12">
       <h2 className="text-3xl font-bold text-prime ">
@@ -19,7 +19,7 @@ export default async function Procurement() {
           return (
             <Link
               className="hover:text-prime hover:bg-secondary transition-all table"
-              href={domain + item.item_document.data.attributes.url}
+              href={domain + item?.item_document?.data?.attributes?.url}
             >
               {item.title}
             </Link>
