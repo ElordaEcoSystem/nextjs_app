@@ -5,10 +5,9 @@ import { PerformYears } from "./Perform-years";
 import { PerformItems } from "./Perform-items";
 import Image from "next/image";
 
-const domain = "http://127.0.0.1:1337";
-
 export const Perform = ({ perform_data }) => {
   const [activeYear, setActiveYear] = useState(2023);
+  const domain = "http://127.0.0.1:1337";
   console.log(perform_data.data[0].attributes.number);
   return (
     <section id="perform" className="py-10">
