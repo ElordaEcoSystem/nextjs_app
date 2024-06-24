@@ -62,21 +62,23 @@ export default async function PressCenter() {
 
   return (
     <section className="container py-12 flex flex-col gap-4">
-      {/* <h2 className="text-3xl font-bold text-prime">Новости_2</h2> */}
-      <div className=" grid gap-5 sm:flex sm:flex-col grid-cols-[repeat(auto-fit,_minmax(200px,_1fr))] ">
+      <div className=" grid gap-5 sm:flex sm:flex-col grid-cols-[repeat(auto-fit,_minmax(200px,_1fr))]  ">
+        {/* <div className=" grid gap-5 sm:flex sm:flex-col grid-cols-[repeat(auto-fit,_minmax(200px,_1fr))] "> */}
         {/*gap-5 sm:flex sm:flex-col  */}
         {blog?.data?.map((post) => {
           const imageUrl =
             domain + post.attributes.thumbnail?.data.attributes.url;
           return (
-            <div className=" flex sm:flex-row flex-col " key={post.id}>
-              {/* grid grid-cols-[207px_auto] gap-4 */}
+            <div
+              className=" grid sm:grid-cols-[208px_,auto] grid-flow-row"
+              key={post.id}
+            >
               <Image
                 src={imageUrl}
                 width={0}
                 height={0}
                 sizes="100vw"
-                className="h-52  w-52 object-cover justify-center sm:mx-0 mx-auto "
+                className="h-52 w-52 object-cover justify-center sm:mx-0 mx-auto "
               />
               <div className="py-3 px-4 sm:w-auto sm:m-0 w-52 mx-auto">
                 <MyLink id={post.id} title={post.attributes.title} />
