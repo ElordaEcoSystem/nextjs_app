@@ -7,8 +7,8 @@ import Image from "next/image";
 
 export const Perform = ({ perform_data }) => {
   const [activeYear, setActiveYear] = useState(2023);
-  const domain = process.env.API_WEBSITE;
-  console.log(perform_data.data[0].attributes.number);
+  const domain = "http://127.0.0.1:1337";
+  // console.log(perform_data.data[0].attributes.icon.data.attributes.url);
   return (
     <section id="perform" className="py-10">
       <div className="container ">
@@ -41,14 +41,16 @@ export const Perform = ({ perform_data }) => {
 
 const PerfromItem = ({ title, icon, numberAndYear, unit, activeYear }) => {
   const perform_number = numberAndYear.find((item) => item.year == activeYear);
-  console.log("PERFORM_NUMBER", activeYear);
-  console.log("PERFORM_NUMBER", perform_number.number);
+  // console.log("PERFORM_NUMBER", activeYear);
+  // console.log("PERFORM_NUMBER", perform_number.number);
   return (
     <div className="py-6  px-3 border-2 border-prime bg-white transition-all w-[168px] hover:scale-105 hover:shadow-main shadow-prime">
       <div className="flex items-center justify-center">
         {/* <PerformIcon key={icon} icon={icon} className="w-12" /> */}
         <Image
           src={icon}
+          width={0}
+          height={0}
           sizes="100vw"
           className="w-12 object-cover justify-center"
         ></Image>
