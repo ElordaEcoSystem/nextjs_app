@@ -67,7 +67,8 @@ export default async function PressCenter() {
         {/*gap-5 sm:flex sm:flex-col  */}
         {blog?.data?.map((post) => {
           const imageUrl =
-            domain + post.attributes.thumbnail?.data.attributes.url;
+            domain +
+            post.attributes.thumbnail?.data.attributes.formats.small.url;
           return (
             <div
               className=" grid sm:grid-cols-[208px_,auto] grid-flow-row"
