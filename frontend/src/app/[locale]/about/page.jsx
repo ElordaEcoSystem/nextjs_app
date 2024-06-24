@@ -86,23 +86,22 @@ const DirectorCard = ({
   title_reception_schedule,
 }) => {
   return (
-    <div className="shadow-lg p-5 flex gap-4  ">
+    <div className="shadow-lg p-5 flex gap-4 sm:flex-row flex-col">
       <Image
         src={imageUrl}
         width={0}
         height={0}
         sizes="100vw"
-        className="h-72 w-72 object-cover justify-center"
+        className="h-72 w-72 object-cover md:m-0 mx-auto"
       />
       <div className="py-2 flex flex-col gap-2">
         <div className=" text-lg ">{position}</div>
         <div className=" text-3xl text-prime font-bold">{full_name}</div>
-        {/* <div className="  text-base mt-4">dasd</div> */}
-        <div className=" text-base text-black mt-1 flex">
+        <div className=" text-base text-black mt-1 flex flex-col">
           {title_number} &nbsp;
           <div className="text-prime font-medium">{number}</div>
         </div>
-        <div className="flex">
+        <div className="flex flex-col">
           {title_reception_schedule}&nbsp;
           <div className="text-prime font-medium">{reception_schedule}</div>
         </div>

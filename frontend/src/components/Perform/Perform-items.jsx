@@ -2,16 +2,19 @@ import { useLocale } from "next-intl";
 import { fetchPerformBlocks } from "@/app/[locale]/needed/services";
 import Image from "next/image";
 
-export default async function PerformItems({}) {
-  const locale = useLocale();
-  const perform_items = await fetchPerformBlocks(locale);
-  const domain = "http://127.0.0.1:1337";
+export const PerformItems = ({ perform_data }) => {
+  // const locale = useLocale();
+  // const perform_items = await fetchPerformBlocks(locale);
+  // const domain = "http://127.0.0.1:1337";
+  // console.log("PERFORM_ITEMS", perform_items);
 
   return (
     <div>
-      {perform_items?.data.map((item) => {
+      {perform_data?.data.map((item) => {
+        console.log(item);
         const imageUrl = domain + item.attributes.icon.data.attributes.url;
-        // console.log(item.attributes.Year[0].number);
+
+        console.log(item.attributes.Year[0].number);
         return (
           <PerfromItem
             key={item.id}
@@ -25,7 +28,7 @@ export default async function PerformItems({}) {
       })}
     </div>
   );
-}
+};
 
 const PerfromItem = ({ title, icon, number, unit, activeYear }) => {
   return (

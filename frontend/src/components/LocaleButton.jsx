@@ -1,9 +1,12 @@
 "use client";
+import clsx from "clsx";
+import { useLocale } from "next-intl";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { startTransition } from "react";
 
-export const LocaleButton = ({ locale }) => {
+export const LocaleButton = ({ className }) => {
+  const locale = useLocale();
   const pathname = usePathname();
   const router = useRouter();
   function onChangeLangeage(currentLanguage) {
@@ -21,7 +24,10 @@ export const LocaleButton = ({ locale }) => {
     <button
       key={locale}
       value={locale}
-      className="text-prime font-semibold  block w-12  hover:bg-secondary transition-all text-sm"
+      className={clsx(
+        "text-prime font-semibold  block   hover:bg-secondary transition-all text-sm ",
+        className
+      )}
       onClick={(e) => {
         onChangeLangeage(e.target.value);
       }}

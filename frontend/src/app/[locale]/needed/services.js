@@ -26,7 +26,7 @@ export async function fetchPerformBlocks(locale) {
   };
   try {
     const res = await fetch(
-      `http://0.0.0.0:1337/api/perform-blocks?populate=Year&populate=icon&locale=${locale}`, //
+      `http://0.0.0.0:1337/api/perform-items?populate=number&populate=icon&locale=${locale}`, //
       options
     );
     const response = await res.json();
@@ -143,6 +143,7 @@ export async function fetchBlog(locale) {
   try {
     const res = await fetch(
       `http://0.0.0.0:1337/api/blogs?populate=thumbnail&sort=date_of_publication:desc&locale=${locale}`,
+      // `http://0.0.0.0:1337/api/blogs?pagination[page]=${currentPage}&pagination[pageSize]=2&populate=thumbnail&sort=date_of_publication:desc&locale=${locale}`,
       options
     );
     const response = await res.json();
@@ -162,7 +163,7 @@ export async function fetchBlogById(locale, id) {
   };
   try {
     const res = await fetch(
-      `http://0.0.0.0:1337/api/blogs/${id}?populate=thumbnail&sort=date_of_publication:desc&locale=${locale}`,
+      `http://0.0.0.0:1337/api/blogs/${id}?populate=thumbnail&populate=photo_content&populate=video_content&sort=date_of_publication:desc&locale=${locale}`,
       options
     );
     const response = await res.json();

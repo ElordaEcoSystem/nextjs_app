@@ -7,7 +7,7 @@ export const Banner = async ({ data }) => {
   return (
     <section id="banner" className="bg-prime">
       <div className="container flex justify-between gap-8">
-        <div className="flex flex-col max-w-md  py-32">
+        <div className="flex flex-col md:max-w-md w-full  py-32">
           <div className="text-white text-4xl font-semibold flex flex-col">
             {data.data[0].attributes.title.map((item) => {
               return <div>{item.children[0].text}</div>;
@@ -42,7 +42,7 @@ export const Banner = async ({ data }) => {
             </Link> */}
           </div>
         </div>
-        <div className="py-40">
+        <div className="py-40 md:block hidden">
           <Logo className="w-full h-full object-cover fill-white"></Logo>
         </div>
       </div>

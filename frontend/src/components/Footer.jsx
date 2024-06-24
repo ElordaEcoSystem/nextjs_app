@@ -20,8 +20,7 @@ export const Footer = async () => {
     <>
       <div className="bg-prime py-10">
         <div className="container ">
-          <div className="flex justify-center items-center gap-10">
-            <MyMap />
+          <div className="flex flex-col sm:flex-row justify-center gap-10 ">
             <div className="flex flex-col gap-7">
               <div>
                 <div className="text-sm text-white font-medium">
@@ -35,7 +34,7 @@ export const Footer = async () => {
                   <div className="text-white text-xs">{Footer_data.number}</div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <MailIcon className="h-5 w-5" />
+                  <MailIcon className="h-5 w-5 fill-white" />
                   <div className="text-white text-xs">{Footer_data.email}</div>
                 </div>
               </div>
@@ -71,6 +70,7 @@ export const Footer = async () => {
                 </div>
               </div>
             </div>
+            <MyMap />
           </div>
           {/* <div className="text-sm text-white text-center mt-6">
             ©2022 - Qala Digital.kz. Все права защищены

@@ -1,9 +1,10 @@
-"use strict";
+import { fetchNav } from "@/app/[locale]/needed/services";
+import { useLocale } from "next-intl";
 import Link from "next/link";
 
-export const Navs = ({ data, locale }) => {
+export const Navs = async () => {
   return (
-    <nav className="flex w-max justify-between">
+    <nav className="w-max justify-between md:flex hidden">
       <ul className="flex  text-prime justify-between gap-4 font-semibold text-base items-center ">
         {data?.data.map((item) => (
           <Link

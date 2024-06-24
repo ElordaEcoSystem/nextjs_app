@@ -11,10 +11,10 @@ export const News = async ({ data }) => {
 
   const news_data = await fetchBlog(locale);
   const domain = "http://127.0.0.1:1337";
-  console.log("NEW_DATA", news_data.data);
   // const locale = useLocale();
   // const main_page = await fetchMainPage(locale);
 
+  console.log("LOG", news_data.data[0].attributes.description);
   return (
     <section id="news" className="py-10 container ">
       <div className="flex justify-between items-center">
@@ -29,10 +29,10 @@ export const News = async ({ data }) => {
           <ArrowIcon className="h-4 stroke-[4px] w-auto stroke-prime" />
         </Link>
       </div>
-      <div className="grid grid-cols-2 gap-5 mt-14 cursor-pointer">
+      <div className="md:grid md:grid-cols-2 block gap-5 mt-14 ">
         <Link
           href={`/${locale}/press_center/${news_data.data[0].id}`}
-          className="h-[556px] flex flex-col  transition-all   active:scale-[98%] "
+          className="h-[556px] flex-col transition-all active:scale-[98%]  md:flex hidden"
         >
           <div className="h-full bg-slate-400 ">
             <Image
@@ -51,6 +51,7 @@ export const News = async ({ data }) => {
             <div className="text-white text-xl font-bold line-clamp-1 break-all">
               {news_data.data[0].attributes.title}
             </div>
+
             <div className="text-slate-400 text-xs font-normal mt-1 ">
               {news_data.data[0].attributes.date_of_publication}
             </div>
@@ -68,6 +69,7 @@ export const News = async ({ data }) => {
                   domain + item.attributes.thumbnail?.data.attributes.url
                 }
                 locale={locale}
+                description={item.attributes.description}
               />
             );
           })}
@@ -77,7 +79,7 @@ export const News = async ({ data }) => {
   );
 };
 
-const LittleNews = ({ thumbnail, title, date, id, locale }) => {
+const LittleNews = ({ thumbnail, title, date, id, locale, description }) => {
   return (
     <Link
       href={`/${locale}/press_center/${id}`}
@@ -92,8 +94,11 @@ const LittleNews = ({ thumbnail, title, date, id, locale }) => {
       />
       {/* <div className="bg-gray-300 "></div> */}
       <div className="bg-prime w-full p-6 flex flex-col justify-center  transition-all ">
-        <div className="text-white text-base font-bold line-clamp-4 break-all ">
+        <div className="text-white text-lg font-bold line-clamp-2 break-all ">
           {title}
+        </div>
+        <div className="text-base font-normal mt-1 text-white break-all line-clamp-2">
+          {description}
         </div>
         <div className="text-base font-normal mt-1 text-slate-400">{date}</div>
       </div>
