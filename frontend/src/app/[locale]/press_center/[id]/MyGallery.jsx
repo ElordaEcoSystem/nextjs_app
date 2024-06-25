@@ -99,6 +99,7 @@
 // VOL PROD
 
 "use client";
+import Image from "next/image";
 import "photoswipe/dist/photoswipe.css";
 
 import { Gallery, Item } from "react-photoswipe-gallery";
@@ -135,7 +136,7 @@ export const MyGallery = ({ data }) => {
                 height={item.attributes?.height}
               >
                 {({ ref, open }) => (
-                  <img
+                  <Image
                     ref={ref}
                     onClick={open}
                     src={`${domain + item.attributes?.url}`}
