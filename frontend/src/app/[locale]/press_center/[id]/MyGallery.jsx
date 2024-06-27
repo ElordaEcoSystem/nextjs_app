@@ -183,8 +183,9 @@ import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 
 import NextJsImage from "./NextJsImage";
-import PhotoAlbum from "react-photo-album";
+// import PhotoAlbum from "react-photo-album";
 import { useState } from "react";
+import Image from "next/image";
 
 export const MyGallery = ({ data }) => {
   const domain = "http://127.0.0.1:1337";
@@ -202,12 +203,29 @@ export const MyGallery = ({ data }) => {
 
   return (
     <>
-      <PhotoAlbum
+      {/* <PhotoAlbum
         layout="rows"
         photos={images}
         targetRowHeight={150}
         onClick={({ index: current }) => setIndex(current)}
-      />
+      /> */}
+
+      <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        {data?.photo_content?.data?.map((item, index) => {
+          return (
+            <Image
+              // ref={ref}
+              onClick={() => {
+                setIndex(index);
+              }}
+              src={`${domain + item.attributes?.url}`}
+              width={item.attributes.width}
+              height={item.attributes.height}
+              className="h-full object-cover cursor-pointer"
+            />
+          );
+        })}
+      </div>
 
       <Lightbox
         index={index}
@@ -218,11 +236,6 @@ export const MyGallery = ({ data }) => {
         slides={images}
         render={{ slide: NextJsImage }}
       />
-
-      <div>test</div>
-      {images.map((item) => {
-        return <img src={item.src} alt="" />;
-      })}
     </>
   );
 };

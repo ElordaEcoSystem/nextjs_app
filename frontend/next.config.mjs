@@ -7,7 +7,6 @@ const nextConfig = {
   images: {
     remotePatterns: [
       { hostname: "127.0.0.1" },
-      { hostname: "127.0.0.1:1337" },
       { hostname: "c2.staticflickr.com" },
     ],
   },
