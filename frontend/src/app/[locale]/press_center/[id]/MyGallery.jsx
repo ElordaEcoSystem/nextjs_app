@@ -188,8 +188,8 @@ import { useState } from "react";
 import Image from "next/image";
 
 export const MyGallery = ({ data }) => {
-  // const domain = "http://127.0.0.1:1337";
-  const domain = process.env.API_WEBSITE;
+  const domain_photo = "http://127.0.0.1:1337";
+  const domain_video = "http://strapi.elordaecosystem.kz";
   const [index, setIndex] = useState(-1);
 
   let images = [];
@@ -218,7 +218,7 @@ export const MyGallery = ({ data }) => {
               onClick={() => {
                 setIndex(index);
               }}
-              src={`${domain + item.attributes?.url}`}
+              src={`${domain_photo + item.attributes?.url}`}
               width={item.attributes.width}
               height={item.attributes.height}
               className="h-full object-cover cursor-pointer"
@@ -258,7 +258,7 @@ export const MyGallery = ({ data }) => {
       {data?.video_content?.data?.map((item) => {
         return (
           <video height="600" controls>
-            <source src={domain + item.attributes.url} />
+            <source src={domain_video + item.attributes.url} />
             Your browser does not support the video tag...
           </video>
         );
