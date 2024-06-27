@@ -82,7 +82,12 @@ export default async function PressCenter() {
                 className="h-52 w-52 object-cover justify-center sm:mx-0 mx-auto "
               />
               <div className="py-3 px-4 sm:w-auto sm:m-0 w-52 mx-auto">
-                <MyLink id={post.id} title={post.attributes.title} />
+                <Link
+                  href={`press_center/${post.id}`}
+                  className="text-lg font-bold text-prime break-all line-clamp-2"
+                >
+                  {post.attributes.title}
+                </Link>
 
                 <p className="text-sm mt-2 line-clamp-4 break-all">
                   {post?.attributes?.description}
@@ -99,27 +104,14 @@ export default async function PressCenter() {
   );
 }
 
-const MyLink = async ({ id, title, locale }) => {
-  const trueId = distributorOfId(id, locale);
-
-  return (
-    <Link
-      href={`press_center/${trueId}`}
-      className="text-lg font-bold text-prime break-all line-clamp-2"
-    >
-      {title}
-    </Link>
-  );
-};
-
-function distributorOfId(id, locale) {
-  let res = id;
-  if (locale === "ru" && id % 2 == 1) {
-    res = parseInt(res) + 1;
-  } else if (locale === "kk" && id % 2 == 0) {
-    res = parseInt(res) - 1;
-  } else {
-    res = id;
-  }
-  return res;
-}
+// function distributorOfId(id, locale) {
+//   let res = id;
+//   if (locale === "ru" && id % 2 == 1) {
+//     res = parseInt(res) + 1;
+//   } else if (locale === "kk" && id % 2 == 0) {
+//     res = parseInt(res) - 1;
+//   } else {
+//     res = id;
+//   }
+//   return res;
+// }

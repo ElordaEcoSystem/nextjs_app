@@ -57,13 +57,29 @@
 // }
 
 //vol 2
+
+function distributorOfId(id, locale) {
+  let res = id;
+  if (locale === "ru" && id % 2 == 1) {
+    res = parseInt(res) + 1;
+  } else if (locale === "kk" && id % 2 == 0) {
+    res = parseInt(res) - 1;
+  } else {
+    res = id;
+  }
+  return res;
+}
+
 import { useLocale } from "next-intl";
 import { fetchBlogById } from "../../needed/services";
 import { MyGallery } from "./MyGallery";
 
 export default async function Post({ params }) {
   const locale = useLocale();
-  const blogById = await fetchBlogById(locale, params.id);
+  const blogById = await fetchBlogById(
+    locale,
+    distributorOfId(params.id, locale)
+  );
   console.log("BLOGBYID", blogById.data.attributes);
   return (
     <section className="container py-12 flex flex-col gap-4 ">
