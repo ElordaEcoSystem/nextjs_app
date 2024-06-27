@@ -218,6 +218,11 @@ export const MyGallery = ({ data }) => {
         slides={images}
         render={{ slide: NextJsImage }}
       />
+
+      <div>test</div>
+      {images.map((item) => {
+        return <img src={item.src} alt="" />;
+      })}
     </>
   );
 };
