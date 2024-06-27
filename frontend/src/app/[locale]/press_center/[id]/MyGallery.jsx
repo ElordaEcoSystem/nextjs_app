@@ -186,8 +186,6 @@ import NextJsImage from "./NextJsImage";
 // import PhotoAlbum from "react-photo-album";
 import { useState } from "react";
 import Image from "next/image";
-import Video from "next-video";
-import ReactPlayer from "react-player";
 
 export const MyGallery = ({ data }) => {
   const domain = "http://127.0.0.1:1337";
