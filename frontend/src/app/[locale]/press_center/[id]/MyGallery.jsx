@@ -186,14 +186,15 @@ import NextJsImage from "./NextJsImage";
 // import PhotoAlbum from "react-photo-album";
 import { useState } from "react";
 import Image from "next/image";
+import Video from "next-video";
+import ReactPlayer from "react-player";
 
 export const MyGallery = ({ data }) => {
   const domain = "http://127.0.0.1:1337";
   const [index, setIndex] = useState(-1);
-  console.log("DATA FROM GALLERY", data.photo_content.data[0].attributes.width);
 
   let images = [];
-  data.photo_content.data.forEach((item) => {
+  data?.photo_content?.data?.forEach((item) => {
     images.push({
       src: domain + item.attributes.url,
       width: item.attributes.width,
@@ -236,6 +237,33 @@ export const MyGallery = ({ data }) => {
         slides={images}
         render={{ slide: NextJsImage }}
       />
+
+      <div className="flex flex-col gap-4 ">
+        {data?.youtube_link.map((item) => {
+          return (
+            <iframe
+              width="560"
+              height="500"
+              className="w-full"
+              src={item.src}
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          );
+        })}
+      </div>
+
+      {data?.video_content?.data?.map((item) => {
+        return (
+          <video height="600" controls>
+            <source src={domain + item.attributes.url} />
+            Your browser does not support the video tag...
+          </video>
+        );
+      })}
     </>
   );
 };

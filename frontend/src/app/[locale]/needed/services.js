@@ -163,7 +163,7 @@ export async function fetchBlogById(locale, id) {
   };
   try {
     const res = await fetch(
-      `http://0.0.0.0:1337/api/blogs/${id}?populate=thumbnail&populate=photo_content&populate=video_content&sort=date_of_publication:desc&locale=${locale}`,
+      `http://0.0.0.0:1337/api/blogs/${id}?populate=thumbnail&populate=photo_content&populate=video_content&populate=youtube_link&sort=date_of_publication:desc&locale=${locale}`,
       options
     );
     const response = await res.json();

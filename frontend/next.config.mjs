@@ -1,3 +1,4 @@
+import { withNextVideo } from "next-video/process";
 import createNextIntlPlugin from "next-intl/plugin";
 
 const withNextIntl = createNextIntlPlugin();
@@ -8,8 +9,9 @@ const nextConfig = {
     remotePatterns: [
       { hostname: "127.0.0.1" },
       { hostname: "c2.staticflickr.com" },
+      { hostname: "www.youtube.com" },
     ],
   },
 };
 
-export default withNextIntl(nextConfig);
+export default withNextVideo(withNextIntl(nextConfig));
