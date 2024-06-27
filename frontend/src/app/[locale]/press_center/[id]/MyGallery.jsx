@@ -188,7 +188,8 @@ import { useState } from "react";
 import Image from "next/image";
 
 export const MyGallery = ({ data }) => {
-  const domain = "http://127.0.0.1:1337";
+  // const domain = "http://127.0.0.1:1337";
+  const domain = process.env.API_WEBSITE;
   const [index, setIndex] = useState(-1);
 
   let images = [];
