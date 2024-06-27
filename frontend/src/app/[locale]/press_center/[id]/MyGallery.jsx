@@ -98,68 +98,126 @@
 
 // VOL PROD
 
-"use client";
-import Image from "next/image";
-import "photoswipe/dist/photoswipe.css";
+// "use client";
+// import Image from "next/image";
+// import "photoswipe/dist/photoswipe.css";
 
-import { Gallery, Item } from "react-photoswipe-gallery";
-import ReactPlayer from "react-player";
+// import { Gallery, Item } from "react-photoswipe-gallery";
+// import ReactPlayer from "react-player";
+
+// export const MyGallery = ({ data }) => {
+//   const domain = "http://127.0.0.1:1337";
+//   console.log("DATA", data.video_content.data);
+//   return (
+//     <div>
+//       <Gallery>
+//         <div className="cursor-pointer grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+//           {data?.photo_content?.data?.map((item) => {
+//             return (
+//               <Item
+//                 original={`${domain + item.attributes?.url}`}
+//                 thumbnail={`${domain + item.attributes?.url}`}
+//                 width={item?.attributes?.width}
+//                 height={item?.attributes?.height}
+//               >
+//                 {({ ref, open }) => (
+//                   <Image
+//                     ref={ref}
+//                     onClick={open}
+//                     src={`${domain + item.attributes?.url}`}
+//                     className="h-full object-cover"
+//                   />
+//                 )}
+//               </Item>
+//             );
+//           })}
+//         </div>
+//       </Gallery>
+//       <div className="flex flex-col gap-4 justify-center mt-10">
+//         {data?.video_content?.data?.map((item) => {
+//           return (
+//             <div className="flex justify-center">
+//               <ReactPlayer
+//                 controls={true}
+//                 url={`${domain + item.attributes.url}`}
+//               />
+//             </div>
+//           );
+//         })}
+//       </div>
+//     </div>
+//   );
+// };
+
+// VOL 4
+// "use client";
+// import PhotoAlbum from "react-photo-album";
+// import NextJsImage from "./NextJsImage";
+// // import photos from "./photos";
+
+// export const MyGallery = () => {
+//   const images = [
+//     // {
+//     //   src: "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_b.jpg",
+//     //   width: 320,
+//     //   height: 174,
+//     //   isSelected: true,
+//     //   caption: "After Rain (Jeshu John - designerspics.com)",
+//     // },
+
+//   ];
+//   return (
+//     // <div>test</div>
+//     <PhotoAlbum
+//       layout="rows"
+//       photos={images}
+//       renderPhoto={NextJsImage}
+//       defaultContainerWidth={1200}
+//       sizes={{ size: "calc(100vw - 240px)" }}
+//     />
+//   );
+// };
+
+"use client";
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
+
+import NextJsImage from "./NextJsImage";
+import PhotoAlbum from "react-photo-album";
+import { useState } from "react";
 
 export const MyGallery = ({ data }) => {
   const domain = "http://127.0.0.1:1337";
-  console.log("DATA", data.video_content.data);
+  const [index, setIndex] = useState(-1);
+  console.log("DATA FROM GALLERY", data.photo_content.data[0].attributes.width);
+
+  let images = [];
+  data.photo_content.data.forEach((item) => {
+    images.push({
+      src: domain + item.attributes.url,
+      width: item.attributes.width,
+      height: item.attributes.height,
+    });
+  });
+
   return (
-    <div>
-      <Gallery>
-        <div className="cursor-pointer grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {/* <Item
-            original="https://w.forfun.com/fetch/03/0348ba0afd06db9986c527dacf008cdb.jpeg"
-            thumbnail="https://w.forfun.com/fetch/03/0348ba0afd06db9986c527dacf008cdb.jpeg"
-            width="1024"
-            height="768"
-          >
-            {({ ref, open }) => (
-              <img
-                ref={ref}
-                onClick={open}
-                src="https://w.forfun.com/fetch/03/0348ba0afd06db9986c527dacf008cdb.jpeg"
-                className="h-full object-cover"
-              />
-            )}
-          </Item> */}
-          {data?.photo_content?.data?.map((item) => {
-            return (
-              <Item
-                original={`${domain + item.attributes?.url}`}
-                thumbnail={`${domain + item.attributes?.url}`}
-                width={item.attributes?.width}
-                height={item.attributes?.height}
-              >
-                {({ ref, open }) => (
-                  <Image
-                    ref={ref}
-                    onClick={open}
-                    src={`${domain + item.attributes?.url}`}
-                    className="h-full object-cover"
-                  />
-                )}
-              </Item>
-            );
-          })}
-        </div>
-      </Gallery>
-      <div className="flex flex-col gap-4 justify-center mt-10">
-        {data?.video_content?.data?.map((item) => {
-          return (
-            <div className="flex justify-center">
-              <ReactPlayer
-                controls={true}
-                url={`${domain + item.attributes.url}`}
-              />
-            </div>
-          );
-        })}
-      </div>
-    </div>
+    <>
+      <PhotoAlbum
+        layout="rows"
+        photos={images}
+        targetRowHeight={150}
+        onClick={({ index: current }) => setIndex(current)}
+      />
+
+      <Lightbox
+        index={index}
+        open={index >= 0}
+        close={() => setIndex(-1)}
+        // open={open}
+        // close={() => setOpen(false)}
+        slides={images}
+        render={{ slide: NextJsImage }}
+      />
+    </>
   );
 };
