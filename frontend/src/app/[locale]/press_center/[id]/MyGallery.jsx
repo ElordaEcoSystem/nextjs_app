@@ -195,7 +195,7 @@ export const MyGallery = ({ data }) => {
   let images = [];
   data?.photo_content?.data?.forEach((item) => {
     images.push({
-      src: domain + item.attributes.url,
+      src: domain_photo + item.attributes.url,
       width: item.attributes.width,
       height: item.attributes.height,
     });
