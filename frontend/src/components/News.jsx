@@ -81,13 +81,16 @@ export const News = async ({ data }) => {
 
 const LittleNews = ({ thumbnail, title, date, id, locale, description }) => {
   return (
-    <Link href={`/${locale}/press_center/${id}`} className="flex  flex-row ">
+    <Link
+      href={`/${locale}/press_center/${id}`}
+      className="grid grid-cols-[180px_,auto] "
+    >
       <Image
         sizes="100vw"
         src={thumbnail}
         width={0}
         height={0}
-        className="h-[182px]  w-[182px] object-cover md:m-0 mx-auto"
+        className="h-[180px]  w-[180px] object-cover md:m-0 mx-auto block"
       />
       {/* <div className="bg-gray-300 "></div> */}
       <div className="bg-prime w-full p-6 flex flex-col justify-center  transition-all ">
