@@ -29,10 +29,10 @@ export const News = async ({ data }) => {
           <ArrowIcon className="h-4 stroke-[4px] w-auto stroke-prime" />
         </Link>
       </div>
-      <div className="md:grid md:grid-cols-2 block gap-5 mt-14 ">
+      <div className="grid md:grid-cols-2 grid-cols-1 gap-5 mt-14 ">
         <Link
           href={`/${locale}/press_center/${news_data.data[0].id}`}
-          className="h-[556px] flex-col transition-all active:scale-[98%]  md:flex hidden"
+          className="h-[556px] flex-col transition-all active:scale-[98%]  flex "
         >
           <div className="h-full bg-slate-400 ">
             <Image
@@ -81,20 +81,17 @@ export const News = async ({ data }) => {
 
 const LittleNews = ({ thumbnail, title, date, id, locale, description }) => {
   return (
-    <Link
-      href={`/${locale}/press_center/${id}`}
-      className="w-full grid grid-cols-[182px_auto] h-full   transition-all  active:scale-[98%] active:shadow-none "
-    >
+    <Link href={`/${locale}/press_center/${id}`} className="flex  flex-row ">
       <Image
         sizes="100vw"
         src={thumbnail}
         width={0}
         height={0}
-        className="h-[182px]  w-52 object-cover justify-center"
+        className="h-[182px]  w-[182px] object-cover md:m-0 mx-auto"
       />
       {/* <div className="bg-gray-300 "></div> */}
       <div className="bg-prime w-full p-6 flex flex-col justify-center  transition-all ">
-        <div className="text-white text-lg font-bold line-clamp-2 break-all ">
+        <div className="text-white sm:line-clamp-2 line-clamp-1 text-lg font-bold  break-all ">
           {title}
         </div>
         <div className="text-base font-normal mt-1 text-white break-all line-clamp-2">
@@ -103,5 +100,28 @@ const LittleNews = ({ thumbnail, title, date, id, locale, description }) => {
         <div className="text-base font-normal mt-1 text-slate-400">{date}</div>
       </div>
     </Link>
+
+    // <Link
+    //   href={`/${locale}/press_center/${id}`}
+    //   className="w-full grid grid-cols-[182px_auto] h-full   transition-all  active:scale-[98%] active:shadow-none "
+    // >
+    //   <Image
+    //     sizes="100vw"
+    //     src={thumbnail}
+    //     width={0}
+    //     height={0}
+    //     className="h-[182px]  w-52 object-cover justify-center"
+    //   />
+    //   {/* <div className="bg-gray-300 "></div> */}
+    //   <div className="bg-prime w-full p-6 flex flex-col justify-center  transition-all ">
+    //     <div className="text-white sm:line-clamp-2 line-clamp-1 text-lg font-bold  break-all ">
+    //       {title}
+    //     </div>
+    //     <div className="text-base font-normal mt-1 text-white break-all line-clamp-2">
+    //       {description}
+    //     </div>
+    //     <div className="text-base font-normal mt-1 text-slate-400">{date}</div>
+    //   </div>
+    // </Link>
   );
 };
