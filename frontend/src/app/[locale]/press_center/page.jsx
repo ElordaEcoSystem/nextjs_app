@@ -71,7 +71,7 @@ export default async function PressCenter() {
             post.attributes.thumbnail?.data.attributes.formats.small.url;
           return (
             <div
-              className=" grid sm:grid-cols-[208px_,auto] grid-flow-row"
+              className=" grid sm:grid-cols-[208px_,auto] grid-flow-row "
               key={post.id}
             >
               <Image
@@ -79,12 +79,12 @@ export default async function PressCenter() {
                 width={0}
                 height={0}
                 sizes="100vw"
-                className="h-52 w-52 object-cover justify-center sm:mx-0 mx-auto "
+                className="sm:h-52 sm:w-52 h-60 w-60 object-cover justify-center sm:mx-0 mx-auto "
               />
-              <div className="py-3 px-4 sm:w-auto sm:m-0 w-52 mx-auto">
+              <div className="sm:px-3 py-3 px-0 sm:w-auto sm:m-0 w-60 mx-auto">
                 <Link
                   href={`press_center/${post.id}`}
-                  className="text-lg font-bold text-prime break-all line-clamp-2"
+                  className="text-lg font-bold text-prime break-all line-clamp-2 "
                 >
                   {post.attributes.title}
                 </Link>
