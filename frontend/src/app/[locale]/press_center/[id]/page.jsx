@@ -80,7 +80,10 @@ export default async function Post({ params }) {
     locale,
     distributorOfId(params.id, locale)
   );
-  console.log("BLOGBYID", blogById.data.attributes);
+  // console.log(
+  //   "BLOGBYID",
+  //   blogById.data.attributes.description_rich_text[0].children[0].text
+  // );
   return (
     <section className="container py-12 flex flex-col gap-4 ">
       <h2 className="text-3xl font-bold text-prime break-all">
@@ -93,7 +96,9 @@ export default async function Post({ params }) {
           Назад
         </Link> */}
       <p className="break-all text-sm">
-        {blogById?.data?.attributes?.description}
+        {blogById?.data?.attributes?.description_rich_text?.map((item) => {
+          return <div>{item.children[0].text}</div>;
+        })}
       </p>
       <MyGallery data={blogById.data.attributes} />
     </section>
