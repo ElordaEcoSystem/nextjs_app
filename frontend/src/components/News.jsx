@@ -95,7 +95,7 @@ const LittleNews = ({ thumbnail, title, date, id, locale, description }) => {
         className="h-[180px]  w-[180px] object-cover md:m-0 mx-auto block"
       />
       {/* <div className="bg-gray-300 "></div> */}
-      <div className="bg-prime w-full lg:p-6 px-4 py-6 flex flex-col justify-center  transition-all ">
+      <div className="bg-prime w-full lg:p-5 px-4 py-6 flex flex-col justify-center  transition-all ">
         <div className="text-white line-clamp-2 text-lg font-bold lg:break-normal break-all">
           {title}
         </div>
