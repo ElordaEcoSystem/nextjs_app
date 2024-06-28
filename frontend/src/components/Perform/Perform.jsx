@@ -16,7 +16,8 @@ export const Perform = ({ perform_data }) => {
         <div className="mt-14 flex gap-3">
           <PerformYears setActiveYear={setActiveYear} activeYear={activeYear} />
         </div>
-        <div className="sm:max-md:px-2 py-2 flex md:justify-between mt-6 gap-2 flex-row md:overflow-visible overflow-x-auto ">
+        <div className="  mt-6 grid sm:grid-cols-5 gap-2 grid-cols-2  justify-items-center">
+          {/* sm:max-md:px-2 py-2 flex md:justify-between mt-6 gap-2 flex-row md:overflow-visible overflow-x-auto  */}
           {/* no-scrollbar */}
           {perform_data?.data?.map((item) => {
             // console.log(item);
@@ -44,7 +45,7 @@ const PerfromItem = ({ title, icon, numberAndYear, unit, activeYear }) => {
   // console.log("PERFORM_NUMBER", activeYear);
   // console.log("PERFORM_NUMBER", perform_number.number);
   return (
-    <div className="py-6  px-3 border-2 border-prime bg-white transition-all w-[168px] hover:scale-105 hover:shadow-main shadow-prime">
+    <div className="py-6  px-3 border-2 border-prime bg-white transition-all hover:scale-105 hover:shadow-main shadow-prime sm:w-[170px]  w-full">
       <div className="flex items-center justify-center">
         {/* <PerformIcon key={icon} icon={icon} className="w-12" /> */}
         <Image
@@ -55,7 +56,7 @@ const PerfromItem = ({ title, icon, numberAndYear, unit, activeYear }) => {
           className="w-12 object-cover justify-center"
         ></Image>
       </div>
-      <div className="mt-3 text-prime text-center text-xl font-semibold transition-all">
+      <div className="mt-3 text-prime text-center text-xl font-semibold transition-all ">
         {perform_number.number}
       </div>
       <div className="text-prime text-center text-base font-semibold">

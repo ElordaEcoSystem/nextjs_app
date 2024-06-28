@@ -25,11 +25,13 @@ export const News = async ({ data }) => {
           href={`/${locale}/${data.data[0].attributes.news_button[0].link}`}
           className="flex items-center gap-2 bg-white py-2 px-4 shadow-md rounded  hover:scale-[102%] transition-all text-prime text-sm font-bold leading-6 active:scale-95"
         >
-          {data.data[0].attributes.news_button[0].title}
+          <div className="hidden sm:block">
+            {data.data[0].attributes.news_button[0].title}
+          </div>
           <ArrowIcon className="h-4 stroke-[4px] w-auto stroke-prime" />
         </Link>
       </div>
-      <div className="grid md:grid-cols-2 grid-cols-1 gap-5 mt-14 ">
+      <div className="grid md:grid-cols-2 grid-cols-1 md:gap-5 gap-[5px] mt-14 ">
         <Link
           href={`/${locale}/press_center/${news_data.data[0].id}`}
           className="h-[556px] flex-col transition-all active:scale-[98%]  flex "
@@ -93,11 +95,11 @@ const LittleNews = ({ thumbnail, title, date, id, locale, description }) => {
         className="h-[180px]  w-[180px] object-cover md:m-0 mx-auto block"
       />
       {/* <div className="bg-gray-300 "></div> */}
-      <div className="bg-prime w-full p-6 flex flex-col justify-center  transition-all ">
-        <div className="text-white sm:line-clamp-2 line-clamp-1 text-lg font-bold  break-all ">
+      <div className="bg-prime w-full lg:p-6 px-4 py-6 flex flex-col justify-center  transition-all ">
+        <div className="text-white line-clamp-2 text-lg font-bold lg:break-normal break-all">
           {title}
         </div>
-        <div className="text-base font-normal mt-1 text-white break-all line-clamp-2">
+        <div className="text-base font-normal mt-1 text-white break-all line-clamp-2 ">
           {description}
         </div>
         <div className="text-base font-normal mt-1 text-slate-400">{date}</div>
