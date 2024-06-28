@@ -31,7 +31,7 @@ export const News = async ({ data }) => {
           <ArrowIcon className="h-4 stroke-[4px] w-auto stroke-prime" />
         </Link>
       </div>
-      <div className="grid md:grid-cols-2 grid-cols-1 md:gap-5 gap-[5px] mt-14 ">
+      <div className="grid md:grid-cols-2 grid-cols-1 md:gap-2 gap-[5px] mt-14 ">
         <Link
           href={`/${locale}/press_center/${news_data.data[0].id}`}
           className="h-[556px] flex-col transition-all active:scale-[98%]  flex "
