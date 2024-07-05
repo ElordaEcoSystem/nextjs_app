@@ -13,6 +13,16 @@ export const metadata = {
   title: "Elorda Eco System",
   description:
     "«Elorda ecosystem» шжқ мкк. Астана қаласында және қала маңындағы елді мекендерді күтіп ұстаумен, жөндеумен және реконструкциялаумен, қауіпсіздікті қамтамасыз етумен айналысатын нөсер кәрізінің коллекторлары мен құрылыстары үшін бірыңғай пайдалану ұйымы. Ұйым туралы Баспасөз орталығы.",
+  metadataBase: new URL("http://new.elordaecosystem.kz/kk"),
+  keywords: [
+    "Elorda",
+    "ElordaEco",
+    "ElordaEcoSystem",
+    "ГКП на ПХВ ElordaEcoSystem",
+    "Комунальное Преприятия",
+    "Ливневая канализация",
+    "Ливневая канализация города Астана",
+  ],
 };
 export default async function RootLayout({ children, params: { locale } }) {
   //
