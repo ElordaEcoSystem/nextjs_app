@@ -22,7 +22,7 @@ export default async function JobsPage() {
         Приемная +7172 918 453 <br />
         Почта elordaecosystem@mail.ru */}
       </div>
-      <table className="mt-4 w-full h-screen">
+      <table className="mt-4 w-full ">
         <th className="text-lg font-bold text-prime border-b-4 border-prime ">
           {data.data[0].attributes.sub_title}
         </th>
