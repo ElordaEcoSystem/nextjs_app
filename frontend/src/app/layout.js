@@ -1,3 +1,5 @@
+import { useLocale } from "next-intl";
+
 export const metadata = {
   title: "Elorda Eco System",
   description:
@@ -5,8 +7,11 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const locale = useLocale(); // Получаем текущую локаль
+
   return (
-    <html>
+    <html lang={locale}>
+      {/* Динамическая локаль */}
       <body>
         <div>{children}</div>
       </body>

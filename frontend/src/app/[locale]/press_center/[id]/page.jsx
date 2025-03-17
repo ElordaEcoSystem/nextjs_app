@@ -58,49 +58,38 @@
 
 //vol 2
 
+import { fetchBlogById } from "../../needed/services";
+import { MyGallery } from "./MyGallery";
+
 function distributorOfId(id, locale) {
-  let res = id;
-  if (locale === "ru" && id % 2 == 1) {
-    res = parseInt(res) + 1;
-  } else if (locale === "kk" && id % 2 == 0) {
-    res = parseInt(res) - 1;
-  } else {
-    res = id;
+  let res = Number(id);
+  if (locale === "ru" && res % 2 === 1) {
+    res += 1;
+  } else if (locale === "kk" && res % 2 === 0) {
+    res -= 1;
   }
   return res;
 }
 
-import { useLocale } from "next-intl";
-import { fetchBlogById } from "../../needed/services";
-import { MyGallery } from "./MyGallery";
-
 export default async function Post({ params }) {
-  const locale = useLocale();
-  const blogById = await fetchBlogById(
-    locale,
-    distributorOfId(params.id, locale)
-  );
-  // console.log(
-  //   "BLOGBYID",
-  //   blogById.data.attributes.description_rich_text[0].children[0].text
-  // );
+  const { id, locale } = params; // Получаем `locale` и `id` из params
+  const blogById = await fetchBlogById(locale, distributorOfId(id, locale));
+
   return (
-    <section className="container py-12 flex flex-col gap-4 ">
+    <section className="container py-12 flex flex-col gap-4">
       <h2 className="text-3xl font-bold text-prime break-all">
         {blogById?.data?.attributes?.title}
       </h2>
-      {/* <Link
-          className="px-5 py-1 bg-prime rounded-sm text-white font-semibold text-sm hover:scale-110 transition-all duration-300"
-          href={`/${locale}/press_center`}
-        >
-          Назад
-        </Link> */}
-      <p className="break-all text-sm">
-        {blogById?.data?.attributes?.description_rich_text?.map((item) => {
-          return <div>{item.children[0].text}</div>;
-        })}
-      </p>
-      <MyGallery data={blogById.data.attributes} />
+
+      <div className="break-all text-sm">
+        {blogById?.data?.attributes?.description_rich_text?.map(
+          (item, index) => (
+            <div key={index}>{item.children[0]?.text}</div>
+          )
+        )}
+      </div>
+
+      <MyGallery data={blogById?.data?.attributes} />
     </section>
   );
 }

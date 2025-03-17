@@ -7,8 +7,8 @@ import clsx from "clsx";
 export default async function RequestPTO() {
   const locale = useLocale();
   const data = await fetchPTO(locale);
-  console.log(data.data[0].attributes.text);
   return (
+    // <div>test</div>
     <div className="container py-10">
       <h2 className="text-3xl font-bold text-prime">
         {data.data[0].attributes.title}

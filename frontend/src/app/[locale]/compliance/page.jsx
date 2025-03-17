@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default async function Compliance() {
   // const domain = "http://127.0.0.1:1337";
-  const domain = process.env.API_WEBSITE;
+  const domain = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:1337";
   const locale = useLocale();
   const data = await fetchAntikor(locale);
   return (

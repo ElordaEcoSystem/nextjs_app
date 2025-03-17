@@ -8,8 +8,10 @@ const nextConfig = {
   images: {
     remotePatterns: [
       { hostname: "127.0.0.1" },
+      { hostname: "localhost" },
       { hostname: "c2.staticflickr.com" },
       { hostname: "www.youtube.com" },
+      { hostname: "strapi.elordaecosystem.kz" },
     ],
   },
 };

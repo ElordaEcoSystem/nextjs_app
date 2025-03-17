@@ -6,9 +6,13 @@ import { useLocale } from "next-intl";
 export default async function Procurement() {
   const locale = useLocale();
   const data = await fetchProcurement(locale);
-  const domain = process.env.API_WEBSITE;
+  const domain = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:1337";
   // console.log("ANTIKOR", data.data[0].attributes.title);
-  // console.log("PROCUREMENT", data.data[0].attributes);
+  console.log(
+    "PROCUREMENT",
+    data.data[0].attributes.document_2[0].item_document.data.attributes.url
+  );
+
   return (
     <section className="mb-auto container py-12">
       <h2 className="text-3xl font-bold text-prime ">
@@ -17,6 +21,7 @@ export default async function Procurement() {
       <div className="mt-4">
         {data.data[0].attributes.document_2.map((item) => {
           return (
+            // <div>{item.item_document}</div>
             <Link
               className="hover:text-prime hover:bg-secondary transition-all table"
               href={domain + item?.item_document?.data?.attributes?.url}

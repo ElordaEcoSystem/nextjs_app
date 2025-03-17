@@ -38,6 +38,7 @@ const PerfromItem = ({ title, icon, number, unit, activeYear }) => {
         <Image
           src={icon}
           width={0}
+          alt={icon}
           height={0}
           sizes="100vw"
           className="w-12 object-cover justify-center"

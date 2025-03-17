@@ -9,15 +9,15 @@ export const Banner = async ({ data }) => {
       <div className="container flex justify-between gap-8">
         <div className="flex flex-col md:max-w-md w-full  py-32">
           <div className="text-white text-4xl font-semibold flex flex-col">
-            {data.data[0].attributes.title.map((item) => {
+            {data?.data[0].attributes.title.map((item) => {
               return <div>{item.children[0].text}</div>;
             })}
           </div>
           <div className="text-white text-sm font-normal mt-10">
-            {data.data[0].attributes.description}
+            {data?.data[0].attributes.description}
           </div>
           <div className=" mt-10 flex gap-4">
-            {data.data[0].attributes.button.map((btn) => {
+            {data?.data[0].attributes.button.map((btn) => {
               return (
                 <Link
                   href={`/${locale}/${btn.link}`}

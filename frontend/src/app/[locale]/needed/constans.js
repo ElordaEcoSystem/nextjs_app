@@ -1,4 +1,4 @@
-export const PERFORM_YEAR_BUTTONS = [2023, 2022, 2021, 2020];
+export const PERFORM_YEAR_BUTTONS = [2025, 2024, 2023, 2022, 2021, 2020];
 export const PERFORM_ICONS = {
   WASH: "wash",
   CLEAR: "clear",

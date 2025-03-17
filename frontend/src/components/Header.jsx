@@ -5,16 +5,16 @@ import { LocaleButton } from "./LocaleButton";
 import { MailIcon } from "./icons/MailIcon";
 import { useState } from "react";
 import clsx from "clsx";
+//
 export const Header = ({ data, locale }) => {
   // console.log("LOCALE FROM HEADER", locale);
 
   const [menuOpen, setManuOpen] = useState(false);
   return (
     // <div className="bg-prime w-screen h-[100vh] absolute opacity-50 ">
-
     <div
       id="menu"
-      className="border-b border-prime h-16 flex justify-center items-center bg-white  w-full fixed z-50"
+      className="border-b border-prime h-16 flex justify-center items-center bg-white  w-full fixed z-50 top-0"
     >
       <div className="container flex justify-between  h-full bg-white  gap-2 ">
         <Link
@@ -46,7 +46,7 @@ export const Header = ({ data, locale }) => {
                   setManuOpen(!menuOpen);
                 }}
                 className={clsx(
-                  "text-center text-sm active:text-[13.5px] hover:bg-secondary transition-all md:h-full h-10 justify-center px-1",
+                  "text-center text-sm  hover:bg-secondary transition-all md:h-full h-10 justify-center px-1",
                   "flex flex-col bg-white md:w-auto ",
                   "w-screen h-10"
                 )}
@@ -74,7 +74,7 @@ export const Header = ({ data, locale }) => {
             className="relative block cursor-pointer text-xs w-[2.83em] h-[2.167em]"
           >
             <span
-              class={clsx(
+              className={clsx(
                 "absolute block bg-prime h-[.5em] w-full float-left m-0 transition-all top-0 rounded-sm ",
                 menuOpen
                   ? "origin-[.167em_.33em] rotate-45 translate-x-[0.167em] translate-y-[-.25em]"
@@ -82,13 +82,13 @@ export const Header = ({ data, locale }) => {
               )}
             ></span>
             <span
-              class={clsx(
+              className={clsx(
                 "absolute block bg-prime h-[.5em] w-full float-left m-0 transition-all top-1/2  mt-[-.25em] rounded-sm",
                 menuOpen ? "opacity-0" : ""
               )}
             ></span>
             <span
-              class={clsx(
+              className={clsx(
                 "absolute block bg-prime h-[.5em] w-full float-left m-0 transition-all bottom-0 rounded-sm origin-[.25em_-0.33em]",
                 menuOpen ? "translate-x-[-0.23em]  rotate-[-45deg]" : ""
               )}

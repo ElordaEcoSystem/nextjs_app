@@ -178,91 +178,174 @@
 //   );
 // };
 
+// "use client";
+// import Lightbox from "yet-another-react-lightbox";
+// import "yet-another-react-lightbox/styles.css";
+
+// import NextJsImage from "./NextJsImage";
+// // import PhotoAlbum from "react-photo-album";
+// import { useState } from "react";
+// import Image from "next/image";
+
+// export const MyGallery = ({ data }) => {
+//   const domain_photo = "http://127.0.0.1:1337";
+//   const domain_video = "http://strapi.elordaecosystem.kz";
+//   const [index, setIndex] = useState(-1);
+
+//   let images = [];
+//   data?.photo_content?.data?.forEach((item) => {
+//     images.push({
+//       src: domain_photo + item.attributes.url,
+//       width: item.attributes.width,
+//       height: item.attributes.height,
+//     });
+//   });
+
+//   return (
+//     <>
+//       {/* <PhotoAlbum
+//         layout="rows"
+//         photos={images}
+//         targetRowHeight={150}
+//         onClick={({ index: current }) => setIndex(current)}
+//       /> */}
+
+//       <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+//         {data?.photo_content?.data?.map((item, index) => {
+//           return (
+//             <Image
+//               // ref={ref}
+//               onClick={() => {
+//                 setIndex(index);
+//               }}
+//               src={`${domain_photo + item.attributes?.url}`}
+//               width={item.attributes.width}
+//               height={item.attributes.height}
+//               className="h-full object-cover cursor-pointer"
+//             />
+//           );
+//         })}
+//       </div>
+
+//       <Lightbox
+//         index={index}
+//         open={index >= 0}
+//         close={() => setIndex(-1)}
+//         // open={open}
+//         // close={() => setOpen(false)}
+//         slides={images}
+//         render={{ slide: NextJsImage }}
+//       />
+
+//       <div className="flex flex-col gap-4 ">
+//         {data?.youtube_link.map((item) => {
+//           return (
+//             <iframe
+//               width="560"
+//               height="500"
+//               className="w-full"
+//               src={item.src}
+//               title="YouTube video player"
+//               frameborder="0"
+//               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+//               referrerpolicy="strict-origin-when-cross-origin"
+//               allowfullscreen
+//             ></iframe>
+//           );
+//         })}
+//       </div>
+
+//       {data?.video_content?.data?.map((item) => {
+//         return (
+//           <video height="600" controls>
+//             <source src={domain_video + item.attributes.url} />
+//             Your browser does not support the video tag...
+//           </video>
+//         );
+//       })}
+//     </>
+//   );
+// };
+
 "use client";
+
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
-
-import NextJsImage from "./NextJsImage";
-// import PhotoAlbum from "react-photo-album";
 import { useState } from "react";
 import Image from "next/image";
+import NextJsImage from "./NextJsImage";
+
+const API_URL =
+  process.env.NEXT_PUBLIC_API_URL || "https://strapi.elordaecosystem.kz";
 
 export const MyGallery = ({ data }) => {
-  const domain_photo = "http://127.0.0.1:1337";
-  const domain_video = "http://strapi.elordaecosystem.kz";
   const [index, setIndex] = useState(-1);
 
-  let images = [];
-  data?.photo_content?.data?.forEach((item) => {
-    images.push({
-      src: domain_photo + item.attributes.url,
+  // Создаем массив изображений для лайтбокса
+  const images =
+    data?.photo_content?.data?.map((item) => ({
+      src: API_URL + item.attributes.url,
       width: item.attributes.width,
       height: item.attributes.height,
-    });
-  });
+    })) || [];
 
   return (
     <>
-      {/* <PhotoAlbum
-        layout="rows"
-        photos={images}
-        targetRowHeight={150}
-        onClick={({ index: current }) => setIndex(current)}
-      /> */}
-
-      <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        {data?.photo_content?.data?.map((item, index) => {
-          return (
-            <Image
-              // ref={ref}
-              onClick={() => {
-                setIndex(index);
-              }}
-              src={`${domain_photo + item.attributes?.url}`}
-              width={item.attributes.width}
-              height={item.attributes.height}
-              className="h-full object-cover cursor-pointer"
-            />
-          );
-        })}
+      {/* Галерея изображений */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        {data?.photo_content?.data?.map((item, idx) => (
+          <Image
+            key={item.id || idx}
+            onClick={() => setIndex(idx)}
+            src={API_URL + item.attributes.url}
+            width={item.attributes.width}
+            height={item.attributes.height}
+            className="h-full object-cover cursor-pointer"
+            alt={`Gallery image ${idx + 1}`}
+          />
+        ))}
       </div>
 
+      {/* Лайтбокс */}
       <Lightbox
         index={index}
         open={index >= 0}
         close={() => setIndex(-1)}
-        // open={open}
-        // close={() => setOpen(false)}
         slides={images}
         render={{ slide: NextJsImage }}
       />
 
-      <div className="flex flex-col gap-4 ">
-        {data?.youtube_link.map((item) => {
-          return (
+      {/* Видео YouTube */}
+      {data?.youtube_link?.length > 0 && (
+        <div className="flex flex-col gap-4">
+          {data.youtube_link.map((item, idx) => (
             <iframe
+              key={idx}
               width="560"
               height="500"
               className="w-full"
               src={item.src}
-              title="YouTube video player"
-              frameborder="0"
+              title={`YouTube video ${idx + 1}`}
+              frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
             ></iframe>
-          );
-        })}
-      </div>
+          ))}
+        </div>
+      )}
 
-      {data?.video_content?.data?.map((item) => {
-        return (
-          <video height="600" controls>
-            <source src={domain_video + item.attributes.url} />
-            Your browser does not support the video tag...
-          </video>
-        );
-      })}
+      {/* Локальные видео */}
+      {data?.video_content?.data?.length > 0 && (
+        <div className="flex flex-col gap-4">
+          {data.video_content.data.map((item) => (
+            <video key={item.id} height="600" controls>
+              <source src={API_URL + item.attributes.url} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          ))}
+        </div>
+      )}
     </>
   );
 };
