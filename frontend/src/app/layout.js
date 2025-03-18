@@ -1,4 +1,4 @@
-import { useLocale } from "next-intl";
+import { unstable_setRequestLocale } from "next-intl/server";
 
 export const metadata = {
   title: "Elorda Eco System",
@@ -6,12 +6,15 @@ export const metadata = {
     "«Elorda ecosystem» шжқ мкк. Астана қаласында және қала маңындағы елді мекендерді күтіп ұстаумен, жөндеумен және реконструкциялаумен, қауіпсіздікті қамтамасыз етумен айналысатын нөсер кәрізінің коллекторлары мен құрылыстары үшін бірыңғай пайдалану ұйымы. Ұйым туралы Баспасөз орталығы.",
 };
 
-export default function RootLayout({ children }) {
-  const locale = useLocale(); // Получаем текущую локаль
+export default function RootLayout({ children, params }) {
+  // Получаем локаль из параметров
+  const locale = params.locale;
+
+  // Устанавливаем локаль на сервере
+  unstable_setRequestLocale(locale);
 
   return (
     <html lang={locale}>
-      {/* Динамическая локаль */}
       <body>
         <div>{children}</div>
       </body>
