@@ -77,7 +77,7 @@ export default async function Post({ params }) {
 
   return (
     <section className="container py-12 flex flex-col gap-4">
-      <h2 className="text-3xl font-bold text-prime break-all">
+      <h2 className="text-3xl font-bold text-prime ">
         {blogById?.data?.attributes?.title}
       </h2>
 
