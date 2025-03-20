@@ -1,14 +1,17 @@
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import React from "react";
-import { fetchAbout } from "../needed/services";
+import { fetchAbout, fetchDirectors } from "../needed/services";
 import Link from "next/link";
 import { ArrowIcon } from "@/components/icons/ArrowIcon";
 export default async function About() {
   const locale = useLocale();
   const about = await fetchAbout(locale);
+  const directors = await fetchDirectors(locale);
+  console.log("DIRECTORS@", directors.data);
 
   const domain = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:1337";
+  console.log("FROMMAIN", about.data);
   return (
     <>
       <section className="bg-prime">
@@ -28,10 +31,10 @@ export default async function About() {
           <h2 className="text-3xl font-bold ">
             {about?.data[0].attributes.sub_title}
           </h2>
+
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3 sm:grid-cols-2 mt-4">
-            {about?.data[0].attributes.director.map(
-              ({
-                id,
+            {directors?.data.map(({ id, attributes }) => {
+              const {
                 position,
                 full_name,
                 reception_schedule,
@@ -41,25 +44,24 @@ export default async function About() {
                     attributes: { url },
                   },
                 },
-              }) => {
-                const imageUrl = domain + url;
+              } = attributes;
+              const imageUrl = domain + url;
 
-                return (
-                  <div key={full_name}>
-                    <DirectorCard
-                      id={id}
-                      key={full_name}
-                      position={position}
-                      imageUrl={imageUrl}
-                      full_name={full_name}
-                      reception_schedule={reception_schedule}
-                      number={number}
-                      className="w-full"
-                    />
-                  </div>
-                );
-              }
-            )}
+              return (
+                <div key={full_name}>
+                  <DirectorCard
+                    id={id}
+                    key={full_name}
+                    position={position}
+                    imageUrl={imageUrl}
+                    full_name={full_name}
+                    reception_schedule={reception_schedule}
+                    number={number}
+                    className="w-full"
+                  />
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

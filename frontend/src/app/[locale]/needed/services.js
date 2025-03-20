@@ -309,7 +309,10 @@ const options = {
 // Функция для выполнения запросов
 async function fetchData(endpoint) {
   try {
-    const res = await fetch(`${apiUrl}/api/${endpoint}`, options);
+    const res = await fetch(`${apiUrl}/api/${endpoint}`, {
+      ...options,
+      cache: "no-store",
+    });
     // &populate=*
     if (!res.ok) throw new Error(`Ошибка запроса: ${res.statusText}`);
     return await res.json();
@@ -362,6 +365,14 @@ export async function fetchAbout(locale) {
 
   return response;
   // return `abouts?populate=director&populate=director.photo&locale=${locale}`;
+}
+
+export async function fetchDirectors(locale) {
+  return fetchData(`director-lists?populate=photo&locale=${locale}`);
+}
+
+export async function fetchDirectorById(locale, id) {
+  return fetchData(`director-lists/${id}?populate=photo&locale=${locale}`);
 }
 
 export async function fetchAntikor(locale) {

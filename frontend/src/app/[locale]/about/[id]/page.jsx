@@ -8,26 +8,26 @@ function distributorOfId(id, locale) {
   return res;
 }
 import { useTranslations } from "next-intl";
-import { fetchAbout } from "../../needed/services";
+import { fetchDirectorById } from "../../needed/services";
 import Image from "next/image";
 
 export default async function BiographyWrapper({ params }) {
   const { locale, id } = params;
-  console.log("PARAMS", params);
-
-  const data = await fetchAbout(locale);
-  const director = data.data[0].attributes.director.find(
-    (t) => t.id === distributorOfId(Number(id), locale)
-  );
-  console.log(director);
-
+  const data = await fetchDirectorById(locale, id);
   const domain = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:1337";
+  const director = data.data.attributes;
 
-  return <Biography data={{ ...director, domain }} />;
+  // console.log("PARAMS", params);
+  // console.log("DIRECOT", director);
+
+  return <Biography data={director} domain={domain} />;
 }
-const Biography = ({ data }) => {
-  console.log("BIOGRAPHY", data.biography[0].children[0].text);
+const Biography = ({ data, domain }) => {
+  const t = useTranslations();
+  console.log("BIOGRAPHY", data);
+
   const {
+    // id,
     position,
     full_name,
     reception_schedule,
@@ -37,11 +37,12 @@ const Biography = ({ data }) => {
         attributes: { url },
       },
     },
-    domain,
   } = data;
+  // console.log("ID", id);
   const imageUrl = domain + url;
-  const t = useTranslations();
+
   return (
+    // <div>test</div>
     <section className="container py-12 flex flex-col gap-4 min-h-screen">
       <div className="grid sm:grid-cols-[300px_1fr] grid-cols-1 gap-4 h-full">
         <div className="p-5 flex gap-4 border-gray-200 flex-col border-r-2 w-full h-full flex-1">
