@@ -13,7 +13,7 @@ import Image from "next/image";
 
 export default async function BiographyWrapper({ params }) {
   const { locale, id } = params;
-  const data = await fetchDirectorById(locale, id);
+  const data = await fetchDirectorById(locale, distributorOfId(id, locale));
   const domain = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:1337";
   const director = data.data.attributes;
 
@@ -27,7 +27,6 @@ const Biography = ({ data, domain }) => {
   console.log("BIOGRAPHY", data);
 
   const {
-    // id,
     position,
     full_name,
     reception_schedule,
@@ -38,11 +37,9 @@ const Biography = ({ data, domain }) => {
       },
     },
   } = data;
-  // console.log("ID", id);
   const imageUrl = domain + url;
 
   return (
-    // <div>test</div>
     <section className="container py-12 flex flex-col gap-4 min-h-screen">
       <div className="grid sm:grid-cols-[300px_1fr] grid-cols-1 gap-4 h-full">
         <div className="p-5 flex gap-4 border-gray-200 flex-col border-r-2 w-full h-full flex-1">
