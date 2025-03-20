@@ -12,7 +12,7 @@ export const Perform = ({ perform_data }) => {
     <section id="perform" className="py-10">
       <div className="container ">
         <div className="text-def_black text-4xl font-bold">Наши показатели</div>
-        <div className="mt-14 flex gap-3">
+        <div className="mt-14 flex gap-3 overflow-auto scroll-container">
           <PerformYears setActiveYear={setActiveYear} activeYear={activeYear} />
         </div>
         <div className="  mt-6 grid md:grid-cols-5 gap-2 grid-cols-2  justify-items-center">
