@@ -107,12 +107,12 @@ export default async function PressCenter() {
               <div className="sm:px-3 py-3 px-0 sm:w-auto sm:m-0 w-60 mx-auto">
                 <Link
                   href={`press_center/${post.id}`}
-                  className="text-lg font-bold text-prime break-word line-clamp-2"
+                  className="text-lg font-bold text-prime break-words line-clamp-2"
                 >
                   {post.attributes.title}
                 </Link>
 
-                <p className="text-sm mt-2 line-clamp-4 break-word">
+                <p className="text-sm mt-2 line-clamp-4 break-words">
                   {post.attributes?.description_rich_text?.map(
                     (item, index) => (
                       <span key={index}>{item.children[0].text} </span>

@@ -51,7 +51,7 @@ export const News = async ({ data }) => {
           </div>
 
           <div className="bottom-0 w-full bg-base-color px-5 py-[30px] bg-prime">
-            <div className="text-white text-xl font-bold line-clamp-1 break-all">
+            <div className="text-white text-xl font-bold line-clamp-1 break-words">
               {news_data?.data[0].attributes.title}
             </div>
 
@@ -98,10 +98,10 @@ const LittleNews = ({ thumbnail, title, date, id, locale, description }) => {
       />
       {/* <div className="bg-gray-300 "></div> */}
       <div className="bg-prime w-full lg:p-5 px-4 py-5 flex flex-col justify-center  transition-all ">
-        <div className="text-white line-clamp-2 text-lg font-bold lg:break-normal break-all">
+        <div className="text-white line-clamp-2 text-lg font-bold lg:break-normal break-words">
           {title}
         </div>
-        <div className="text-base font-normal mt-1 text-white break-all line-clamp-2 ">
+        <div className="text-base font-normal mt-1 text-white break-words line-clamp-2 ">
           {description}
         </div>
         <div className="text-base font-normal mt-1 text-slate-400">{date}</div>

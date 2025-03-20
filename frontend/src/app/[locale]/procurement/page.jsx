@@ -20,6 +20,15 @@ export default async function Procurement() {
       </h2>
       <div className="mt-4">
         {data.data[0].attributes.document_2.map((item) => {
+          {
+            console.log("item", item?.item_document?.data?.attributes?.url);
+            console.log("domain", domain);
+            console.log(
+              "Vmeste",
+              domain + item?.item_document?.data?.attributes?.url
+            );
+          }
+
           return (
             // <div>{item.item_document}</div>
             <Link

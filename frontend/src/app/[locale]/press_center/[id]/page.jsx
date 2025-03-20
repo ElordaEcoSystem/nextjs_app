@@ -81,7 +81,7 @@ export default async function Post({ params }) {
         {blogById?.data?.attributes?.title}
       </h2>
 
-      <div className="break-all text-sm">
+      <div className="break-words text-sm">
         {blogById?.data?.attributes?.description_rich_text?.map(
           (item, index) => (
             <div key={index}>{item.children[0]?.text}</div>
