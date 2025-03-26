@@ -42,7 +42,7 @@ const Biography = ({ data, domain }) => {
   return (
     <section className="container py-12 flex flex-col gap-4 min-h-screen">
       <div className="grid sm:grid-cols-[300px_1fr] grid-cols-1 gap-4 h-full">
-        <div className="p-5 flex gap-4 border-gray-200 flex-col border-r-2 w-full h-full flex-1">
+        <div className="p-5 flex gap-4 border-gray-200 flex-col sm:border-r-2 w-full h-full flex-1">
           <div className="relative w-full aspect-square flex-shrink-0">
             <Image
               src={imageUrl}
