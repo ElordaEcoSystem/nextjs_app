@@ -93,14 +93,18 @@ const DirectorCard = ({
       <div className="pt-2 flex flex-col h-full">
         <div className="text-2xl text-prime font-bold">{full_name}</div>
         <div className="text-lg">{position}</div>
-        <div className="text-base text-black mt-1 flex flex-col">
-          {t("contact")} &nbsp;
-          <div className="text-prime font-medium">{number}</div>
-        </div>
-        <div className="flex flex-col">
-          {t("reception")}&nbsp;
-          <div className="text-prime font-medium">{reception_schedule}</div>
-        </div>
+        {number && (
+          <div className="text-base text-black mt-1 flex flex-col">
+            {t("contact")} &nbsp;
+            <div className="text-prime font-medium">{number}</div>
+          </div>
+        )}
+        {reception_schedule && (
+          <div className="flex flex-col">
+            {t("reception")}&nbsp;
+            <div className="text-prime font-medium">{reception_schedule}</div>
+          </div>
+        )}
         <Link
           href={`about/${id}`}
           className="flex self-end items-center gap-2 bg-white py-2 px-4 shadow-md rounded hover:scale-[102%] transition-all text-prime text-sm font-bold leading-6 mt-auto w-fit"

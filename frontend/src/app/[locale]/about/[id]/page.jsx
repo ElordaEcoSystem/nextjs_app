@@ -41,8 +41,8 @@ const Biography = ({ data, domain }) => {
 
   return (
     <section className="container py-12 flex flex-col gap-4 min-h-screen">
-      <div className="grid sm:grid-cols-[300px_1fr] grid-cols-1 gap-4 h-full">
-        <div className="p-5 flex gap-4 border-gray-200 flex-col sm:border-r-2 w-full h-full flex-1">
+      <div className="grid sm:grid-cols-[300px_1fr] grid-cols-1 h-full">
+        <div className="p-5 flex gap-4 border-gray-200 flex-col border-b-2 sm:border-b-0 sm:border-r-2 w-full h-full flex-1">
           <div className="relative w-full aspect-square flex-shrink-0">
             <Image
               src={imageUrl}
@@ -55,14 +55,20 @@ const Biography = ({ data, domain }) => {
           <div className="pt-2 flex flex-col h-full">
             <div className="text-2xl text-prime font-bold">{full_name}</div>
             <div className="text-lg">{position}</div>
-            <div className="text-base text-black mt-1 flex flex-col">
-              {t("contact")}&nbsp;
-              <div className="text-prime font-medium">{number}</div>
-            </div>
-            <div className="flex flex-col">
-              {t("reception")}
-              <div className="text-prime font-medium">{reception_schedule}</div>
-            </div>
+            {number && (
+              <div className="text-base text-black mt-1 flex flex-col">
+                {t("contact")}&nbsp;
+                <div className="text-prime font-medium">{number}</div>
+              </div>
+            )}
+            {reception_schedule && (
+              <div className="flex flex-col">
+                {t("reception")}
+                <div className="text-prime font-medium">
+                  {reception_schedule}
+                </div>
+              </div>
+            )}
           </div>
         </div>
         <div className="p-4">
