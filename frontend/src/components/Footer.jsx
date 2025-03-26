@@ -5,7 +5,9 @@ import { PhoneIcon } from "./icons/PhoneIcon";
 import { MailIcon } from "./icons/MailIcon";
 import { FacebookIcon } from "./icons/FacebookIcon";
 import { InstaIcon } from "./icons/InstaIcon";
-import { TelegramIcon } from "./icons/TelegramIcon";
+// import { TelegramIcon } from "./icons/TelegramIcon";
+import { TiktokIcon } from "./icons/tiktokIcon";
+
 import { fetchFooter } from "@/app/[locale]/needed/services";
 
 import { useLocale } from "next-intl";
@@ -67,7 +69,12 @@ export const Footer = async () => {
                   >
                     <FacebookIcon className="w-4 h-4 hover:scale-110 active:scale-95 transition-all" />
                   </Link>
-
+                  <Link
+                    className="flex flex-col justify-center "
+                    href="https://www.tiktok.com/@elordaecosystem"
+                  >
+                    <TiktokIcon className="w-5 h-5 hover:scale-110 active:scale-95 transition-all fill-white" />
+                  </Link>
                   {/* <TelegramIcon className="w-5 h-5" /> */}
                 </div>
               </div>

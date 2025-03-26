@@ -51,7 +51,7 @@ export default async function About() {
                 <div key={full_name}>
                   <DirectorCard
                     id={id}
-                    key={full_name}
+                    key={full_name + id}
                     position={position}
                     imageUrl={imageUrl}
                     full_name={full_name}
@@ -105,7 +105,7 @@ const DirectorCard = ({
           href={`about/${id}`}
           className="flex self-end items-center gap-2 bg-white py-2 px-4 shadow-md rounded hover:scale-[102%] transition-all text-prime text-sm font-bold leading-6 mt-auto w-fit"
         >
-          <div className="hidden sm:block">{t("biography_button")}</div>
+          <div className="block">{t("biography_button")}</div>
           <ArrowIcon className="h-4 stroke-[4px] w-auto stroke-prime inline-block items-end" />
         </Link>
       </div>
