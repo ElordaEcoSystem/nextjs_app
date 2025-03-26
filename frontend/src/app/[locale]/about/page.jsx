@@ -93,16 +93,22 @@ const DirectorCard = ({
       <div className="pt-2 flex flex-col h-full">
         <div className="text-2xl text-prime font-bold">{full_name}</div>
         <div className="text-lg">{position}</div>
-        {number && (
-          <div className="text-base text-black mt-1 flex flex-col">
-            {t("contact")} &nbsp;
-            <div className="text-prime font-medium">{number}</div>
-          </div>
-        )}
-        {reception_schedule && (
-          <div className="flex flex-col">
-            {t("reception")}&nbsp;
-            <div className="text-prime font-medium">{reception_schedule}</div>
+        {(number || reception_schedule) && (
+          <div className="mt-3">
+            {number && (
+              <div className="text-base text-black flex flex-col">
+                <div className="text-zinc-500">{t("contact")}</div>
+                <div className="text-prime font-medium">{number}</div>
+              </div>
+            )}
+            {reception_schedule && (
+              <div className="flex flex-col">
+                <div className="text-zinc-500">{t("reception")}</div>
+                <div className="text-prime font-medium">
+                  {reception_schedule}
+                </div>
+              </div>
+            )}
           </div>
         )}
         <Link
