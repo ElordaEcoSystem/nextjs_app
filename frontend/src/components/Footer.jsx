@@ -6,7 +6,7 @@ import { MailIcon } from "./icons/MailIcon";
 import { FacebookIcon } from "./icons/FacebookIcon";
 import { InstaIcon } from "./icons/InstaIcon";
 // import { TelegramIcon } from "./icons/TelegramIcon";
-import { TiktokIcon } from "./icons/tiktokIcon";
+import { TiktokIcon } from "./icons/TiktokIcon";
 
 import { fetchFooter } from "@/app/[locale]/needed/services";
 
