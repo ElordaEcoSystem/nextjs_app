@@ -14,12 +14,12 @@ export default async function About() {
   console.log("FROMMAIN", about.data);
   return (
     <>
-      <section className="bg-prime">
+      <section className="bg-secondary">
         <div className="container py-12 flex flex-col gap-4 ">
-          <h2 className="text-3xl font-bold text-white">
+          <h2 className="text-3xl font-bold text-def_black">
             {about?.data[0].attributes.title}
           </h2>
-          <div className="text-sm text-white flex flex-col gap-4">
+          <div className="text-sm text-def_black flex flex-col gap-4">
             {about?.data[0].attributes.description.map((item) => {
               return <div>{item.children[0].text}</div>;
             })}
@@ -80,7 +80,7 @@ const DirectorCard = ({
   const t = useTranslations();
 
   return (
-    <div className="p-5 flex gap-4  flex-col border-2 border-gray-200 w-full h-full flex-1">
+    <div className="p-2.5 flex gap-4  flex-col border border-secondary w-full h-full flex-1">
       <div className="relative w-full aspect-square flex-shrink-0 ">
         <Image
           src={imageUrl}
@@ -90,7 +90,7 @@ const DirectorCard = ({
           className="object-cover"
         />
       </div>
-      <div className="pt-2 flex flex-col h-full">
+      <div className="pt-2 flex flex-col h-full px-2">
         <div className="text-2xl text-prime font-bold">{full_name}</div>
         <div className="text-lg">{position}</div>
         {(number || reception_schedule) && (

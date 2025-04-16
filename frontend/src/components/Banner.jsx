@@ -5,15 +5,15 @@ import Link from "next/link";
 export const Banner = async ({ data }) => {
   const locale = useLocale();
   return (
-    <section id="banner" className="bg-prime">
+    <section id="banner" className="bg-secondary">
       <div className="container flex justify-between gap-8">
         <div className="flex flex-col md:max-w-md w-full  py-32">
-          <div className="text-white text-4xl font-semibold flex flex-col">
+          <div className="text-prime text-4xl font-semibold flex flex-col">
             {data?.data[0].attributes.title.map((item) => {
               return <div>{item.children[0].text}</div>;
             })}
           </div>
-          <div className="text-white text-sm font-normal mt-10">
+          <div className="text-def_black text-base font-normal mt-4">
             {data?.data[0].attributes.description}
           </div>
           <div className=" mt-10 flex gap-4">

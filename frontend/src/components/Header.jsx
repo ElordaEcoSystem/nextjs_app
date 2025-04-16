@@ -5,6 +5,7 @@ import { LocaleButton } from "./LocaleButton";
 import { MailIcon } from "./icons/MailIcon";
 import { useState } from "react";
 import clsx from "clsx";
+import Image from "next/image";
 //
 export const Header = ({ data, locale }) => {
   // console.log("LOCALE FROM HEADER", locale);
@@ -21,7 +22,15 @@ export const Header = ({ data, locale }) => {
           href="/"
           className="text-prime font-bold text-2xl flex flex-col justify-center"
         >
-          <Logo className="w-[70px] fill-prime" />
+          {/* <Logo className="w-[70px] fill-prime" /> */}
+          <Image
+                  sizes="100vw"
+                  src="/image/logo.png"
+                  alt={"logo"}
+                  width={0}
+                  height={0}
+                  className="h-[72px]  w-[72px] object-contain md:m-0 mx-auto block"
+                />
         </Link>
         <nav
           className={clsx(

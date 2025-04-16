@@ -31,10 +31,10 @@ export const News = async ({ data }) => {
           <ArrowIcon className="h-4 stroke-[4px] w-auto stroke-prime" />
         </Link>
       </div>
-      <div className="grid md:grid-cols-2 grid-cols-1 md:gap-2 gap-[5px] mt-14 ">
+      <div className="grid md:grid-cols-2 grid-cols-1 md:gap-2 gap-[5px] mt-10 ">
         <Link
           href={`/${locale}/press_center/${news_data?.data[0].id}`}
-          className="h-[556px] flex-col transition-all active:scale-[98%]  flex "
+          className="h-full flex-col transition-all active:scale-[98%]  flex border border-secondary"
         >
           <div className="h-full bg-slate-400 ">
             <Image
@@ -50,12 +50,12 @@ export const News = async ({ data }) => {
             />
           </div>
 
-          <div className="bottom-0 w-full bg-base-color px-5 py-[30px] bg-prime">
-            <div className="text-white text-xl font-bold line-clamp-1 break-words">
+          <div className="bottom-0 w-full bg-base-color px-5 py-[30px] bg-white ">
+            <div className="text-prime text-xl font-bold line-clamp-1 break-words">
               {news_data?.data[0].attributes.title}
             </div>
 
-            <div className="text-slate-400 text-xs font-normal mt-1 ">
+            <div className="text-zinc-400 text-sm font-normal mt-1 ">
               {news_data?.data[0].attributes.date_of_publication}
             </div>
           </div>
@@ -86,7 +86,7 @@ const LittleNews = ({ thumbnail, title, date, id, locale, description }) => {
   return (
     <Link
       href={`/${locale}/press_center/${id}`}
-      className="grid grid-cols-[180px_,auto] "
+      className="grid grid-cols-[180px_,auto] border border-secondary hover:scale-[102%] transition-all"
     >
       <Image
         sizes="100vw"
@@ -97,14 +97,14 @@ const LittleNews = ({ thumbnail, title, date, id, locale, description }) => {
         className="h-[180px]  w-[180px] object-cover md:m-0 mx-auto block"
       />
       {/* <div className="bg-gray-300 "></div> */}
-      <div className="bg-prime w-full lg:p-5 px-4 py-5 flex flex-col justify-center  transition-all ">
-        <div className="text-white line-clamp-2 text-lg font-bold lg:break-normal break-words">
+      <div className="bg-white w-full lg:p-5 px-4 py-5 flex flex-col justify-center  transition-all ">
+        <div className="text-prime line-clamp-2 text-lg font-bold lg:break-normal break-words leading-5">
           {title}
         </div>
         <div className="text-base font-normal mt-1 text-white break-words line-clamp-2 ">
           {description}
         </div>
-        <div className="text-base font-normal mt-1 text-slate-400">{date}</div>
+        <div className="text-sm font-normal mt-1 text-zinc-400">{date}</div>
       </div>
     </Link>
 

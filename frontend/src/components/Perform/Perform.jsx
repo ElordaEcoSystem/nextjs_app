@@ -13,7 +13,7 @@ export const Perform = ({ perform_data, title }) => {
     <section id="perform" className="py-10">
       <div className="container ">
         <div className="text-def_black text-4xl font-bold">{title}</div>
-        <div className="mt-14 flex gap-3 overflow-auto scroll-container">
+        <div className="mt-10 flex gap-3 overflow-auto scroll-container">
           <PerformYears setActiveYear={setActiveYear} activeYear={activeYear} />
         </div>
         <div className="  mt-6 grid md:grid-cols-5 gap-2 grid-cols-2  justify-items-center">
@@ -42,7 +42,7 @@ const PerfromItem = ({ title, icon, numberAndYear, unit, activeYear }) => {
   // console.log("PERFORM_NUMBER", activeYear);
   // console.log("PERFORM_NUMBER", perform_number.number);
   return (
-    <div className="py-6  px-3 border-2 border-prime bg-white transition-all hover:scale-105 hover:shadow-main shadow-prime md:w-[170px]  w-full">
+    <div className="py-6  px-3 border border-secondary bg-white transition-all hover:scale-[103%] hover:shadow-main shadow-prime md:w-[170px]  w-full">
       <div className="flex items-center justify-center">
         {/* <PerformIcon key={icon} icon={icon} className="w-12" /> */}
         <Image

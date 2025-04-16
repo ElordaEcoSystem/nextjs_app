@@ -8,10 +8,10 @@ module.exports = {
   theme: {
     extend: {
       boxShadow: {
-        main: '35px 19px 49px -30px rgba(0, 42, 81, 0.2)',
+        main: '35px 19px 49px -30px rgba(0, 42, 81, 0.03)',
       },
       colors: {
-        prime: '#35170c',
+        prime: '#002137',
         secondary: '#E6EAEE',
         def_black: '#191919',
       },
