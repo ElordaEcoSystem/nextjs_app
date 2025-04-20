@@ -42,9 +42,9 @@ const PerfromItem = ({ title, icon, numberAndYear, unit, activeYear }) => {
   // console.log("PERFORM_NUMBER", activeYear);
   // console.log("PERFORM_NUMBER", perform_number.number);
   return (
-    <div className="py-6  px-3 border border-secondary bg-white transition-all hover:scale-[103%] hover:shadow-main shadow-prime md:w-[170px]  w-full">
+    <div className="py-6  px-3 border border-secondary bg-white transition-all hover:scale-[103%] hover:shadow-main shadow-prime md:w-[170px]  w-full ">
       <div className="flex items-center justify-center">
-        {/* <PerformIcon key={icon} icon={icon} className="w-12" /> */}
+
         <Image
           src={icon}
           alt={icon}

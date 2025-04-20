@@ -7,7 +7,14 @@ import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
 
 export const SimpleSlider= () => {
-  var settings = {
+  const photos = [
+    "/banner/i1.jpeg",
+    "/banner/i2.jpeg",
+    "/banner/i3.jpeg",
+    "/banner/i4.jpeg",
+    "/banner/i5.jpeg"
+  ];
+  const settings = {
     dots: true,
     infinite: true,
     speed: 500,
@@ -18,33 +25,21 @@ export const SimpleSlider= () => {
   };
   return (
     <Slider className="w-[400px] h-full " {...settings}>
-      <div>
-        <Image
-                      width={0}
-                      height={0}
-                      sizes="100vw"
-                      alt={'text' }
-                      src=
-                        "/banner/i1.jpg"
+      {photos.map((item) => {
+        return (
+          <div key={item}>
+            <Image
+              src={item}
+              alt={item}
+              width={0}
+              height={0}
+              sizes="100vw"
+              className="w-full h-full object-cover "
+            ></Image>
+          </div>
+        );
+      })}
 
-                      className=" w-full   object-cover"
-                    />
-      </div>
-      <div>
-        <h3>2</h3>
-      </div>
-      <div>
-        <h3>3</h3>
-      </div>
-      <div>
-        <h3>4</h3>
-      </div>
-      <div>
-        <h3>5</h3>
-      </div>
-      <div>
-        <h3>6</h3>
-      </div>
     </Slider>
   );
 }

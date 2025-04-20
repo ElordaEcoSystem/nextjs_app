@@ -44,7 +44,7 @@ export const Header = ({ data, locale }) => {
       id="menu"
       className="border-b border-prime h-16 flex justify-center items-center bg-white  w-full fixed z-50 top-0"
     >
-      <div className="container flex justify-between  h-full bg-white  gap-2 ">
+      <div className="container flex justify-between  h-full bg-white  gap-10 ">
         <Link
           href="/"
           className="text-prime font-bold text-2xl flex flex-col justify-center"

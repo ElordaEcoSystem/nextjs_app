@@ -10,7 +10,7 @@ export const Banner = async ({ data }) => {
   return (
     <section id="banner" className="bg-secondary flex flex-col justify-center min-h-[480px]">
   <div className="container flex justify-between items-center gap-4">
-    <div className="flex flex-col md:max-w-md w-full">
+    <div className="flex flex-col lg:max-w-md w-full">
       <div className="text-prime text-4xl font-semibold flex flex-col">
         {data?.data[0].attributes.title.map((item) => {
           return <div key={item.children[0].text}>{item.children[0].text}</div>;
@@ -33,7 +33,7 @@ export const Banner = async ({ data }) => {
         })}
       </div>
     </div>
-    <div className="md:flex md:flex-col hidden">
+    <div className="lg:flex lg:flex-col hidden">
       <SimpleSlider />
     </div>
   </div>
