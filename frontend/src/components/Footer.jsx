@@ -1,11 +1,10 @@
 // "use client";
 
-// import { YMaps, Map, Placemark } from "@pbe/react-yandex-maps";
+
 import { PhoneIcon } from "./icons/PhoneIcon";
 import { MailIcon } from "./icons/MailIcon";
 import { FacebookIcon } from "./icons/FacebookIcon";
 import { InstaIcon } from "./icons/InstaIcon";
-// import { TelegramIcon } from "./icons/TelegramIcon";
 import { TiktokIcon } from "./icons/TiktokIcon";
 
 import { fetchFooter } from "@/app/[locale]/needed/services";
@@ -13,6 +12,8 @@ import { fetchFooter } from "@/app/[locale]/needed/services";
 import { useLocale } from "next-intl";
 import { MyMap } from "./Map";
 import Link from "next/link";
+
+import { useTranslations } from "next-intl";
 
 export const Footer = async () => {
   const locale = useLocale();
@@ -23,7 +24,7 @@ export const Footer = async () => {
       <div className="bg-prime py-10">
         <div className="container ">
           <div className="flex flex-col sm:flex-row justify-center gap-10 ">
-            <div className="flex flex-col gap-7">
+            <div className="flex flex-col gap-7 mt-4">
               <div>
                 <div className="text-sm text-white font-medium">
                   {Footer_data?.title_address}
@@ -31,12 +32,7 @@ export const Footer = async () => {
                 <div className="text-white text-xs">{Footer_data?.address}</div>
               </div>
               <div className="flex flex-col gap-1">
-                <div className="flex items-center gap-2">
-                  <PhoneIcon className="h-5 w-5" />
-                  <div className="text-white text-xs">
-                    {Footer_data?.number}
-                  </div>
-                </div>
+                <Tel/>
                 <div className="flex items-center gap-2">
                   <MailIcon className="h-5 w-5 fill-white" />
                   <div className="text-white text-xs">{Footer_data?.email}</div>
@@ -89,3 +85,24 @@ export const Footer = async () => {
     </>
   );
 };
+
+
+const Tel = () => {
+  const t = useTranslations();
+
+  return (
+    <div className="flex items-center gap-2">
+                  <PhoneIcon className="h-5 w-5" />
+  <div>
+  <div className="text-white text-xs">
+                    {/* {Footer_data?.number} */}
+                    +7 7172 918453 - {t("reception_num")}
+                  </div>
+                  <div className="text-white text-xs">
+                    {/* {Footer_data?.number} */}
+                    +7 7172 918453 - {t("cds")}
+                  </div>
+  </div>
+                </div>
+  )
+}

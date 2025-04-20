@@ -2,5 +2,17 @@
   "biography_button": "Биография ",
   "reception": "Время приема",
   "contact": "Контакты",
-  "perform_title": "Наши показатели"
+  "perform_title": "Наши показатели",
+  "cds": "Центральная диспетчерская служба",
+  "reception_num": "Приемная",
+  "structure_title": "Структура",
+  "header": {
+    "home": "Главная",
+    "about": "Об организации",
+    "press_center": "Пресс-центр",
+    "compliance": "Антикор",
+    "jobs": "Вакансии",
+    "procurement": "Закупки",
+    "requestPTO": "Тех. шарттарды алу"
+  }
 }

@@ -6,7 +6,7 @@ export const MyMap = ({ className }) => {
   return (
     <YMaps>
       <Map
-        className={clsx("max-w-xl w-full h-80", className)} //h-80 w-[600px]
+        className={clsx("max-w-lg w-full h-80", className)} //h-80 w-[600px]
         defaultState={{
           center: [51.128201, 71.430429],
           zoom: 10.4,

@@ -2,5 +2,17 @@
   "biography_button": "Өмірбаяны",
   "reception": "Қабылдау уақыты",
   "contact": "Байланыс нөмері",
-  "perform_title": "Біздің көрсеткіштер"
+  "perform_title": "Біздің көрсеткіштер",
+  "cds": "Орталық диспетчерлік қызметі",
+  "reception_num": "Қабылдау бөлмесі",
+  "structure_title": "Құрылымы",
+  "header": {
+    "home": "Басты бет",
+    "about": "Ұйым туралы",
+    "press_center": "Баспасөз орталығы",
+    "compliance": "Antikor",
+    "jobs": "Бос жұмыс орындары",
+    "procurement": "Сатып алулар",
+    "requestPTO": "Тех. шарттарды алу"
+  }
 }

@@ -63,6 +63,7 @@ export default async function About() {
               );
             })}
           </div>
+          <Strucure className="mt-8"/>
         </div>
       </section>
     </>
@@ -122,3 +123,26 @@ const DirectorCard = ({
     </div>
   );
 };
+
+
+const Strucure = ({className}) => {
+  const t = useTranslations();
+  return (
+    <div className={className}>
+        <h2 className="text-3xl font-bold ">
+            {t("structure_title")}
+        </h2>
+        <div className="mt-4">
+
+        <Image
+          width={0}
+          height={0}
+          sizes="100vw"
+          alt="structure"
+          src="/structure.jpg"
+          className="h-[448px] w-full object-cover"
+          />
+        </div>
+    </div>
+  )
+}
