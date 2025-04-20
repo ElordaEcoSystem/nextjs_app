@@ -21,7 +21,7 @@ export const Navs = ({header_data,locale}) => {
 
     <ul
       className={clsx(
-        "lg:flex  text-prime lg:justify-between lg:gap-1 font-semibold lg:text-base lg:items-center lg:w-full  bg-white  "
+        "lg:flex  text-prime lg:justify-between lg:gap-1 font-semibold lg:text-base lg:items-center lg:w-full  bg-white gap-2 "
       )}
     >
 
