@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+// import Image from "next/image";
 
 import { useTranslations } from "next-intl";
 import { Navs } from "./Navs";
@@ -50,7 +50,7 @@ export const Header = ({ data, locale }) => {
           className="text-prime font-bold text-2xl flex flex-col justify-center"
         >
           {/* <Logo className="w-[70px] fill-prime" /> */}
-          <Image
+          <img
                   sizes="100vw"
                   src="/image/logo.png"
                   alt={"logo"}

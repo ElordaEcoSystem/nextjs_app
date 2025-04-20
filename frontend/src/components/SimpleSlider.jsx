@@ -28,14 +28,14 @@ export const SimpleSlider= () => {
       {photos.map((item) => {
         return (
           <div key={item}>
-            <Image
+            <img
               src={item}
               alt={item}
               width={0}
               height={0}
               sizes="100vw"
               className="w-full h-full object-cover "
-            ></Image>
+            ></img>
           </div>
         );
       })}
