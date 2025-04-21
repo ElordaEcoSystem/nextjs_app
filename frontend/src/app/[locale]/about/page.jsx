@@ -140,7 +140,7 @@ const Strucure = ({className}) => {
           sizes="100vw"
           alt="structure"
           src="/structure.jpg"
-          className="h-[448px] w-full object-cover"
+          className=" w-full object-cover"
           />
         </div>
     </div>
