@@ -55,7 +55,7 @@ const PerfromItem = ({ title, icon, numberAndYear, unit, activeYear }) => {
         ></Image>
       </div>
       <div className="mt-3 text-prime text-center text-xl font-semibold transition-all ">
-        {perform_number?.number || 0}
+        {perform_number?.number.toLocaleString('ru-RU') || 0}
       </div>
       <div className="text-prime text-center text-base font-semibold">
         {unit}
