@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { fetchProcurement } from "../needed/services";
+import { fetchProcurement } from "../../needed/services";
 import { useLocale } from "next-intl";
 
 export default async function Procurement() {

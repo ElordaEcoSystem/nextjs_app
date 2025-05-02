@@ -8,11 +8,20 @@
   "structure_title": "Структура",
   "header": {
     "home": "Главная",
-    "about": "Об организации",
+    "about": {
+      "about": "Об организации",
+      "general": "Общая информация",
+      "management":"Руководство",
+      "structure": "Структура",
+      "purchases": "Закупки"
+    },
+    "services":{
+      "services":"Услуги",
+      "paid_services": "Платный услуги",
+      "technical_conditions": "Выдача технических условии"
+    },
     "press_center": "Пресс-центр",
-    "compliance": "Антикоррупционный комплаенс",
-    "jobs": "Вакансии",
-    "procurement": "Закупки",
-    "requestPTO": "Получение технических условий"
+    "compliance": "Комплаенс",
+    "jobs": "Вакансии"
   }
 }

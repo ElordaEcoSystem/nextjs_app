@@ -8,7 +8,7 @@ import { SimpleSlider } from "./SimpleSlider";
 export const Banner = async ({ data }) => {
   const locale = useLocale();
   return (
-    <section id="banner" className="bg-secondary flex flex-col justify-center min-h-[480px]">
+    <section id="banner" className="flex flex-col justify-center min-h-[480px]">
   <div className="container flex justify-between items-center gap-4">
     <div className="flex flex-col lg:max-w-md w-full">
       <div className="text-prime text-4xl font-semibold flex flex-col">

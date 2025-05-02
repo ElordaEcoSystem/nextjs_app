@@ -25,7 +25,7 @@ export const LocaleButton = ({ className }) => {
       key={locale}
       value={locale}
       className={clsx(
-        "text-prime font-semibold  block   hover:bg-secondary transition-all text-sm ",
+        "text-prime font-semibold  block hover:bg-secondary transition-all text-sm ",
         className
       )}
       onClick={(e) => {

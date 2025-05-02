@@ -45,9 +45,10 @@
 
 import { Roboto } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/components/Header";
+// import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { fetchNav } from "./needed/services";
+import HeaderWrapper from "@/components/HeaderWrapper";
 
 const roboto = Roboto({
   subsets: ["latin", "cyrillic"],
@@ -55,13 +56,13 @@ const roboto = Roboto({
 });
 
 export default async function LocaleLayout({ children, params: { locale } }) {
-  const data = await fetchNav(locale);
+
   console.log("LOCALE", locale);
 
   return (
     <>
-      <Header data={data} locale={locale} />
-      <main className={`${roboto.className} grow mt-16 min-h-screen`}>
+      <HeaderWrapper  locale={locale} />
+      <main className={`${roboto.className} grow  min-h-screen`}>
         {children}
       </main>
       <Footer />

@@ -8,11 +8,20 @@
   "structure_title": "Құрылымы",
   "header": {
     "home": "Басты бет",
-    "about": "Ұйым туралы",
+    "about": {
+      "about": "Ұйым туралы",
+      "general": "Жалпы ақпарат",
+      "management": "Басшылық",
+      "structure": "Құрылым",
+      "purchases": "Сатып алулар"
+    },
+    "services": {
+      "services": "Қызметтер",
+      "paid_services": "Ақылы қызметтер",
+      "technical_conditions": "Техникалық шарттарды беру"
+    },
     "press_center": "Баспасөз орталығы",
-    "compliance": "Сыбайлас жемқорлыққа қарсы комплаенс",
-    "jobs": "Бос жұмыс орындары",
-    "procurement": "Сатып алулар",
-    "requestPTO": "Техникалық шарттарды алу"
+    "compliance": "Сәйкестік",
+    "jobs": "Бос жұмыс орындары"
   }
 }

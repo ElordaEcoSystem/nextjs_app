@@ -7,8 +7,8 @@ function distributorOfId(id, locale) {
   }
   return res;
 }
+import { fetchDirectorById } from "@/app/[locale]/needed/services";
 import { useTranslations } from "next-intl";
-import { fetchDirectorById } from "../../needed/services";
 import Image from "next/image";
 
 export default async function BiographyWrapper({ params }) {

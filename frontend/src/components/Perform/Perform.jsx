@@ -10,7 +10,7 @@ export const Perform = ({ perform_data, title }) => {
   // perform_title
   // console.log(perform_data.data[0].attributes.icon.data.attributes.url);
   return (
-    <section id="perform" className="py-10">
+    <section id="perform" className="py-10 bg-secondary ">
       <div className="container ">
         <div className="text-def_black text-4xl font-bold">{title}</div>
         <div className="mt-10 flex gap-3 overflow-auto scroll-container">
@@ -42,7 +42,8 @@ const PerfromItem = ({ title, icon, numberAndYear, unit, activeYear }) => {
   // console.log("PERFORM_NUMBER", activeYear);
   // console.log("PERFORM_NUMBER", perform_number.number);
   return (
-    <div className="py-6  px-3 border border-secondary bg-white transition-all hover:scale-[103%] hover:shadow-main shadow-prime md:w-[170px]  w-full ">
+    <div className="py-10  px-3 border border-prime bg-white transition-all hover:scale-[103%] hover:shadow-main shadow-prime w-full ">
+       {/* md:w-[170px]  */}
       <div className="flex items-center justify-center">
 
         <Image
