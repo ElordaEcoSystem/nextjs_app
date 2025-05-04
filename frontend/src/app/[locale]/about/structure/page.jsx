@@ -6,7 +6,7 @@ export default async function About() {
 
   return (
     <>
-   <div className="container py-12 flex flex-col gap-4 ">
+   <div className="container py-8 flex flex-col gap-4 ">
    <Strucure className=""/>
 
    </div>

@@ -64,14 +64,14 @@ export const Header = ({data,locale})=> {
         </nav>
 
         {/* Бургер меню кнопка */}
-        <button
+
+      <LocaleButton className=" my-auto lg:flex  w-14 lg:flex-col lg:justify-center lg:items-center text-sm font-medium h-full justify-center flex flex-col md:ml-0 ml-auto " />
+      <button
           onClick={() => setOpenMenu(!openMenu)}
-          className="md:hidden focus:outline-none ml-auto"
+          className="md:hidden focus:outline-none "
         >
           {openMenu ? <X size={28} /> : <Menu size={28} />}
         </button>
-      <LocaleButton className=" my-auto lg:flex  w-14 lg:flex-col lg:justify-center lg:items-center" />
-
       </div>
 
        {/* Мобильное меню */}
@@ -91,10 +91,10 @@ export const Header = ({data,locale})=> {
 const NavButton = ({ toggleDropdown, activeDropdown, locale, item }) => {
   if (item.sections) {
     return (
-      <div className="relative justify-center flex flex-col h-full">
+      <div className="relative " key={item.title}>
         <button
           onClick={() => toggleDropdown(item.title)}
-          className="transition text-sm font-medium"
+          className="transition text-sm font-medium h-full justify-center flex flex-col "
         >
           {item.title}
         </button>
@@ -104,8 +104,9 @@ const NavButton = ({ toggleDropdown, activeDropdown, locale, item }) => {
             <div className="flex flex-col">
               {item.sections.map((section) => (
                 <Link
-                  href={`/${locale}/${section.link}`}
+                  onClick={() => setOpenMenu(false)}
                   key={section.title}
+                  href={`/${locale}/${section.link}`}
                   className="p-2 text-sm hover:bg-gray-100 cursor-pointer transition rounded"
                 >
                   {section.title}
@@ -137,8 +138,8 @@ const MobileMenu = ({ data, locale, activeDropdown, toggleDropdown }) => {
         {data.map((item) => (
           <div key={item.title}>
             {item.sections ? (
-              <>
-                <button
+                <div>
+                  <button
                   onClick={() => toggleDropdown(item.title)}
                   className="w-full text-left font-semibold py-2"
                 >
@@ -147,15 +148,15 @@ const MobileMenu = ({ data, locale, activeDropdown, toggleDropdown }) => {
                 {activeDropdown === item.title && (
                     item.sections.map((section) => (
                       <Link
-                        href={`/${locale}/${section.link}`}
+                      href={`/${locale}/${section.link}`}
                         key={section.title}
-                        className="block text-gray-700 py-1 hover:underline"
+                        className="block text-gray-700 py-1"
                       >
                         {section.title}
                       </Link>
                     ))
                 )}
-              </>
+                </div>
             ) : (
               <Link
                 href={`/${locale}/${item.link}`}

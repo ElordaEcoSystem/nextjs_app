@@ -14,7 +14,7 @@ export default async function Procurement() {
   );
 
   return (
-    <section className="mb-auto container py-12">
+    <section className="mb-auto container py-8">
       <h2 className="text-3xl font-bold text-prime ">
         {data.data[0].attributes.title}
       </h2>
