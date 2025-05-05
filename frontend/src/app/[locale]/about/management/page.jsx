@@ -84,7 +84,7 @@ const DirectorCard = ({
         <div className="text-2xl text-prime font-bold">{full_name}</div>
         <div className="text-lg">{position}</div>
         {(number || reception_schedule) && (
-          <div className="mt-3">
+          <div className="mt-3 mb-3">
             {number && (
               <div className="text-base text-black flex flex-col">
                 <div className="text-zinc-500">{t("contact")}</div>
@@ -103,10 +103,10 @@ const DirectorCard = ({
         )}
         <Link
           href={`management/${id}`}
-          className="flex self-end items-center gap-2 bg-white py-2 px-4 shadow-md rounded hover:scale-[102%] transition-all text-prime text-sm font-bold leading-6 mt-auto w-fit"
+          className="flex self-end items-center gap-2 bg-prime py-2 px-4 shadow-md rounded hover:scale-[102%] transition-all text-prime text-sm font-bold leading-6 mt-auto w-fit"
         >
-          <div className="block">{t("biography_button")}</div>
-          <ArrowIcon className="h-4 stroke-[4px] w-auto stroke-prime inline-block items-end" />
+          <div className="block text-white">{t("biography_button")}</div>
+          <ArrowIcon className="h-4 stroke-[4px] w-auto stroke-white inline-block items-end" />
         </Link>
       </div>
     </div>

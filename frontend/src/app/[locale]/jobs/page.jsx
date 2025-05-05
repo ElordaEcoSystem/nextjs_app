@@ -1,5 +1,4 @@
 import React from "react";
-import { JOBS_ARR } from "../needed/constans";
 import clsx from "clsx";
 import { fetchJobs } from "../needed/services";
 import { useLocale } from "next-intl";
@@ -7,36 +6,44 @@ import { useLocale } from "next-intl";
 export default async function JobsPage() {
   const locale = useLocale();
   const data = await fetchJobs(locale);
-  console.log("JOBSPAGE", data.data[0].attributes.job_openings);
+  console.log("JOBSPAGE", data.data[0].attributes.job_openings[0].children[0].text)
+  const shouldRenderTable = !(
+    data.data[0].attributes.job_openings.length === 1 &&
+    data.data[0].attributes.job_openings[0].children[0].text === ''
+  );
+ 
   return (
-    <section className="mb-auto container py-12">
-      <h2 className="text-3xl font-bold text-prime ">
+    <section className="mb-auto container py-8">
+      <h2 className="text-3xl font-bold text-def_black">
         {data.data[0].attributes.title}
       </h2>
       <div className="mt-4">
-        {data.data[0].attributes.info.map((item) => {
-          return <div key={item.children[0].text}>{item.children[0].text}</div>;
-        })}
-        {/* По актуальной информации о вакансиях обращаться: <br />
-        Отдел кадров +7172 918 718 <br />
-        Приемная +7172 918 453 <br />
-        Почта elordaecosystem@mail.ru */}
+        {data.data[0].attributes.info.map((item) => (
+          <div key={item.children[0].text}>{item.children[0].text}</div>
+        ))}
       </div>
-      <table className="mt-4 w-full ">
-        <th className="text-lg font-bold text-prime border-b-4 border-prime ">
-          {data.data[0].attributes.sub_title}
-        </th>
-        {data.data[0].attributes.job_openings.map((item, i) => {
-          return (
-            <tr
-              className={clsx(i % 2 == 0 ? "bg-slate-100 " : "")}
-              key={item.children[0].text}
-            >
-              {item.children[0].text}
+
+      {shouldRenderTable && (
+        <table className="mt-4 w-full">
+          <thead>
+            <tr>
+              <th className="text-lg font-bold text-prime border-b-4 border-prime">
+                {data.data[0].attributes.sub_title}
+              </th>
             </tr>
-          );
-        })}
-      </table>
+          </thead>
+          <tbody>
+            {data.data[0].attributes.job_openings.map((item, i) => (
+              <tr
+                className={clsx(i % 2 === 0 ? 'bg-slate-100' : '')}
+                key={item.children[0].text}
+              >
+                <td>{item.children[0].text}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </section>
   );
 }

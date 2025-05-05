@@ -23,5 +23,12 @@
     "press_center": "Пресс-центр",
     "compliance": "Комплаенс",
     "jobs": "Вакансии"
+  },
+  "purchases_page":{
+    "title": "Документы для строительства ЛК"
+  },
+  "press_center": {
+    "title": "Пресс-центр"
   }
+
 }

@@ -9,8 +9,8 @@ export default async function RequestPTO() {
   const data = await fetchPTO(locale);
   return (
     // <div>test</div>
-    <div className="container py-10">
-      <h2 className="text-3xl font-bold text-prime">
+    <div className="container py-8">
+      <h2 className="text-3xl font-bold text-def_black">
         {data.data[0].attributes.title}
       </h2>
       <div className="mt-4">

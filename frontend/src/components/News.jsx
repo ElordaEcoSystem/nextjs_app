@@ -16,7 +16,7 @@ export const News = async ({ data }) => {
 
   // console.log("LOG", news_data?.data[0].attributes.description);
   return (
-    <section id="news" className="py-10 container ">
+    <section id="news" className="py-20 container ">
       <div className="flex justify-between items-center">
         <h3 className="text-def_black text-4xl font-bold">
           {data?.data[0].attributes.news_title}

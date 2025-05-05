@@ -9,7 +9,7 @@
   "header": {
     "home": "Басты бет",
     "about": {
-      "about": "Ұйым туралы",
+      "about": "Кәсіпорын туралы",
       "general": "Жалпы ақпарат",
       "management": "Басшылық",
       "structure": "Құрылым",
@@ -21,7 +21,13 @@
       "technical_conditions": "Техникалық шарттарды беру"
     },
     "press_center": "Баспасөз орталығы",
-    "compliance": "Сәйкестік",
+    "compliance": "Комплаенс",
     "jobs": "Бос жұмыс орындары"
+  },
+  "purchases_page":{
+    "title": "ЛК құрылысына арналған құжаттар"
+  },
+  "press_center": {
+    "title": "Пресс-центр"
   }
 }

@@ -7,35 +7,35 @@ export default async function HeaderWrapper({locale}) {
   const data = [
     {
       title: t("home"),
-      link: "/"
+      link: `/${locale}/`
     },
     {
       title: t('about.about'),
       sections: [
-        { title: t('about.general'), link: '/about/general' },
-        { title: t('about.management'), link: '/about/management' },
-        { title: t('about.structure'), link: '/about/structure' },
-        { title: t('about.purchases'), link: '/about/purchases' },
+        { title: t('about.general'), link: `/${locale}/about/general` },
+        { title: t('about.management'), link: `/${locale}/about/management` },
+        { title: t('about.structure'), link: `/${locale}/about/structure` },
+        { title: t('about.purchases'), link: `/${locale}/about/purchases` },
       ],
     },
     {
       title: t('services.services'),
       sections: [
-        { title: t('services.paid_services'), link: '/services/paid_services' },
-        { title: t('services.technical_conditions'), link: '/services/technical_conditions' },
+        { title: t('services.paid_services'), link: `/${locale}/services/paid_services` },
+        { title: t('services.technical_conditions'), link: `/${locale}/services/technical_conditions` },
       ],
     },
     {
       title: t("press_center"),
-      link: "/press_center"
+      link: `/${locale}/press_center`
     },
     {
       title: t("compliance"),
-      link: "/compliance"
+      link: `/${locale}/compliance`
     },
     {
       title: t("jobs"),
-      link: "/jobs"
+      link: `/${locale}/jobs`
     }
   ];
 

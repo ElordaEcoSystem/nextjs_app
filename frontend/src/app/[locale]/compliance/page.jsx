@@ -8,15 +8,15 @@ export default async function Compliance() {
   const locale = useLocale();
   const data = await fetchAntikor(locale);
   return (
-    <section className="mb-auto container py-12">
-      <h2 className="text-3xl font-bold text-prime ">
+    <section className="mb-auto container py-8">
+      <h2 className="text-3xl font-bold text-def_black ">
         {data.data[0]?.attributes?.title}
       </h2>
       <div className="mt-4">
         {data.data[0]?.attributes?.document.map((item) => {
           return (
             <Link
-              className="hover:text-prime hover:bg-secondary transition-all table"
+              className="hover:text-prime hover:bg-secondary  transition-all table mt-2"
               href={domain + item?.item_document?.data?.attributes?.url}
             >
               {item?.title}

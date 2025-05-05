@@ -96,11 +96,11 @@ const Tel = () => {
   <div>
   <div className="text-white text-xs">
                     {/* {Footer_data?.number} */}
-                    +7 7172 918453 - {t("reception_num")}
+                    +7 (7172) 918-453 - {t("reception_num")}
                   </div>
                   <div className="text-white text-xs">
                     {/* {Footer_data?.number} */}
-                    +7 7172 918453 - {t("cds")}
+                    +7 (7172) 918-819 - {t("cds")}
                   </div>
   </div>
                 </div>

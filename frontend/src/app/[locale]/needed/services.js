@@ -406,3 +406,7 @@ export async function fetchProcurement(locale) {
 export async function fetchPTO(locale) {
   return fetchData(`ptos?locale=${locale}&populate=*`);
 }
+
+export async function fetchPaidTable(locale) {
+  return fetchData(`paid-services?populate=document&populate=document.item_document&locale=${locale}`);
+}

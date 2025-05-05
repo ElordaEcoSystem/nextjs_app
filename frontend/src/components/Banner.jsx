@@ -8,7 +8,7 @@ import { SimpleSlider } from "./SimpleSlider";
 export const Banner = async ({ data }) => {
   const locale = useLocale();
   return (
-    <section id="banner" className="flex flex-col justify-center min-h-[480px]">
+    <section id="banner" className="flex flex-col justify-center py-20">
   <div className="container flex justify-between items-center gap-4">
     <div className="flex flex-col lg:max-w-md w-full">
       <div className="text-prime text-4xl font-semibold flex flex-col">
@@ -24,7 +24,7 @@ export const Banner = async ({ data }) => {
           return (
             <Link
               href={`/${locale}/${btn.link}`}
-              className="px-5 py-1 bg-white rounded-sm text-prime font-semibold text-sm hover:scale-105 transition-all duration-300 active:scale-95"
+              className="px-5 py-1 h-[34px] shadow-md content-center bg-prime rounded-sm text-white font-semibold text-sm hover:scale-105 transition-all duration-300 active:scale-95"
               key={btn.title + btn.link}
             >
               {btn.title}

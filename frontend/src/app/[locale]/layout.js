@@ -62,7 +62,7 @@ export default async function LocaleLayout({ children, params: { locale } }) {
   return (
     <>
       <HeaderWrapper  locale={locale} />
-      <main className={`${roboto.className} grow  min-h-screen`}>
+      <main className={`${roboto.className} grow  min-h-screen pt-16`}>
         {children}
       </main>
       <Footer />

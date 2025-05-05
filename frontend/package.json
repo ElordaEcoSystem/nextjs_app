@@ -9,8 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.2",
     "@pbe/react-yandex-maps": "^1.2.5",
     "clsx": "^2.0.0",
+    "heroicons": "^2.2.0",
     "lucide-react": "^0.503.0",
     "navigation": "^6.2.0",
     "next": "14.0.0",

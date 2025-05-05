@@ -7,6 +7,7 @@ export default async function Procurement() {
   const locale = useLocale();
   const data = await fetchProcurement(locale);
   const domain = process.env.NEXT_PUBLIC_API_URL;
+  const t = 
   // console.log("ANTIKOR", data.data[0].attributes.title);
   console.log(
     "PROCUREMENT",
@@ -15,7 +16,8 @@ export default async function Procurement() {
 
   return (
     <section className="mb-auto container py-8">
-      <h2 className="text-3xl font-bold text-prime ">
+      <h2 className="text-3xl font-bold text-def_black ">
+
         {data.data[0].attributes.title}
       </h2>
       <div className="mt-4">

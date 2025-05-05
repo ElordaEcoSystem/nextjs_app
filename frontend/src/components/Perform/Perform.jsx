@@ -10,7 +10,7 @@ export const Perform = ({ perform_data, title }) => {
   // perform_title
   // console.log(perform_data.data[0].attributes.icon.data.attributes.url);
   return (
-    <section id="perform" className="py-10 bg-secondary ">
+    <section id="perform" className="py-20 bg-zinc-100 ">
       <div className="container ">
         <div className="text-def_black text-4xl font-bold">{title}</div>
         <div className="mt-10 flex gap-3 overflow-auto scroll-container">
