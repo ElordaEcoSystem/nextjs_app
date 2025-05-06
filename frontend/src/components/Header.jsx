@@ -83,15 +83,15 @@ export const Header = ({ data }) => {
             </div>
             <LocaleButton className=" h-full  flex  flex-col w-14  items-center text-sm font-medium justify-center lg:ml-0 ml-auto " />
             {/* MOBILE MENU BUTTON */}
-            <div className="lg:hidden flex items-center">
+            <div className="lg:hidden flex items-center h-full">
               <button
                 onClick={() => setMobileOpen(!mobileOpen)}
-                className="text-gray-700 hover:text-blue-600 focus:outline-none"
+                className="text-gray-700  focus:outline-none h-full px-4"
               >
                 {mobileOpen ? (
                   <XIcon className="h-6 w-6" />
                 ) : (
-                  <MenuIcon className="h-6 w-6" />
+                  <MenuIcon className="h-6 w-6 " />
                 )}
               </button>
             </div>

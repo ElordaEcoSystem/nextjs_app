@@ -16,7 +16,7 @@ export const Perform = ({ perform_data, title }) => {
         <div className="mt-10 flex gap-3 overflow-auto scroll-container">
           <PerformYears setActiveYear={setActiveYear} activeYear={activeYear} />
         </div>
-        <div className="  mt-6 grid md:grid-cols-5 gap-2 grid-cols-2  justify-items-center">
+        <div className="  mt-6 grid md:grid-cols-5 gap-2 sm:grid-cols-2 grid-cols-1  justify-items-center">
           {perform_data?.data?.map((item) => {
             const imageUrl = domain + item.attributes.icon.data.attributes.url;
             return (
