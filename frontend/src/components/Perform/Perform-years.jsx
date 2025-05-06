@@ -7,7 +7,7 @@ export const PerformYears = ({ activeYear, setActiveYear }) => {
       className={`py-1 md:px-7 px-4 rounded-sm text-base ${
         activeYear === year
           ? " bg-prime text-white"
-          : " bg-white border border-secondary text-base-color hover:border-prime transition-all"
+          : " bg-white border border-secondary text-base-color hover:scale-105 transition-all"
       }`}
       onClick={() => setActiveYear(year)}
     >

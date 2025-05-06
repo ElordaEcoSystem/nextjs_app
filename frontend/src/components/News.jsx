@@ -11,14 +11,11 @@ export const News = async ({ data }) => {
 
   const news_data = await fetchBlog(locale);
   const domain = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:1337";
-  // const locale = useLocale();
-  // const main_page = await fetchMainPage(locale);
 
-  // console.log("LOG", news_data?.data[0].attributes.description);
   return (
     <section id="news" className="py-20 container ">
       <div className="flex justify-between items-center">
-        <h3 className="text-def_black text-4xl font-bold">
+        <h3 className="text-def_black text-3xl font-bold">
           {data?.data[0].attributes.news_title}
         </h3>
         <Link
@@ -50,9 +47,12 @@ export const News = async ({ data }) => {
             />
           </div>
 
-          <div className="bottom-0 w-full bg-base-color px-5 py-[30px] bg-white ">
+          <div className="bottom-0 w-full bg-base-color px-5 py-4 bg-white ">
             <div className="text-prime text-xl font-bold line-clamp-1 break-words">
               {news_data?.data[0].attributes.title}
+            </div>
+            <div className="text-sm font-normal mt-2 text-def_black break-words line-clamp-1 ">
+               {news_data?.data[0].attributes.description_rich_text[0].children[0]?.text}
             </div>
 
             <div className="text-zinc-400 text-sm font-normal mt-1 ">
@@ -62,6 +62,7 @@ export const News = async ({ data }) => {
         </Link>
         <div className="flex flex-col justify-between gap-[5px] ">
           {news_data?.data.slice(1, 4).map((item) => {
+            console.log("FROM lNEWS",item.attributes)
             return (
               <LittleNews
                 key={item.id}
@@ -72,7 +73,7 @@ export const News = async ({ data }) => {
                   domain + item.attributes.thumbnail?.data.attributes.url
                 }
                 locale={locale}
-                description={item.attributes.description}
+                description={item.attributes.description_rich_text}
               />
             );
           })}
@@ -83,6 +84,7 @@ export const News = async ({ data }) => {
 };
 
 const LittleNews = ({ thumbnail, title, date, id, locale, description }) => {
+  console.log("DESCR",description[0].children[0].text)
   return (
     <Link
       href={`/${locale}/press_center/${id}`}
@@ -101,10 +103,10 @@ const LittleNews = ({ thumbnail, title, date, id, locale, description }) => {
         <div className="text-prime line-clamp-2 text-lg font-bold lg:break-normal break-words leading-5">
           {title}
         </div>
-        <div className="text-base font-normal mt-1 text-white break-words line-clamp-2 ">
-          {description}
+        <div className="text-sm font-normal mt-2 text-def_black break-words line-clamp-2 ">
+          {description[0].children[0]?.text}
         </div>
-        <div className="text-sm font-normal mt-1 text-zinc-400">{date}</div>
+        <div className="text-sm font-normal mt-3 text-zinc-400">{date}</div>
       </div>
     </Link>
 
