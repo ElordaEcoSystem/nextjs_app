@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../strapi_app"
+		}
+	],
+	"settings": {}
+}

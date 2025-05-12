@@ -7,8 +7,7 @@ import Image from "next/image";
 export const Perform = ({ perform_data, title }) => {
   const [activeYear, setActiveYear] = useState(2025);
   const domain = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:1337";
-  // perform_title
-  // console.log(perform_data.data[0].attributes.icon.data.attributes.url);
+
   return (
     <section id="perform" className="py-20 bg-zinc-100 ">
       <div className="container ">
