@@ -39,6 +39,7 @@ export default function RootLayout({ children, params }) {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="yandex-verification" content="f1785b354bdbcfee" />
+        <meta name="google-site-verification" content="hPJ75BCKHf98HY5tY4CfEQHXD6ZQu0MLIMOpjJe4EJc" />
         <link rel="canonical" href="https://new.elordaecosystem.kz" />
       </head>
       <body>
