@@ -262,6 +262,7 @@ export default async function PaidServices() {
              <Link
                className="hover:text-prime underline hover:bg-secondary transition-all table mt-2"
                href={domain + item?.item_document?.data?.attributes?.url}
+               download
              >
                {item?.title}
              </Link>
