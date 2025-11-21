@@ -84,7 +84,9 @@ export const News = async ({ data }) => {
 };
 
 const LittleNews = ({ thumbnail, title, date, id, locale, description }) => {
-  console.log("DESCR",description[0].children[0].text)
+  // console.log("DESCR",description[0].children[0].text)
+  console.log("DESCR",title,description)
+
   return (
     <Link
       href={`/${locale}/press_center/${id}`}
@@ -104,7 +106,7 @@ const LittleNews = ({ thumbnail, title, date, id, locale, description }) => {
           {title}
         </div>
         <div className="text-sm font-normal mt-2 text-def_black break-words line-clamp-2 ">
-          {description[0].children[0]?.text}
+          {/* {description[0].children[0]?.text} */}
         </div>
         <div className="text-sm font-normal mt-3 text-zinc-400">{date}</div>
       </div>
