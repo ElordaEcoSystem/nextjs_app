@@ -5,7 +5,7 @@ import { PerformYears } from "./Perform-years";
 import Image from "next/image";
 
 export const Perform = ({ perform_data, title }) => {
-  const [activeYear, setActiveYear] = useState(2025);
+  const [activeYear, setActiveYear] = useState(2026);
   const domain = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:1337";
 
   return (
