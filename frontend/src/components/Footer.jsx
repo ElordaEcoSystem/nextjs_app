@@ -94,14 +94,16 @@ const Tel = () => {
     <div className="flex items-center gap-2">
                   <PhoneIcon className="h-5 w-5" />
   <div>
-  <div className="text-white text-xs">
+  <div className="text-white text-xs mt-1">
                     {/* {Footer_data?.number} */}
                     +7 (7172) 918-453 - {t("reception_num")}
                   </div>
-                  <div className="text-white text-xs">
+                  <div className="text-white text-xs mt-1">
                     {/* {Footer_data?.number} */}
                     +7 (7172) 918-819 - {t("cds")}
+                    
                   </div>
+                  <div className="text-white text-xs mt-1">+7172 918-453 {t("antiokor")}</div>
   </div>
                 </div>
   )
