@@ -9,6 +9,18 @@ export default async function Compliance() {
   const data = await fetchAntikor(locale);
   const entry = data?.data?.[0]?.attributes;
   console.log("DATAFROMCOMPLINCE",entry.description_2)
+
+  const translations = {
+    kk: {
+      title_doc_list: "Құжаттар"
+    },
+    ru:{
+      title_doc_list: "Документы"
+    }
+  }
+  const t = translations[locale] || translations.kk;
+
+
   return (
     <section className="mb-auto container py-8">
       <h2 className="text-3xl font-bold text-def_black">
@@ -17,12 +29,12 @@ export default async function Compliance() {
       <div className="mt-4">
         <RichText content={entry?.description_2}  />
       </div>
-
+      <div className="text-xl font-medium mt-2">{t.title_doc_list}</div>
       <div className="mt-4">
         {entry?.document?.map((item) => (
           <Link
             key={item?.title}
-            className="hover:text-prime hover:bg-secondary transition-all table mt-2"
+            className="underline hover:text-prime hover:bg-secondary transition-all table mt-2"
             href={domain + item?.item_document?.data?.attributes?.url}
           >
             {item?.title}
