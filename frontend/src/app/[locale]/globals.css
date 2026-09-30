@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
+/* html {
   filter: grayscale(100%);
-}
+} */
 
 /* :root {
   --foreground-rgb: 0, 0, 0;
