@@ -14,6 +14,12 @@ module.exports = {
         prime: '#002137',
         secondary: '#E6EAEE',
         def_black: '#191919',
+        // Цвета логотипа. leaf и sky — для декоративных акцентов,
+        // accent — голубой с достаточным контрастом для текста и ссылок
+        leaf: '#00a800',
+        sky: '#0090c8',
+        accent: '#0077a8',
+        muted: '#5f6b76',
       },
     },
     container: {

@@ -5,6 +5,7 @@ import { fetchBlog, mediaUrl } from "../needed/services";
 import { blocksToPlainText, formatDate, parseId } from "../needed/format";
 import { pageMetadata } from "../needed/seo";
 
+import { PageTitle } from "@/components/PageTitle";
 const PAGE_SIZE = 12;
 
 export async function generateMetadata({ params: { locale }, searchParams }) {
@@ -27,7 +28,7 @@ export default async function PressCenter({ params: { locale }, searchParams }) 
 
   return (
     <section className="container py-8 flex flex-col gap-6">
-      <h1 className="text-3xl font-bold text-def_black">{t("title")}</h1>
+      <PageTitle>{t("title")}</PageTitle>
       <div className="grid gap-5 sm:flex sm:flex-col grid-cols-[repeat(auto-fit,_minmax(200px,_1fr))]">
         {posts.map((post) => {
           const href = `/${locale}/press_center/${post.id}`;
@@ -67,7 +68,7 @@ export default async function PressCenter({ params: { locale }, searchParams }) 
                 </p>
                 <time
                   dateTime={post.attributes.date_of_publication}
-                  className="block text-gray-400 text-sm mt-2"
+                  className="block text-muted text-sm mt-2"
                 >
                   {formatDate(post.attributes.date_of_publication, locale)}
                 </time>

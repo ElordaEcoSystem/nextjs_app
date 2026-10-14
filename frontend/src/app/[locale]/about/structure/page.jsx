@@ -2,6 +2,8 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { staticPageMetadata } from "../../needed/seo";
 
+import { PageTitle } from "@/components/PageTitle";
+
 export const generateMetadata = staticPageMetadata("/about/structure", "header.about.structure");
 
 export default function About() {
@@ -21,9 +23,7 @@ const Strucure = ({className}) => {
   const t = useTranslations();
   return (
     <div className={className}>
-        <h2 className="text-3xl font-bold ">
-            {t("structure_title")}
-        </h2>
+        <PageTitle>{t("structure_title")}</PageTitle>
         <div className="mt-4">
 
         <Image

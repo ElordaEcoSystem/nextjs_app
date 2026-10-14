@@ -6,6 +6,8 @@ import { ArrowIcon } from "@/components/icons/ArrowIcon";
 import { fetchAbout, fetchDirectors, mediaUrl } from "../../needed/services";
 import { staticPageMetadata } from "../../needed/seo";
 
+import { PageTitle } from "@/components/PageTitle";
+
 export const generateMetadata = staticPageMetadata("/about/management", "header.about.management");
 
 export default async function About({ params: { locale } }) {
@@ -19,9 +21,7 @@ export default async function About({ params: { locale } }) {
       
       <section className="py-8">
         <div className="container">
-          <h2 className="text-3xl font-bold ">
-            {about?.data?.[0]?.attributes?.sub_title}
-          </h2>
+          <PageTitle>{about?.data?.[0]?.attributes?.sub_title}</PageTitle>
 
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3 sm:grid-cols-2 mt-4">
             {directors?.data?.map(({ id, attributes }) => {

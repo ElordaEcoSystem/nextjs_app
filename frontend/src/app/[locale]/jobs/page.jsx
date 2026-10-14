@@ -5,6 +5,8 @@ import { blockText } from "../needed/format";
 import { RichText } from "@/components/RichText";
 import { staticPageMetadata } from "../needed/seo";
 
+import { PageTitle } from "@/components/PageTitle";
+
 export const generateMetadata = staticPageMetadata("/jobs", "header.jobs");
 
 export default async function JobsPage({ params: { locale } }) {
@@ -14,7 +16,7 @@ export default async function JobsPage({ params: { locale } }) {
 
   return (
     <section className="mb-auto container py-8">
-      <h2 className="text-3xl font-bold text-def_black">{entry?.title}</h2>
+      <PageTitle>{entry?.title}</PageTitle>
       <RichText content={entry?.info} className="mt-4" />
 
       {jobOpenings.length > 0 && (

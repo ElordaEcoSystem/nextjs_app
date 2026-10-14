@@ -71,7 +71,7 @@ export default async function Post({ params: { id, locale } }) {
     <section className="container py-12 flex flex-col gap-4">
       <h1 className="text-3xl font-bold text-prime">{title}</h1>
       {date_of_publication && (
-        <time dateTime={date_of_publication} className="text-gray-400 text-sm">
+        <time dateTime={date_of_publication} className="text-muted text-sm">
           {formatDate(date_of_publication, locale)}
         </time>
       )}

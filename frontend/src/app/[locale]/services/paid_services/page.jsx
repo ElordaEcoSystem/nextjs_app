@@ -3,6 +3,8 @@ import { fetchPaidTable, fetchPriceList, mediaUrl } from "../../needed/services"
 import { staticPageMetadata } from "../../needed/seo";
 import { RichText } from "@/components/RichText";
 
+import { PageTitle } from "@/components/PageTitle";
+
 export const generateMetadata = staticPageMetadata("/services/paid_services", "header.services.paid_services");
 
 const formatPrice = (value) =>
@@ -47,9 +49,7 @@ export default async function PaidServices({ params: { locale } }) {
 
   return (
       <div className="container mx-auto py-8">
-        <h2 className="text-3xl font-bold text-def_black mb-4">
-            {tr(prices, "title")}
-        </h2>
+        <PageTitle>{tr(prices, "title")}</PageTitle>
         <RichText content={entry?.content} className="mb-4 flex flex-col gap-1" />
         {entry?.document?.length > 0 && (
           <div className="mb-8">

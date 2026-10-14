@@ -3,6 +3,8 @@ import Link from "next/link";
 import { RichText } from "@/components/RichText";
 import { staticPageMetadata } from "../needed/seo";
 
+import { PageTitle } from "@/components/PageTitle";
+
 export const generateMetadata = staticPageMetadata("/compliance", "header.compliance");
 
 export default async function Compliance({ params: { locale } }) {
@@ -21,9 +23,7 @@ export default async function Compliance({ params: { locale } }) {
 
   return (
     <section className="mb-auto container py-8">
-      <h2 className="text-3xl font-bold text-def_black">
-        {entry?.title}
-      </h2>
+      <PageTitle>{entry?.title}</PageTitle>
       <div className="mt-4">
         <RichText content={entry?.description_2}  />
       </div>

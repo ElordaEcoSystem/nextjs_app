@@ -48,9 +48,9 @@ export default function LocaleLayout({ children, params: { locale } }) {
 
   return (
     <html lang={locale}>
-      <body>
+      <body className={`${roboto.className} flex flex-col min-h-screen text-def_black`}>
         <HeaderWrapper locale={locale} />
-        <main className={`${roboto.className} grow  min-h-screen pt-16`}>
+        <main className="grow pt-16">
           {children}
         </main>
         <Footer />

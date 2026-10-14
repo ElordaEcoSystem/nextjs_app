@@ -58,7 +58,7 @@ export const News = async ({ data }) => {
               {blocksToPlainText(main.attributes.description_rich_text)}
             </div>
 
-            <div className="text-zinc-400 text-sm font-normal mt-1 ">
+            <div className="text-muted text-sm font-normal mt-1 ">
               {formatDate(main.attributes.date_of_publication, locale)}
             </div>
           </div>
@@ -107,7 +107,7 @@ const LittleNews = ({ thumbnail, title, date, id, locale }) => {
         <div className="text-prime line-clamp-2 text-lg font-bold lg:break-normal break-words leading-5">
           {title}
         </div>
-        <div className="text-sm font-normal mt-3 text-zinc-400">{date}</div>
+        <div className="text-sm font-normal mt-3 text-muted">{date}</div>
       </div>
     </Link>
   );

@@ -3,6 +3,8 @@ import React from "react";
 import { fetchProcurement, mediaUrl } from "../../needed/services";
 import { staticPageMetadata } from "../../needed/seo";
 
+import { PageTitle } from "@/components/PageTitle";
+
 export const generateMetadata = staticPageMetadata("/about/purchases", "header.about.purchases");
 
 export default async function Procurement({ params: { locale } }) {
@@ -11,7 +13,7 @@ export default async function Procurement({ params: { locale } }) {
 
   return (
     <section className="mb-auto container py-8">
-      <h2 className="text-3xl font-bold text-def_black ">{entry?.title}</h2>
+      <PageTitle>{entry?.title}</PageTitle>
       <div className="mt-4">
         {entry?.document_2?.map((item, index) => {
           const href = mediaUrl(item?.item_document?.data?.attributes?.url);
