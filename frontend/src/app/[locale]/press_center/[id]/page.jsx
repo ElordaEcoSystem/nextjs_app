@@ -1,7 +1,7 @@
 import { notFound, redirect } from "next/navigation";
 import {
   fetchBlogById,
-  findLocalizationId,
+  findBlogTranslationId,
   mediaUrl,
 } from "../../needed/services";
 import { blocksToPlainText, formatDate, parseId } from "../../needed/format";
@@ -29,7 +29,7 @@ export async function generateMetadata({ params: { id, locale } }) {
 
   const languages = {};
   for (const lang of LOCALES) {
-    const langId = findLocalizationId(post, lang);
+    const langId = await findBlogTranslationId(post, lang);
     if (langId) languages[lang] = `/${lang}/press_center/${langId}`;
   }
 
@@ -54,7 +54,7 @@ export default async function Post({ params: { id, locale } }) {
   // Открыта версия на другом языке (например, после переключения языка) —
   // переходим на перевод, если он есть.
   if (post.attributes.locale !== locale) {
-    const translationId = findLocalizationId(post, locale);
+    const translationId = await findBlogTranslationId(post, locale);
     if (translationId) redirect(`/${locale}/press_center/${translationId}`);
 
     return (

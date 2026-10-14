@@ -108,6 +108,35 @@ export async function fetchBlogById(id) {
   );
 }
 
+// Максимальная разница во времени создания двух языковых версий одного поста
+const PAIR_MAX_GAP_MS = 24 * 60 * 60 * 1000;
+
+// id поста на нужном языке. Сначала по связи localizations; если редактор создал
+// перевод отдельной записью без связи — ищем несвязанный пост другого языка
+// с той же датой публикации, созданный ближе всего по времени.
+export async function findBlogTranslationId(post, locale) {
+  const linkedId = findLocalizationId(post, locale);
+  if (linkedId) return linkedId;
+
+  const { date_of_publication, createdAt, localizations } = post.attributes;
+  if (!date_of_publication || localizations?.data?.length) return null;
+
+  const res = await fetchData(
+    `blogs?locale=${locale}&filters[date_of_publication][$eq]=${date_of_publication}` +
+      `&fields[0]=createdAt&populate[localizations][fields][0]=locale&pagination[pageSize]=50`
+  );
+  const created = new Date(createdAt).getTime();
+  const best = (res?.data ?? [])
+    .filter((item) => !item.attributes.localizations?.data?.length)
+    .map((item) => ({
+      id: item.id,
+      gap: Math.abs(new Date(item.attributes.createdAt).getTime() - created),
+    }))
+    .filter((item) => item.gap <= PAIR_MAX_GAP_MS)
+    .sort((x, y) => x.gap - y.gap)[0];
+  return best?.id ?? null;
+}
+
 export async function fetchProcurement(locale) {
   return fetchData(
     `procurements?populate=document_2&populate=document_2.item_document&locale=${locale}`
