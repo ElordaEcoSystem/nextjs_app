@@ -123,3 +123,8 @@ export async function fetchPaidTable(locale) {
     `paid-services?populate=document&populate=document.item_document&locale=${locale}`
   );
 }
+
+// Прайс-лист — одна запись без локализации: названия хранятся в полях *_kk / *_ru
+export async function fetchPriceList() {
+  return fetchData(`price-list?populate[categories][populate][items]=*`);
+}

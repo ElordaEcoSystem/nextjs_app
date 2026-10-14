@@ -1,21 +1,25 @@
 import Link from "next/link";
-import { fetchPaidTable, mediaUrl } from "../../needed/services";
+import { fetchPaidTable, fetchPriceList, mediaUrl } from "../../needed/services";
 import { staticPageMetadata } from "../../needed/seo";
 import { RichText } from "@/components/RichText";
-import { PRICE_LIST } from "./prices";
 
 export const generateMetadata = staticPageMetadata("/services/paid_services", "header.services.paid_services");
 
-const formatPrice = (value) => (value === "" || value == null ? "" : value.toLocaleString("ru-RU"));
+const formatPrice = (value) =>
+  value === "" || value == null ? "" : Number(value).toLocaleString("ru-RU");
 
 export default async function PaidServices({ params: { locale } }) {
-  const data = await fetchPaidTable(locale);
+  const [data, priceList] = await Promise.all([
+    fetchPaidTable(locale),
+    fetchPriceList(),
+  ]);
   const entry = data?.data?.[0]?.attributes;
-  const services = PRICE_LIST;
+  const prices = priceList?.data?.attributes;
+  // Поля прайс-листа в Strapi хранятся парами: title_kk / title_ru и т.д.
+  const tr = (obj, field) => obj?.[`${field}_${locale}`] || obj?.[`${field}_ru`];
 
   const translations = {
     ru: {
-      title: 'Прайс-лист на 2025 год',
       equipmentHeader: 'Специализированная техника, механизм',
       unitHeader: 'Ед.изм.',
       summerHeader: 'Летний период',
@@ -27,7 +31,6 @@ export default async function PaidServices({ params: { locale } }) {
       doc: 'Документы'
     },
     kk: {
-      title: '2025 жылға арналған прайс-парақ',
       equipmentHeader: 'Мамандырылған техника, механизм',
       unitHeader: 'Өлшем бірлігі',
       summerHeader: 'Жазғы маусым',
@@ -45,7 +48,7 @@ export default async function PaidServices({ params: { locale } }) {
   return (
       <div className="container mx-auto py-8">
         <h2 className="text-3xl font-bold text-def_black mb-4">
-            {t.title}
+            {tr(prices, "title")}
         </h2>
         <RichText content={entry?.content} className="mb-4 flex flex-col gap-1" />
         {entry?.document?.length > 0 && (
@@ -67,9 +70,9 @@ export default async function PaidServices({ params: { locale } }) {
             })}
           </div>
         )}
-        {services.map((service, index) => (
-          <div key={index} className="mb-8">
-            <h2 className="text-xl text-center bg-prime py-4 text-white font-semibold  border-gray-200 border-r border-l border-t">{service.category[locale]}</h2>
+        {prices?.categories?.map((category) => (
+          <div key={category.id} className="mb-8">
+            <h2 className="text-xl text-center bg-prime py-4 text-white font-semibold  border-gray-200 border-r border-l border-t">{tr(category, "title")}</h2>
             <div className="overflow-x-auto">
               <table className="min-w-full bg-white border border-gray-200">
                 <thead>
@@ -88,15 +91,15 @@ export default async function PaidServices({ params: { locale } }) {
                   </tr>
                 </thead>
                 <tbody>
-                  {service.items.map((item,index) => (
+                  {category.items?.map((item, index) => (
                     <tr key={item.id} className="hover:bg-gray-50">
                       <td className="py-2 px-4 border-b border-r">{index+1}</td>
-                      <td className="py-2 px-4 border-b border-r">{item.equipment[locale]}</td>
-                      <td className="py-2 px-4 border-b border-r">{item.unit[locale]}</td>
-                      <td className="py-2 px-4 border-b border-r text-right">{formatPrice(item.summer.noVat)}</td>
-                      <td className="py-2 px-4 border-b border-r text-right">{formatPrice(item.summer.withVat)}</td>
-                      <td className="py-2 px-4 border-b border-r text-right">{formatPrice(item.winter.noVat)}</td>
-                      <td className="py-2 px-4 border-b text-right">{formatPrice(item.winter.withVat)}</td>
+                      <td className="py-2 px-4 border-b border-r">{tr(item, "equipment")}</td>
+                      <td className="py-2 px-4 border-b border-r">{tr(item, "unit")}</td>
+                      <td className="py-2 px-4 border-b border-r text-right">{formatPrice(item.summer_no_vat)}</td>
+                      <td className="py-2 px-4 border-b border-r text-right">{formatPrice(item.summer_with_vat)}</td>
+                      <td className="py-2 px-4 border-b border-r text-right">{formatPrice(item.winter_no_vat)}</td>
+                      <td className="py-2 px-4 border-b text-right">{formatPrice(item.winter_with_vat)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -104,7 +107,6 @@ export default async function PaidServices({ params: { locale } }) {
             </div>
           </div>
         ))}
-       
       </div>
     );
 
