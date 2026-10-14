@@ -11,30 +11,49 @@ export const MyGallery = ({ data }) => {
   const [index, setIndex] = useState(-1);
 
   // Создаем массив изображений для лайтбокса
+  const photos = data?.photo_content?.data ?? [];
   const images =
-    data?.photo_content?.data?.map((item) => ({
+    photos.map((item) => ({
       src: mediaUrl(item.attributes.url),
       width: item.attributes.width,
       height: item.attributes.height,
-    })) || [];
+    }));
 
   return (
     <>
-      {/* Галерея изображений */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        {data?.photo_content?.data?.map((item, idx) => (
+      {/* Галерея: одно фото — во всю ширину, несколько — сеткой */}
+      {photos.length === 1 && (
+        <button type="button" onClick={() => setIndex(0)} className="block cursor-zoom-in">
           <Image
-            key={item.id || idx}
-            onClick={() => setIndex(idx)}
-            src={mediaUrl(item.attributes.url)}
-            width={item.attributes.width}
-            height={item.attributes.height}
-            className="h-full object-cover cursor-pointer"
+            src={mediaUrl(photos[0].attributes.url)}
+            width={photos[0].attributes.width}
+            height={photos[0].attributes.height}
+            className="w-full h-auto rounded-lg"
             alt=""
-            sizes="(min-width: 728px) 33vw, (min-width: 600px) 50vw, 100vw"
+            sizes="(min-width: 768px) 768px, 100vw"
           />
-        ))}
-      </div>
+        </button>
+      )}
+      {photos.length > 1 && (
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
+          {photos.map((item, idx) => (
+            <button
+              type="button"
+              key={item.id || idx}
+              onClick={() => setIndex(idx)}
+              className="relative aspect-[4/3] overflow-hidden rounded-lg bg-secondary cursor-zoom-in group"
+            >
+              <Image
+                src={mediaUrl(item.attributes.url)}
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                alt=""
+                sizes="(min-width: 768px) 256px, 50vw"
+              />
+            </button>
+          ))}
+        </div>
+      )}
 
       {/* Лайтбокс */}
       <Lightbox
@@ -51,9 +70,7 @@ export const MyGallery = ({ data }) => {
           {data.youtube_link.map((item, idx) => (
             <iframe
               key={idx}
-              width="560"
-              height="500"
-              className="w-full"
+              className="w-full aspect-video rounded-lg"
               src={item.src}
               title={`YouTube video ${idx + 1}`}
               frameBorder="0"
@@ -69,7 +86,7 @@ export const MyGallery = ({ data }) => {
       {data?.video_content?.data?.length > 0 && (
         <div className="flex flex-col gap-4">
           {data.video_content.data.map((item) => (
-            <video key={item.id} height="600" controls>
+            <video key={item.id} controls className="w-full max-h-[80vh] rounded-lg bg-black">
               <source src={mediaUrl(item.attributes.url)} type={item.attributes.mime || "video/mp4"} />
               Your browser does not support the video tag.
             </video>

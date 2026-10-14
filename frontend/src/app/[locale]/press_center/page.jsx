@@ -1,11 +1,11 @@
-import Image from "next/image";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
-import { fetchBlog, mediaUrl } from "../needed/services";
-import { blocksToPlainText, formatDate, parseId } from "../needed/format";
+import { fetchBlog } from "../needed/services";
+import { parseId } from "../needed/format";
 import { pageMetadata } from "../needed/seo";
-
 import { PageTitle } from "@/components/PageTitle";
+import { NewsCard } from "@/components/NewsCard";
+
 const PAGE_SIZE = 12;
 
 export async function generateMetadata({ params: { locale }, searchParams }) {
@@ -27,55 +27,12 @@ export default async function PressCenter({ params: { locale }, searchParams }) 
   const pageCount = blog?.meta?.pagination?.pageCount ?? 1;
 
   return (
-    <section className="container py-8 flex flex-col gap-6">
+    <section className="container py-10 flex flex-col gap-8">
       <PageTitle>{t("title")}</PageTitle>
-      <div className="grid gap-5 sm:flex sm:flex-col grid-cols-[repeat(auto-fit,_minmax(200px,_1fr))]">
-        {posts.map((post) => {
-          const href = `/${locale}/press_center/${post.id}`;
-          const thumbnail = post.attributes.thumbnail?.data?.attributes;
-          const imageUrl = mediaUrl(
-            thumbnail?.formats?.small?.url ?? thumbnail?.url
-          );
-
-          return (
-            <article
-              className="grid sm:grid-cols-[208px_,auto] grid-flow-row"
-              key={post.id}
-            >
-              <Link href={href} tabIndex={-1} aria-hidden="true">
-                {imageUrl ? (
-                  <Image
-                    src={imageUrl}
-                    width={208}
-                    height={208}
-                    sizes="(min-width: 600px) 208px, 240px"
-                    alt=""
-                    className="sm:h-52 sm:w-52 h-60 w-60 object-cover sm:mx-0 mx-auto"
-                  />
-                ) : (
-                  <div className="sm:h-52 sm:w-52 h-60 w-60 bg-secondary sm:mx-0 mx-auto" />
-                )}
-              </Link>
-              <div className="sm:px-3 py-3 px-0 sm:w-auto sm:m-0 w-60 mx-auto">
-                <Link
-                  href={href}
-                  className="text-lg font-bold text-prime break-words line-clamp-2"
-                >
-                  {post.attributes.title}
-                </Link>
-                <p className="text-sm mt-2 line-clamp-4 break-words">
-                  {blocksToPlainText(post.attributes.description_rich_text)}
-                </p>
-                <time
-                  dateTime={post.attributes.date_of_publication}
-                  className="block text-muted text-sm mt-2"
-                >
-                  {formatDate(post.attributes.date_of_publication, locale)}
-                </time>
-              </div>
-            </article>
-          );
-        })}
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {posts.map((post) => (
+          <NewsCard key={post.id} post={post} locale={locale} />
+        ))}
       </div>
 
       <Pagination
@@ -107,7 +64,7 @@ const Pagination = ({ page, pageCount, basePath, labels }) => {
   if (pageCount <= 1) return null;
   const hrefFor = (p) => (p === 1 ? basePath : `${basePath}?page=${p}`);
   const linkClass =
-    "min-w-[2.25rem] h-9 px-3 flex items-center justify-center border border-secondary text-sm text-prime hover:bg-secondary transition-all";
+    "min-w-[2.5rem] h-10 px-3 flex items-center justify-center rounded border border-secondary bg-white text-sm font-medium text-prime hover:border-prime transition-colors";
 
   return (
     <nav className="flex flex-wrap gap-2 justify-center" aria-label={labels.page}>
@@ -125,7 +82,7 @@ const Pagination = ({ page, pageCount, basePath, labels }) => {
           <span
             key={item}
             aria-current="page"
-            className={`${linkClass} bg-prime text-white hover:bg-prime`}
+            className={`${linkClass} !bg-prime !border-prime text-white`}
           >
             {item}
           </span>
