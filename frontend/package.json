@@ -16,7 +16,7 @@
     "heroicons": "^2.2.0",
     "lucide-react": "^0.503.0",
     "navigation": "^6.2.0",
-    "next": "14.0.0",
+    "next": "^14.2.35",
     "next-i18next": "^15.2.0",
     "next-intl": "^3.10.0",
     "next-video": "^1.1.0",
@@ -31,7 +31,7 @@
   "devDependencies": {
     "autoprefixer": "^10",
     "eslint": "^8",
-    "eslint-config-next": "14.0.0",
+    "eslint-config-next": "^14.2.35",
     "next-sitemap": "^4.2.3",
     "postcss": "^8",
     "tailwindcss": "^3"

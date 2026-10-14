@@ -248,8 +248,8 @@ export default async function PaidServices() {
             {t.title}
         </h2>
         <div  className="mb-4">
-            {text?.map((item)=> {return (
-                <div className="mt-2">{item.children[0].text}</div>
+            {text?.map((item, index)=> {return (
+                <div key={index} className="mt-2">{item.children[0].text}</div>
             )})}
         </div>
        {data?.data[0].attributes?.document.length > 0 &&
@@ -257,9 +257,10 @@ export default async function PaidServices() {
          <div className="">
            <div className="text-xl font-medium">{t.doc}</div>
          </div>
-         {data.data[0].attributes?.document.map((item) => {
+         {data.data[0].attributes?.document.map((item, index) => {
            return (
              <Link
+               key={index}
                className="hover:text-prime underline hover:bg-secondary transition-all table mt-2"
                href={domain + item?.item_document?.data?.attributes?.url}
                download
