@@ -49,7 +49,7 @@ export const Footer = async () => {
         {/* Контакты */}
         <div className="flex flex-col gap-6 text-sm">
           <div className="flex gap-3">
-            <MapPin className="h-5 w-5 shrink-0 text-leaf mt-0.5" />
+            <MapPin className="h-5 w-5 shrink-0 text-white mt-0.5" />
             <div>
               <div className="font-semibold">{data?.title_address}</div>
               <div className="text-white/75 mt-1">{data?.address}</div>
@@ -67,7 +67,7 @@ export const Footer = async () => {
           <ul className="flex flex-col gap-3">
             {phones.map((phone, index) => (
               <li key={index} className="flex gap-3">
-                <Phone className="h-5 w-5 shrink-0 text-leaf mt-0.5" />
+                <Phone className="h-5 w-5 shrink-0 text-white mt-0.5" />
                 <a href={`tel:${phone.tel}`} className="group">
                   <span className="block font-semibold group-hover:text-sky transition-colors">{phone.display}</span>
                   <span className="block text-white/75">{phone.label}</span>
@@ -76,7 +76,7 @@ export const Footer = async () => {
             ))}
             {data?.email && (
               <li className="flex gap-3">
-                <Mail className="h-5 w-5 shrink-0 text-leaf mt-0.5" />
+                <Mail className="h-5 w-5 shrink-0 text-white mt-0.5" />
                 <a href={`mailto:${data.email}`} className="hover:text-sky transition-colors break-all">
                   {data.email}
                 </a>

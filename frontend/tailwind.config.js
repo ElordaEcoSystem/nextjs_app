@@ -11,16 +11,16 @@ module.exports = {
       // Заголовки — плотные (1.1–1.3) с лёгким отрицательным трекингом,
       // основной текст — 1.55, вводный — 1.45.
       fontSize: {
-        display: ['2.5rem', { lineHeight: '1.1', letterSpacing: '-0.015em' }], // 40 — первый экран
-        'display-sm': ['2rem', { lineHeight: '1.12', letterSpacing: '-0.01em' }], // 32
-        h1: ['2.25rem', { lineHeight: '1.15', letterSpacing: '-0.01em' }], // 36 — заголовок страницы
-        'h1-sm': ['1.75rem', { lineHeight: '1.2', letterSpacing: '-0.01em' }], // 28
-        h2: ['1.75rem', { lineHeight: '1.2', letterSpacing: '-0.01em' }], // 28 — заголовок секции
-        'h2-sm': ['1.5rem', { lineHeight: '1.25', letterSpacing: '-0.01em' }], // 24
-        h3: ['1.25rem', { lineHeight: '1.3', letterSpacing: '-0.005em' }], // 20 — подзаголовок, карточка
-        h4: ['1.0625rem', { lineHeight: '1.35' }], // 17 — мелкая карточка
-        lead: ['1.125rem', { lineHeight: '1.45' }], // 18 — вводный текст
-        body: ['1rem', { lineHeight: '1.55' }], // 16 — основной текст
+        display: ['2.25rem', { lineHeight: '1.1', letterSpacing: '-0.01em' }], // 36/40 — первый экран
+        'display-sm': ['1.75rem', { lineHeight: '1.15', letterSpacing: '-0.01em' }], // 28/32
+        h1: ['2rem', { lineHeight: '1.15', letterSpacing: '-0.01em' }], // 32/37 — заголовок страницы
+        'h1-sm': ['1.625rem', { lineHeight: '1.2', letterSpacing: '-0.005em' }], // 26/31
+        h2: ['1.625rem', { lineHeight: '1.2', letterSpacing: '-0.005em' }], // 26/31 — заголовок секции
+        'h2-sm': ['1.375rem', { lineHeight: '1.25' }], // 22/27
+        h3: ['1.1875rem', { lineHeight: '1.3' }], // 19/25 — подзаголовок, карточка
+        h4: ['1.0625rem', { lineHeight: '1.35' }], // 17/23 — мелкая карточка
+        lead: ['1.0625rem', { lineHeight: '1.5' }], // 17/25.5 — вводный текст
+        body: ['1rem', { lineHeight: '1.55' }], // 16/25 — основной текст
         caption: ['0.75rem', { lineHeight: '1.3', letterSpacing: '0.06em' }], // 12 — даты, метки
       },
       boxShadow: {

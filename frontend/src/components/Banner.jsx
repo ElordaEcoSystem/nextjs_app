@@ -23,10 +23,10 @@ export const Banner = ({ data }) => {
               <span key={index}>{blockText(item)}</span>
             ))}
           </h1>
-          <p className="text-def_black/75 text-lead mt-5 max-w-xl">
+          <p className="text-def_black/75 text-lead mt-4 max-w-xl">
             {entry?.description}
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-7 flex flex-wrap gap-3">
             {entry?.button?.map((btn, index) => (
               <Link
                 href={`/${locale}/${btn.link}`}
