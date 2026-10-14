@@ -59,6 +59,9 @@
     "season_winter": "Зима",
     "no_vat": "без НДС",
     "with_vat": "с НДС",
-    "tenge": "тг"
+    "tenge": "тг",
+    "footer_contacts": "Контакты",
+    "footer_sections": "Разделы сайта",
+    "footer_map": "Как нас найти"
   }
 }

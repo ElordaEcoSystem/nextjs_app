@@ -43,7 +43,7 @@ export const Perform = ({ perform_data, title }) => {
           </div>
           <div className="pointer-events-none absolute right-0 top-0 h-full w-10 bg-gradient-to-l from-[#f2f4f6] md:hidden" />
         </div>
-        <div className="mt-4 grid grid-cols-2 md:grid-cols-3 gap-3">
+        <div className="mt-4 grid grid-cols-2 md:grid-cols-3 auto-rows-fr gap-3">
           {items.map((item) => (
             <PerformItem
               key={item.id}
@@ -63,7 +63,7 @@ export const Perform = ({ perform_data, title }) => {
 const PerformItem = ({ title, icon, numberAndYear, unit, activeYear }) => {
   const performNumber = numberAndYear.find((item) => Number(item.year) === activeYear);
   return (
-    <div className="flex flex-col items-center text-center py-6 md:py-8 px-3 bg-white border border-secondary hover:border-sky hover:shadow-md transition-all">
+    <div className="h-full flex flex-col items-center justify-start text-center py-6 md:py-8 px-3 bg-white border border-secondary hover:border-sky hover:shadow-md transition-all">
       <div className="flex items-center justify-center h-12">
         {icon && (
           <Image
