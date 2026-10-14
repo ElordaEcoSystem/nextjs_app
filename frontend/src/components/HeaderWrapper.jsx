@@ -39,6 +39,7 @@ export default async function HeaderWrapper({locale}) {
     }
   ];
 
-  return <Header data={data} locale={locale} />;
-  // return <div>test</div>
+  const tUi = await getTranslations('ui');
+  const labels = { dispatchShort: tUi("dispatch_short") };
+  return <Header data={data} locale={locale} labels={labels} />;
 }
