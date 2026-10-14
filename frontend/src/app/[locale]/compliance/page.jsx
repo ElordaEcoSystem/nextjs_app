@@ -1,8 +1,7 @@
-import { fetchAntikor, mediaUrl } from "../needed/services";
-import Link from "next/link";
+import { fetchAntikor } from "../needed/services";
+import { DocumentList } from "@/components/DocumentList";
 import { RichText } from "@/components/RichText";
 import { staticPageMetadata } from "../needed/seo";
-
 import { PageTitle } from "@/components/PageTitle";
 
 export const generateMetadata = staticPageMetadata("/compliance", "header.compliance");
@@ -22,26 +21,11 @@ export default async function Compliance({ params: { locale } }) {
   const t = translations[locale] || translations.kk;
 
   return (
-    <section className="mb-auto container py-8">
-      <PageTitle>{entry?.title}</PageTitle>
-      <div className="mt-4">
-        <RichText content={entry?.description_2}  />
-      </div>
-      <div className="text-xl font-medium mt-2">{t.title_doc_list}</div>
-      <div className="mt-4">
-        {entry?.document?.map((item, index) => {
-          const href = mediaUrl(item?.item_document?.data?.attributes?.url);
-          if (!href) return null;
-          return (
-            <Link
-              key={index}
-              className="underline hover:text-prime hover:bg-secondary transition-all table mt-2"
-              href={href}
-            >
-              {item?.title}
-            </Link>
-          );
-        })}
+    <section className="container py-10">
+      <div className="max-w-3xl">
+        <PageTitle>{entry?.title}</PageTitle>
+        <RichText content={entry?.description_2} className="text-base leading-relaxed" />
+        <DocumentList documents={entry?.document} title={t.title_doc_list} />
       </div>
     </section>
   );

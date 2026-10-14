@@ -38,7 +38,7 @@ export const Header = ({ data, locale, labels }) => {
 
   const desktopItemClass = (active) =>
     clsx(
-      'h-full inline-flex items-center px-3 border-b-2 transition-colors',
+      'h-full inline-flex items-center px-2.5 xl:px-3 border-b-2 transition-colors whitespace-nowrap',
       active
         ? 'border-leaf text-prime'
         : 'border-transparent text-gray-700 hover:text-prime hover:bg-secondary'
@@ -46,6 +46,19 @@ export const Header = ({ data, locale, labels }) => {
 
   return (
     <header className="bg-white/95 backdrop-blur border-b border-secondary fixed w-full z-50">
+      <div className="hidden lg:block bg-prime text-white text-xs">
+        <div className="container flex justify-end items-center gap-6 h-8">
+          <a href={`tel:${PHONES.dispatch.tel}`} className="flex items-center gap-1.5 hover:text-sky transition-colors">
+            <Phone className="h-3.5 w-3.5" />
+            <span className="opacity-80">{labels.dispatchShort}:</span>
+            <span className="font-semibold">{PHONES.dispatch.display}</span>
+          </a>
+          <a href={`tel:${PHONES.reception.tel}`} className="flex items-center gap-1.5 hover:text-sky transition-colors">
+            <span className="opacity-80">{labels.reception}:</span>
+            <span className="font-semibold">{PHONES.reception.display}</span>
+          </a>
+        </div>
+      </div>
       <div className='relative container'>
         <div className="flex items-center h-16 gap-4">
           <Link
@@ -63,7 +76,7 @@ export const Header = ({ data, locale, labels }) => {
           </Link>
 
           {/* DESKTOP MENU */}
-          <nav className="hidden lg:flex h-full font-medium text-[15px] mx-auto">
+          <nav className="hidden lg:flex h-full font-medium text-sm xl:text-[15px] mx-auto">
             {data.map((item) =>
               item.sections ? (
                 <div key={item.title} className="relative h-full group">
@@ -109,18 +122,8 @@ export const Header = ({ data, locale, labels }) => {
           <div className="flex items-center h-full ml-auto lg:ml-0 gap-1">
             <a
               href={`tel:${PHONES.dispatch.tel}`}
-              className="hidden xl:flex items-center gap-2 rounded bg-prime text-white px-3 py-2 text-sm hover:bg-accent transition-colors"
-            >
-              <Phone className="h-4 w-4" />
-              <span className="flex flex-col leading-tight">
-                <span className="text-[11px] opacity-80">{labels.dispatchShort}</span>
-                <span className="font-semibold whitespace-nowrap">{PHONES.dispatch.display}</span>
-              </span>
-            </a>
-            <a
-              href={`tel:${PHONES.dispatch.tel}`}
               aria-label={`${labels.dispatchShort} ${PHONES.dispatch.display}`}
-              className="xl:hidden flex items-center justify-center h-10 w-10 rounded-full bg-prime text-white hover:bg-accent transition-colors"
+              className="lg:hidden flex items-center justify-center h-10 w-10 rounded-full bg-prime text-white hover:bg-accent transition-colors"
             >
               <Phone className="h-4 w-4" />
             </a>

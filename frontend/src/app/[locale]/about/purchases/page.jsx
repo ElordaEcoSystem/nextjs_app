@@ -1,8 +1,6 @@
-import Link from "next/link";
-import React from "react";
-import { fetchProcurement, mediaUrl } from "../../needed/services";
+import { fetchProcurement } from "../../needed/services";
+import { DocumentList } from "@/components/DocumentList";
 import { staticPageMetadata } from "../../needed/seo";
-
 import { PageTitle } from "@/components/PageTitle";
 
 export const generateMetadata = staticPageMetadata("/about/purchases", "header.about.purchases");
@@ -12,22 +10,10 @@ export default async function Procurement({ params: { locale } }) {
   const entry = data?.data?.[0]?.attributes;
 
   return (
-    <section className="mb-auto container py-8">
-      <PageTitle>{entry?.title}</PageTitle>
-      <div className="mt-4">
-        {entry?.document_2?.map((item, index) => {
-          const href = mediaUrl(item?.item_document?.data?.attributes?.url);
-          if (!href) return null;
-          return (
-            <Link
-              key={index}
-              className="hover:text-prime hover:bg-secondary transition-all table"
-              href={href}
-            >
-              {item.title}
-            </Link>
-          );
-        })}
+    <section className="container py-10">
+      <div className="max-w-3xl">
+        <PageTitle>{entry?.title}</PageTitle>
+        <DocumentList documents={entry?.document_2} />
       </div>
     </section>
   );

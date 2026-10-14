@@ -1,11 +1,9 @@
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import React from "react";
 import Link from "next/link";
-import { ArrowIcon } from "@/components/icons/ArrowIcon";
+import { ArrowRight } from "lucide-react";
 import { fetchAbout, fetchDirectors, mediaUrl } from "../../needed/services";
 import { staticPageMetadata } from "../../needed/seo";
-
 import { PageTitle } from "@/components/PageTitle";
 
 export const generateMetadata = staticPageMetadata("/about/management", "header.about.management");
@@ -17,48 +15,29 @@ export default async function About({ params: { locale } }) {
   ]);
 
   return (
-    <>
-      
-      <section className="py-8">
-        <div className="container">
-          <PageTitle>{about?.data?.[0]?.attributes?.sub_title}</PageTitle>
-
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-3 sm:grid-cols-2 mt-4">
-            {directors?.data?.map(({ id, attributes }) => {
-              const {
-                position,
-                full_name,
-                reception_schedule,
-                number,
-                photo,
-              } = attributes;
-              const imageUrl = mediaUrl(photo?.data?.attributes?.url);
-
-              return (
-                <div key={id}>
-                  <DirectorCard
-                    id={id}
-                    key={full_name + id}
-                    position={position}
-                    imageUrl={imageUrl}
-                    full_name={full_name}
-                    reception_schedule={reception_schedule}
-                    number={number}
-                    className="w-full"
-                  />
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-    </>
+    <section className="container py-10">
+      <PageTitle>{about?.data?.[0]?.attributes?.sub_title}</PageTitle>
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {directors?.data?.map(({ id, attributes }) => (
+          <DirectorCard
+            key={id}
+            id={id}
+            locale={locale}
+            position={attributes.position}
+            imageUrl={mediaUrl(attributes.photo?.data?.attributes?.url)}
+            full_name={attributes.full_name}
+            reception_schedule={attributes.reception_schedule}
+            number={attributes.number}
+          />
+        ))}
+      </div>
+    </section>
   );
 }
 
-
 const DirectorCard = ({
   id,
+  locale,
   position,
   full_name,
   reception_schedule,
@@ -68,48 +47,45 @@ const DirectorCard = ({
   const t = useTranslations();
 
   return (
-    <div className="p-2.5 flex gap-4  flex-col border border-secondary w-full h-full flex-1">
-      <div className="relative w-full aspect-square flex-shrink-0 bg-secondary">
+    <article className="group relative flex flex-col rounded-lg border border-secondary bg-white overflow-hidden hover:shadow-lg transition-shadow">
+      <div className="relative w-full aspect-[4/3] bg-secondary">
         {imageUrl && (
           <Image
             src={imageUrl}
             alt={full_name}
             fill
-            sizes="(min-width: 728px) 33vw, (min-width: 600px) 50vw, 100vw"
-            className="object-cover"
+            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+            className="object-cover object-top"
           />
         )}
       </div>
-      <div className="pt-2 flex flex-col h-full px-2">
-        <div className="text-2xl text-prime font-bold">{full_name}</div>
-        <div className="text-lg">{position}</div>
+      <div className="flex flex-col grow p-5">
+        <h2 className="text-xl text-prime font-bold leading-snug">{full_name}</h2>
+        <div className="mt-1 text-def_black/75">{position}</div>
         {(number || reception_schedule) && (
-          <div className="mt-3 mb-3">
+          <dl className="mt-4 grid gap-2 text-sm">
             {number && (
-              <div className="text-base text-black flex flex-col">
-                <div className="text-zinc-500">{t("contact")}</div>
-                <div className="text-prime font-medium">{number}</div>
+              <div>
+                <dt className="text-muted">{t("contact")}</dt>
+                <dd className="text-prime font-medium">{number}</dd>
               </div>
             )}
             {reception_schedule && (
-              <div className="flex flex-col">
-                <div className="text-zinc-500">{t("reception")}</div>
-                <div className="text-prime font-medium">
-                  {reception_schedule}
-                </div>
+              <div>
+                <dt className="text-muted">{t("reception")}</dt>
+                <dd className="text-prime font-medium">{reception_schedule}</dd>
               </div>
             )}
-          </div>
+          </dl>
         )}
         <Link
-          href={`management/${id}`}
-          className="flex self-end items-center gap-2 bg-prime py-2 px-4 shadow-md rounded hover:scale-[102%] transition-all text-prime text-sm font-bold leading-6 mt-auto w-fit"
+          href={`/${locale}/about/management/${id}`}
+          className="mt-auto pt-5 inline-flex items-center gap-2 text-accent font-semibold text-sm after:absolute after:inset-0 group-hover:gap-3 transition-all"
         >
-          <div className="block text-white">{t("biography_button")}</div>
-          <ArrowIcon className="h-4 stroke-[4px] w-auto stroke-white inline-block items-end" />
+          {t("biography_button")}
+          <ArrowRight className="h-4 w-4" />
         </Link>
       </div>
-    </div>
+    </article>
   );
 };
-

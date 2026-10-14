@@ -1,10 +1,8 @@
 import React from "react";
-import clsx from "clsx";
 import { fetchJobs } from "../needed/services";
 import { blockText } from "../needed/format";
 import { RichText } from "@/components/RichText";
 import { staticPageMetadata } from "../needed/seo";
-
 import { PageTitle } from "@/components/PageTitle";
 
 export const generateMetadata = staticPageMetadata("/jobs", "header.jobs");
@@ -15,28 +13,28 @@ export default async function JobsPage({ params: { locale } }) {
   const jobOpenings = (entry?.job_openings ?? []).map(blockText).filter(Boolean);
 
   return (
-    <section className="mb-auto container py-8">
-      <PageTitle>{entry?.title}</PageTitle>
-      <RichText content={entry?.info} className="mt-4" />
+    <section className="container py-10">
+      <div className="max-w-3xl">
+        <PageTitle>{entry?.title}</PageTitle>
+        <RichText content={entry?.info} className="text-base leading-relaxed" />
 
-      {jobOpenings.length > 0 && (
-        <table className="mt-4 w-full">
-          <thead>
-            <tr>
-              <th className="text-lg font-bold text-prime border-b-4 border-prime">
-                {entry.sub_title}
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {jobOpenings.map((text, i) => (
-              <tr className={clsx(i % 2 === 0 ? "bg-slate-100" : "")} key={i}>
-                <td>{text}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
+        {jobOpenings.length > 0 && (
+          <div className="mt-8">
+            <h2 className="text-xl font-bold text-prime mb-4">{entry.sub_title}</h2>
+            <ul className="grid gap-2">
+              {jobOpenings.map((text, i) => (
+                <li
+                  key={i}
+                  className="flex items-center gap-3 rounded-lg border border-secondary bg-white px-4 py-3"
+                >
+                  <span className="h-2 w-2 shrink-0 rounded-full bg-leaf" aria-hidden="true" />
+                  {text}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
     </section>
   );
 }

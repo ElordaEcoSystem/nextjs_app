@@ -1,7 +1,6 @@
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { staticPageMetadata } from "../../needed/seo";
-
 import { PageTitle } from "@/components/PageTitle";
 
 export const generateMetadata = staticPageMetadata("/about/structure", "header.about.structure");

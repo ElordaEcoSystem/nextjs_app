@@ -2,7 +2,6 @@ import React from "react";
 import { fetchAbout } from "../../needed/services";
 import { RichText } from "@/components/RichText";
 import { staticPageMetadata } from "../../needed/seo";
-
 import { PageTitle } from "@/components/PageTitle";
 
 export const generateMetadata = staticPageMetadata("/about/general", "header.about.general");
@@ -13,11 +12,11 @@ export default async function About({ params: { locale } }) {
 
   return (
     <section>
-      <div className="container py-8 flex flex-col gap-4 ">
+      <div className="container py-10">
         <PageTitle>{entry?.title}</PageTitle>
         <RichText
           content={entry?.description}
-          className="text-sm text-def_black flex flex-col gap-3"
+          className="max-w-3xl text-base leading-relaxed flex flex-col gap-3"
         />
       </div>
     </section>
