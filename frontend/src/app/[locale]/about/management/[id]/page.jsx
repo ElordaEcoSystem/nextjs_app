@@ -11,6 +11,7 @@ import { getTranslations } from "next-intl/server";
 import { notFound, redirect } from "next/navigation";
 import Image from "next/image";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { ListMarker, BULLET_PREFIX } from "@/components/ListMarker";
 
 async function getDirector(id) {
   const directorId = parseId(id);
@@ -128,12 +129,11 @@ const Biography = ({ data, locale }) => {
                 );
               }
               // Пункт списка «• …» / «– …» — плотно, с висячим маркером
-              const bullet = text.match(/^[•\-–—]\s*(.*)$/);
-              if (bullet) {
+              if (BULLET_PREFIX.test(text)) {
                 return (
                   <p key={index} className="mt-2 first:mt-0 pl-5 relative">
-                    <span aria-hidden="true" className="absolute left-0 top-[0.7em] h-1.5 w-1.5 bg-leaf" />
-                    {bullet[1]}
+                    <ListMarker />
+                    {text.replace(BULLET_PREFIX, "")}
                   </p>
                 );
               }

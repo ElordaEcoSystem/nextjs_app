@@ -91,7 +91,7 @@ export const Footer = async () => {
             <ul className="grid grid-cols-2 lg:grid-cols-1 gap-x-6 gap-y-2">
               {links.map(([label, path]) => (
                 <li key={path}>
-                  <Link href={`/${locale}${path}`} className="text-white/80 hover:text-white transition-colors">
+                  <Link href={`/${locale}${path}`} className="text-sm leading-5 text-white/75 hover:text-white transition-colors">
                     {label}
                   </Link>
                 </li>
@@ -103,10 +103,10 @@ export const Footer = async () => {
               href={`https://eotinish.kz/${locale}`}
               target="_blank"
               rel="noopener noreferrer"
-              className={`${BUTTON.outlineLight} !h-auto py-3 self-start whitespace-normal text-left leading-snug`}
+              className={`${BUTTON.outlineLightWrap} self-start`}
             >
               {data.link_eOtinish}
-              <ExternalLink className="h-4 w-4" />
+              <ExternalLink className="h-4 w-4 shrink-0" />
             </a>
           )}
           <div>

@@ -27,7 +27,7 @@ export default async function JobsPage({ params: { locale } }) {
                   key={i}
                   className="flex items-center gap-3 border border-secondary bg-white px-4 py-3"
                 >
-                  <span className="h-2 w-2 shrink-0 bg-leaf" aria-hidden="true" />
+                  <span className="h-1.5 w-1.5 shrink-0 bg-leaf" aria-hidden="true" />
                   {text}
                 </li>
               ))}

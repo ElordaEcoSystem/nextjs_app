@@ -1,5 +1,6 @@
 // Отрисовка поля Strapi типа "blocks"
 import { mediaUrl } from "@/app/[locale]/needed/services";
+import { ListMarker, BULLET_PREFIX, NUMBER_PREFIX } from "./ListMarker";
 
 const renderText = (node, key) => {
   let content = node.text;
@@ -34,21 +35,37 @@ const isEmpty = (children = []) =>
   children.every((child) => child.type !== "link" && !child.text);
 
 const renderList = (block, key) => {
-  const ListTag = block.format === "ordered" ? "ol" : "ul";
+  const ordered = block.format === "ordered";
+  const ListTag = ordered ? "ol" : "ul";
   return (
     <ListTag
       key={key}
-      className={`mt-4 first:mt-0 pl-5 space-y-1.5 ${block.format === "ordered" ? "list-decimal" : "list-disc"}`}
+      className={`mt-4 first:mt-0 space-y-2 ${ordered ? "list-decimal pl-5" : ""}`}
     >
       {block.children?.map((item, i) =>
         item.type === "list" ? (
           renderList(item, i)
-        ) : (
+        ) : ordered ? (
           <li key={i}>{renderInline(item.children)}</li>
+        ) : (
+          <li key={i} className="relative pl-5">
+            <ListMarker />
+            {renderInline(item.children)}
+          </li>
         )
       )}
     </ListTag>
   );
+};
+
+// Убирает маркер («•», «–», «1.») в начале первого текстового фрагмента абзаца
+const stripPrefix = (children, prefix) => {
+  let done = false;
+  return children.map((child) => {
+    if (done || typeof child.text !== "string") return child;
+    done = true;
+    return { ...child, text: child.text.replace(prefix, "") };
+  });
 };
 
 const renderBlock = (block, index) => {
@@ -92,6 +109,27 @@ const renderBlock = (block, index) => {
     default:
       // Пустые абзацы редакторы ставят как отступ — ритм задают сами отступы абзацев
       if (isEmpty(children)) return null;
+      // Абзацы, начатые редактором с «•»/«–» или с номера «1.», выводим как пункты списка
+      const firstText = children.find((c) => typeof c.text === "string")?.text ?? "";
+      if (BULLET_PREFIX.test(firstText)) {
+        return (
+          <p key={index} className="mt-2 first:mt-0 relative pl-5">
+            <ListMarker />
+            {renderInline(stripPrefix(children, BULLET_PREFIX))}
+          </p>
+        );
+      }
+      const number = firstText.match(NUMBER_PREFIX);
+      if (number) {
+        return (
+          <p key={index} className="mt-2 first:mt-0 relative pl-8">
+            <span className="absolute left-0 w-6 text-right font-semibold text-accent tabular-nums">
+              {number[1]}.
+            </span>
+            {renderInline(stripPrefix(children, NUMBER_PREFIX))}
+          </p>
+        );
+      }
       return (
         <p key={index} className="mt-4 first:mt-0">
           {renderInline(children)}
