@@ -8,7 +8,7 @@ export const PageTitle = ({ children, className }) => {
       <h1 className="text-3xl md:text-4xl font-bold text-prime leading-tight">
         {children}
       </h1>
-      <span aria-hidden="true" className="block w-12 h-1 bg-leaf mt-3 rounded-full" />
+      <span aria-hidden="true" className="block w-12 h-1 bg-leaf mt-3" />
     </div>
   );
 };

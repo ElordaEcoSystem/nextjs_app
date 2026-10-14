@@ -109,7 +109,7 @@ export default async function Post({ params: { id, locale } }) {
             height={cover.height}
             sizes="(min-width: 768px) 768px, 100vw"
             priority
-            className="w-full h-auto max-h-[520px] object-cover rounded-lg"
+            className="w-full h-auto max-h-[520px] object-cover"
           />
         )}
 

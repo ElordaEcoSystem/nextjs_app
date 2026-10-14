@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import { PageTitle } from "@/components/PageTitle";
 
+import { BUTTON } from "@/components/ui";
 export default function NotFound() {
   const t = useTranslations("not_found");
   const locale = useLocale();
@@ -12,7 +13,7 @@ export default function NotFound() {
       <p className="text-def_black">{t("text")}</p>
       <Link
         href={`/${locale}`}
-        className="px-5 py-2 bg-prime rounded-sm text-white font-semibold text-sm"
+        className={BUTTON.primary}
       >
         {t("home")}
       </Link>

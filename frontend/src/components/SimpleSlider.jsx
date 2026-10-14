@@ -36,7 +36,7 @@ export const SimpleSlider = ({ className }) => (
           height={480}
           sizes="(min-width: 1024px) 520px, 100vw"
           priority={index === 0}
-          className="w-full aspect-[4/3] object-cover rounded-lg"
+          className="block w-full aspect-[4/3] object-cover"
         />
       </div>
     ))}

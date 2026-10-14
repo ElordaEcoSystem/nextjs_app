@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 
+import { BUTTON } from "./ui";
 // Показывается, когда запись существует, но на текущем языке её нет
 export const NoTranslation = async ({ originalHref, backHref, backLabel }) => {
   const t = await getTranslations("press_center");
@@ -12,14 +13,14 @@ export const NoTranslation = async ({ originalHref, backHref, backLabel }) => {
         {originalHref && (
           <Link
             href={originalHref}
-            className="px-5 py-2 bg-prime rounded-sm text-white font-semibold text-sm"
+            className={BUTTON.primary}
           >
             {t("read_original")}
           </Link>
         )}
         <Link
           href={backHref}
-          className="px-5 py-2 border border-prime rounded-sm text-prime font-semibold text-sm"
+          className={BUTTON.outline}
         >
           {backLabel ?? t("back_to_list")}
         </Link>

@@ -123,7 +123,7 @@ export const Header = ({ data, locale, labels }) => {
             <a
               href={`tel:${PHONES.dispatch.tel}`}
               aria-label={`${labels.dispatchShort} ${PHONES.dispatch.display}`}
-              className="lg:hidden flex items-center justify-center h-10 w-10 rounded-full bg-prime text-white hover:bg-accent transition-colors"
+              className="lg:hidden flex items-center justify-center h-10 w-10 bg-prime text-white hover:bg-accent transition-colors"
             >
               <Phone className="h-4 w-4" />
             </a>
@@ -138,7 +138,7 @@ export const Header = ({ data, locale, labels }) => {
               {mobileOpen ? (
                 <XIcon className="h-6 w-6" />
               ) : (
-                <MenuIcon className="h-6 w-6 " />
+                <MenuIcon className="h-6 w-6" />
               )}
             </button>
           </div>
@@ -200,7 +200,7 @@ export const Header = ({ data, locale, labels }) => {
               )}
               <a
                 href={`tel:${PHONES.dispatch.tel}`}
-                className="mx-3 mt-3 flex items-center gap-3 rounded bg-prime text-white px-4 py-3"
+                className="mx-3 mt-3 flex items-center gap-3 bg-prime text-white px-4 py-3"
               >
                 <Phone className="h-5 w-5" />
                 <span className="flex flex-col leading-tight">

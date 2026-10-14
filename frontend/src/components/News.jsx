@@ -16,7 +16,7 @@ export const News = async ({ data }) => {
   const [main, ...rest] = posts;
 
   return (
-    <section id="news" className="py-16 lg:py-20 container">
+    <section id="news" className="py-12 lg:py-14 container">
       <div className="flex justify-between items-end gap-4">
         <h2 className="text-prime text-3xl font-bold">{page?.news_title}</h2>
         {button && (
@@ -29,9 +29,9 @@ export const News = async ({ data }) => {
           </Link>
         )}
       </div>
-      <div className="grid md:grid-cols-2 gap-4 mt-8">
+      <div className="grid md:grid-cols-2 gap-4 mt-6">
         <NewsCard post={main} locale={locale} featured />
-        <div className="flex flex-col gap-4">
+        <div className="grid md:grid-rows-3 gap-4">
           {rest.map((item) => (
             <NewsCard key={item.id} post={item} locale={locale} variant="compact" />
           ))}

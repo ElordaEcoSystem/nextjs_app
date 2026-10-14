@@ -28,7 +28,7 @@ export const MyGallery = ({ data }) => {
             src={mediaUrl(photos[0].attributes.url)}
             width={photos[0].attributes.width}
             height={photos[0].attributes.height}
-            className="w-full h-auto rounded-lg"
+            className="w-full h-auto"
             alt=""
             sizes="(min-width: 768px) 768px, 100vw"
           />
@@ -41,7 +41,7 @@ export const MyGallery = ({ data }) => {
               type="button"
               key={item.id || idx}
               onClick={() => setIndex(idx)}
-              className="relative aspect-[4/3] overflow-hidden rounded-lg bg-secondary cursor-zoom-in group"
+              className="relative aspect-[4/3] overflow-hidden bg-secondary cursor-zoom-in group"
             >
               <Image
                 src={mediaUrl(item.attributes.url)}
@@ -70,7 +70,7 @@ export const MyGallery = ({ data }) => {
           {data.youtube_link.map((item, idx) => (
             <iframe
               key={idx}
-              className="w-full aspect-video rounded-lg"
+              className="w-full aspect-video"
               src={item.src}
               title={`YouTube video ${idx + 1}`}
               frameBorder="0"
@@ -86,7 +86,7 @@ export const MyGallery = ({ data }) => {
       {data?.video_content?.data?.length > 0 && (
         <div className="flex flex-col gap-4">
           {data.video_content.data.map((item) => (
-            <video key={item.id} controls className="w-full max-h-[80vh] rounded-lg bg-black">
+            <video key={item.id} controls className="w-full max-h-[80vh] bg-black">
               <source src={mediaUrl(item.attributes.url)} type={item.attributes.mime || "video/mp4"} />
               Your browser does not support the video tag.
             </video>

@@ -7,6 +7,7 @@ import { RichText } from "@/components/RichText";
 import { PageTitle } from "@/components/PageTitle";
 import { DocumentList } from "@/components/DocumentList";
 
+import { BUTTON } from "@/components/ui";
 export const generateMetadata = staticPageMetadata("/services/paid_services", "header.services.paid_services");
 
 const formatPrice = (value) =>
@@ -56,12 +57,12 @@ export default async function PaidServices({ params: { locale } }) {
       <div className="mt-12 flex flex-col gap-10">
         {prices?.categories?.map((category) => (
           <section key={category.id}>
-            <h2 className="text-lg md:text-xl font-bold text-white bg-prime rounded-t-lg px-4 py-3 md:text-center">
+            <h2 className="text-lg md:text-xl font-bold text-white bg-prime px-4 py-3 md:text-center">
               {tr(category, "title")}
             </h2>
 
             {/* Таблица — на планшетах и компьютерах */}
-            <div className="hidden md:block overflow-x-auto border border-t-0 border-secondary rounded-b-lg">
+            <div className="hidden md:block overflow-x-auto border border-t-0 border-secondary">
               <table className="min-w-full bg-white text-sm">
                 <thead className="bg-secondary/60 text-prime">
                   <tr>
@@ -95,7 +96,7 @@ export default async function PaidServices({ params: { locale } }) {
             </div>
 
             {/* Карточки — на телефонах */}
-            <ul className="md:hidden border border-t-0 border-secondary rounded-b-lg divide-y divide-secondary bg-white">
+            <ul className="md:hidden border border-t-0 border-secondary divide-y divide-secondary bg-white">
               {category.items?.map((item) => (
                 <li key={item.id} className="p-4">
                   <div className="font-medium text-def_black">{tr(item, "equipment")}</div>
@@ -105,7 +106,7 @@ export default async function PaidServices({ params: { locale } }) {
                       [tUi("season_summer"), item.summer_no_vat, item.summer_with_vat],
                       [tUi("season_winter"), item.winter_no_vat, item.winter_with_vat],
                     ].map(([season, noVat, withVat]) => (
-                      <div key={season} className="rounded bg-secondary/40 px-3 py-2">
+                      <div key={season} className="bg-secondary/40 px-3 py-2">
                         <dt className="text-xs text-muted">{season}</dt>
                         <dd className="font-semibold text-prime tabular-nums">
                           {formatPrice(withVat)} <span className="text-xs font-normal text-muted">{tUi("with_vat")}</span>
@@ -126,14 +127,14 @@ export default async function PaidServices({ params: { locale } }) {
       </div>
 
       {prices && (
-        <aside className="mt-12 rounded-lg bg-prime text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
+        <aside className="mt-12 bg-prime text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
           <div className="grow">
             <h2 className="text-xl font-bold">{tUi("order_title")}</h2>
             <p className="mt-1 text-white/80">{tUi("order_text")}</p>
           </div>
           <a
             href={`tel:${PHONES.reception.tel}`}
-            className="flex items-center gap-3 self-start md:self-auto rounded bg-white text-prime px-5 py-3 font-semibold hover:bg-secondary transition-colors whitespace-nowrap"
+            className={`${BUTTON.light} self-start md:self-auto`}
           >
             <Phone className="h-5 w-5" />
             {PHONES.reception.display}

@@ -25,9 +25,9 @@ export default async function JobsPage({ params: { locale } }) {
               {jobOpenings.map((text, i) => (
                 <li
                   key={i}
-                  className="flex items-center gap-3 rounded-lg border border-secondary bg-white px-4 py-3"
+                  className="flex items-center gap-3 border border-secondary bg-white px-4 py-3"
                 >
-                  <span className="h-2 w-2 shrink-0 rounded-full bg-leaf" aria-hidden="true" />
+                  <span className="h-2 w-2 shrink-0 bg-leaf" aria-hidden="true" />
                   {text}
                 </li>
               ))}

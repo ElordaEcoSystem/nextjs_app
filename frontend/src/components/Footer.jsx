@@ -8,6 +8,7 @@ import { MyMap } from "./Map";
 import { fetchFooter } from "@/app/[locale]/needed/services";
 import { MAP_URL, PHONES } from "@/app/[locale]/needed/contacts";
 
+import { BUTTON } from "./ui";
 const SOCIALS = [
   { href: "https://www.instagram.com/press_elordaecosystem/", label: "Instagram", Icon: InstaIcon, className: "w-5 h-5" },
   { href: "https://www.facebook.com/ElordaEcoSystem/", label: "Facebook", Icon: FacebookIcon, className: "w-4 h-4" },
@@ -102,7 +103,7 @@ export const Footer = async () => {
               href={`https://eotinish.kz/${locale}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 self-start rounded border border-white/30 px-4 py-2 hover:bg-white hover:text-prime transition-colors"
+              className={`${BUTTON.outlineLight} !h-auto py-3 self-start whitespace-normal text-left leading-snug`}
             >
               {data.link_eOtinish}
               <ExternalLink className="h-4 w-4" />
@@ -118,7 +119,7 @@ export const Footer = async () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                  className="flex h-9 w-9 items-center justify-center bg-white/10 hover:bg-white/20 transition-colors"
                 >
                   <Icon className={className} />
                 </a>
@@ -128,7 +129,7 @@ export const Footer = async () => {
         </div>
 
         {/* Карта — только на планшетах и компьютерах */}
-        <div className="hidden md:block md:col-span-2 lg:col-span-1 overflow-hidden rounded-lg">
+        <div className="hidden md:block md:col-span-2 lg:col-span-1 overflow-hidden">
           <MyMap className="!max-w-none !h-72" />
         </div>
       </div>

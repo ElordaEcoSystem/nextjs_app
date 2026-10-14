@@ -64,7 +64,7 @@ const Pagination = ({ page, pageCount, basePath, labels }) => {
   if (pageCount <= 1) return null;
   const hrefFor = (p) => (p === 1 ? basePath : `${basePath}?page=${p}`);
   const linkClass =
-    "min-w-[2.5rem] h-10 px-3 flex items-center justify-center rounded border border-secondary bg-white text-sm font-medium text-prime hover:border-prime transition-colors";
+    "min-w-[2.5rem] h-10 px-3 flex items-center justify-center border border-secondary bg-white text-sm font-medium text-prime hover:border-prime transition-colors";
 
   return (
     <nav className="flex flex-wrap gap-2 justify-center" aria-label={labels.page}>

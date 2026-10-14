@@ -1,6 +1,6 @@
 import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
-import clsx from "clsx";
+import { BUTTON } from "./ui";
 import { Phone } from "lucide-react";
 import { SimpleSlider } from "./SimpleSlider";
 import { blockText } from "@/app/[locale]/needed/format";
@@ -14,7 +14,7 @@ export const Banner = ({ data }) => {
   return (
     <section
       id="banner"
-      className="bg-gradient-to-b from-secondary/60 to-white py-12 lg:py-20 overflow-hidden"
+      className="bg-gradient-to-b from-secondary/60 to-white py-10 lg:py-14 overflow-hidden"
     >
       <div className="container grid lg:grid-cols-[minmax(0,1fr)_480px] items-center gap-10">
         <div className="flex flex-col min-w-0">
@@ -31,12 +31,7 @@ export const Banner = ({ data }) => {
               <Link
                 href={`/${locale}/${btn.link}`}
                 key={btn.title + btn.link}
-                className={clsx(
-                  "px-6 py-3 rounded font-semibold text-sm transition-colors",
-                  index === 0
-                    ? "bg-prime text-white hover:bg-accent"
-                    : "border-2 border-prime text-prime hover:bg-prime hover:text-white"
-                )}
+                className={index === 0 ? BUTTON.primary : BUTTON.outline}
               >
                 {btn.title}
               </Link>
@@ -45,19 +40,21 @@ export const Banner = ({ data }) => {
 
           <a
             href={`tel:${PHONES.dispatch.tel}`}
-            className="mt-8 flex items-center gap-4 self-start rounded-lg border-l-4 border-leaf bg-white shadow-sm px-5 py-4 hover:shadow-md transition-shadow"
+            className="group mt-8 flex items-center gap-4 self-start"
           >
-            <span className="flex h-11 w-11 items-center justify-center rounded-full bg-leaf/10 text-leaf">
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center bg-leaf text-white">
               <Phone className="h-5 w-5" />
             </span>
             <span className="flex flex-col">
               <span className="text-sm text-muted">{t("dispatch_cta")}</span>
-              <span className="text-xl font-bold text-prime">{PHONES.dispatch.display}</span>
+              <span className="text-xl font-bold text-prime leading-tight group-hover:text-accent transition-colors">
+                {PHONES.dispatch.display}
+              </span>
             </span>
           </a>
         </div>
         <div className="w-full min-w-0 max-w-[520px] mx-auto lg:mx-0">
-          <SimpleSlider className="shadow-xl rounded-lg" />
+          <SimpleSlider />
         </div>
       </div>
     </section>

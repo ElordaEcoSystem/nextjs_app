@@ -47,7 +47,7 @@ const DirectorCard = ({
   const t = useTranslations();
 
   return (
-    <article className="group relative flex flex-col rounded-lg border border-secondary bg-white overflow-hidden hover:shadow-lg transition-shadow">
+    <article className="group relative flex flex-col border border-secondary bg-white overflow-hidden hover:shadow-lg transition-shadow">
       <div className="relative w-full aspect-[4/3] bg-secondary">
         {imageUrl && (
           <Image

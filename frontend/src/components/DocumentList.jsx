@@ -27,9 +27,9 @@ export const DocumentList = ({ documents, title }) => {
               href={item.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-4 rounded-lg border border-secondary bg-white px-4 py-3 hover:border-sky hover:shadow-sm transition-all"
+              className="group flex items-center gap-4 border border-secondary bg-white px-4 py-3 hover:border-sky hover:shadow-sm transition-all"
             >
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded bg-sky/10 text-accent">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center bg-sky/10 text-accent">
                 <FileText className="h-5 w-5" />
               </span>
               <span className="grow min-w-0">

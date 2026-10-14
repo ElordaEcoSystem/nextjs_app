@@ -20,17 +20,17 @@ export const Perform = ({ perform_data, title }) => {
   if (items.length === 0) return null;
 
   return (
-    <section id="perform" className="py-16 lg:py-20 bg-secondary/50">
-      <div className="container ">
+    <section id="perform" className="py-12 lg:py-14 bg-secondary/50">
+      <div className="container">
         <h2 className="text-prime text-3xl font-bold">{title}</h2>
         {/* Ряд годов прокручивается; градиент справа подсказывает, что есть ещё */}
-        <div className="relative mt-8">
+        <div className="relative mt-6">
           <div className="flex gap-2 overflow-auto scroll-container pr-8">
             {years.map((year) => (
               <button
                 key={year}
                 aria-pressed={activeYear === year}
-                className={`shrink-0 py-2 px-5 md:px-7 rounded text-base font-medium transition-colors ${
+                className={`shrink-0 py-2 px-5 md:px-7 text-base font-medium transition-colors ${
                   activeYear === year
                     ? "bg-prime text-white"
                     : "bg-white border border-secondary text-prime hover:border-prime"
@@ -63,7 +63,7 @@ export const Perform = ({ perform_data, title }) => {
 const PerformItem = ({ title, icon, numberAndYear, unit, activeYear }) => {
   const performNumber = numberAndYear.find((item) => Number(item.year) === activeYear);
   return (
-    <div className="flex flex-col items-center text-center py-6 md:py-8 px-3 rounded-lg bg-white border border-secondary hover:border-sky hover:shadow-md transition-all">
+    <div className="flex flex-col items-center text-center py-6 md:py-8 px-3 bg-white border border-secondary hover:border-sky hover:shadow-md transition-all">
       <div className="flex items-center justify-center h-12">
         {icon && (
           <Image

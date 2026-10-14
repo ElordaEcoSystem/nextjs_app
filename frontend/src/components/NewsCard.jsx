@@ -20,8 +20,8 @@ export const NewsCard = ({ post, locale, variant = "card", featured = false }) =
   return (
     <article
       className={clsx(
-        "group relative bg-white rounded-lg border border-secondary overflow-hidden hover:shadow-lg hover:border-sky/40 transition-all",
-        compact ? "grid grid-cols-[120px_1fr] sm:grid-cols-[180px_1fr]" : "flex flex-col"
+        "group relative bg-white border border-secondary overflow-hidden hover:shadow-lg hover:border-sky/40 transition-all",
+        compact ? "grid grid-cols-[132px_1fr] sm:grid-cols-[200px_1fr] lg:grid-cols-[232px_1fr] h-full" : "flex flex-col h-full"
       )}
     >
       <div className={clsx("relative bg-secondary overflow-hidden", compact ? "h-full min-h-[96px]" : "aspect-[4/3]")}>
@@ -30,7 +30,7 @@ export const NewsCard = ({ post, locale, variant = "card", featured = false }) =
             src={image}
             alt=""
             fill
-            sizes={featured ? "(min-width: 768px) 50vw, 100vw" : compact ? "180px" : "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"}
+            sizes={featured ? "(min-width: 768px) 50vw, 100vw" : compact ? "232px" : "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"}
             className="object-cover group-hover:scale-[1.03] transition-transform duration-300"
           />
         )}
