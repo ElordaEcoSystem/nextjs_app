@@ -1,6 +1,3 @@
-// "use client";
-
-
 import { PhoneIcon } from "./icons/PhoneIcon";
 import { MailIcon } from "./icons/MailIcon";
 import { FacebookIcon } from "./icons/FacebookIcon";
@@ -9,16 +6,16 @@ import { TiktokIcon } from "./icons/TiktokIcon";
 
 import { fetchFooter } from "@/app/[locale]/needed/services";
 
-import { useLocale } from "next-intl";
+import { getLocale } from "next-intl/server";
 import { MyMap } from "./Map";
 import Link from "next/link";
 
 import { useTranslations } from "next-intl";
 
 export const Footer = async () => {
-  const locale = useLocale();
+  const locale = await getLocale();
   const Footer_info = await fetchFooter(locale);
-  const Footer_data = await Footer_info?.data[0]?.attributes;
+  const Footer_data = Footer_info?.data?.[0]?.attributes;
   return (
     <>
       <div className="bg-prime py-10">
@@ -40,11 +37,8 @@ export const Footer = async () => {
               </div>
 
               <div className="">
-                {/* <div className="text-white text-xs">
-                  Написать обращение на сайте
-                </div> */}
                 <Link
-                  href="https://eotinish.kz/kk"
+                  href={`https://eotinish.kz/${locale}`}
                   className="text-white text-xs"
                 >
                   {Footer_data?.link_eOtinish}
@@ -71,15 +65,11 @@ export const Footer = async () => {
                   >
                     <TiktokIcon className="w-5 h-5 hover:scale-110 active:scale-95 transition-all fill-white" />
                   </Link>
-                  {/* <TelegramIcon className="w-5 h-5" /> */}
                 </div>
               </div>
             </div>
             <MyMap />
           </div>
-          {/* <div className="text-sm text-white text-center mt-6">
-            ©2022 - Qala Digital.kz. Все права защищены
-          </div> */}
         </div>
       </div>
     </>
@@ -95,11 +85,9 @@ const Tel = () => {
                   <PhoneIcon className="h-5 w-5" />
   <div>
   <div className="text-white text-xs mt-1">
-                    {/* {Footer_data?.number} */}
                     +7 (7172) 918-453 - {t("reception_num")}
                   </div>
                   <div className="text-white text-xs mt-1">
-                    {/* {Footer_data?.number} */}
                     +7 (7172) 918-819 - {t("cds")}
                     
                   </div>

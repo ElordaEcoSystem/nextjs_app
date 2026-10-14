@@ -2,6 +2,7 @@ import React from "react";
 import clsx from "clsx";
 import { fetchJobs } from "../needed/services";
 import { blockText } from "../needed/format";
+import { RichText } from "@/components/RichText";
 import { staticPageMetadata } from "../needed/seo";
 
 export const generateMetadata = staticPageMetadata("/jobs", "header.jobs");
@@ -14,11 +15,7 @@ export default async function JobsPage({ params: { locale } }) {
   return (
     <section className="mb-auto container py-8">
       <h2 className="text-3xl font-bold text-def_black">{entry?.title}</h2>
-      <div className="mt-4">
-        {entry?.info?.map((item, index) => (
-          <div key={index}>{blockText(item)}</div>
-        ))}
-      </div>
+      <RichText content={entry?.info} className="mt-4" />
 
       {jobOpenings.length > 0 && (
         <table className="mt-4 w-full">

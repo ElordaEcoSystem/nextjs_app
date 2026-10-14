@@ -6,10 +6,9 @@ import Image from 'next/image';
 import { MenuIcon, XIcon, ChevronDown } from 'lucide-react';
 import { LocaleButton } from './LocaleButton';
 
-export const Header = ({ data }) => {
+export const Header = ({ data, locale }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openSections, setOpenSections] = useState({});
-  const [hoveredMenu, setHoveredMenu] = useState(null);
 
   const toggleSection = (title) => {
     setOpenSections((prev) => ({
@@ -29,7 +28,7 @@ export const Header = ({ data }) => {
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-center h-16">
             <Link
-              href="/"
+              href={`/${locale}`}
               className="text-prime font-medium text-2xl flex flex-col justify-center"
             >
               <Image
@@ -46,30 +45,27 @@ export const Header = ({ data }) => {
             <div className="hidden lg:flex  h-full font-medium">
               {data.map((item) =>
                 item.sections ? (
-                  <div
-                    key={item.title}
-                    className="relative h-full"
-                    onMouseEnter={() => setHoveredMenu(item.title)}
-                    onMouseLeave={() => setHoveredMenu(null)}
-                  >
-                    <button className="h-full inline-flex items-center text-gray-700 hover:bg-secondary px-2 ">
+                  <div key={item.title} className="relative h-full group">
+                    <button
+                      aria-haspopup="true"
+                      className="h-full inline-flex items-center text-gray-700 hover:bg-secondary px-2 "
+                    >
                       {item.title}
-                      {/* <ChevronDown className="ml-1 h-4 w-4" /> */}
                     </button>
 
-                    {hoveredMenu === item.title && (
-                      <div className="absolute left-0 w-48 bg-white border border-gray-200  z-20">
-                        {item.sections.map((section) => (
-                          <Link
-                            key={section.title}
-                            href={section.link}
-                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-secondary font-normal"
-                          >
-                            {section.title}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
+                    {/* Меню открывается при наведении и при фокусе с клавиатуры */}
+                    <div className="hidden group-hover:block group-focus-within:block absolute left-0 w-48 bg-white border border-gray-200  z-20">
+                      {item.sections.map((section) => (
+                        <Link
+                          key={section.title}
+                          href={section.link}
+                          onClick={(e) => e.currentTarget.blur()}
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-secondary font-normal"
+                        >
+                          {section.title}
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 ) : (
                 <Link
@@ -87,6 +83,8 @@ export const Header = ({ data }) => {
             <div className="lg:hidden flex items-center h-full">
               <button
                 onClick={() => setMobileOpen(!mobileOpen)}
+                aria-label="Menu"
+                aria-expanded={mobileOpen}
                 className="text-gray-700  focus:outline-none h-full px-4"
               >
                 {mobileOpen ? (

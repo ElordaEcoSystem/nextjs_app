@@ -2,52 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-/* html {
+/* Чёрно-белый режим сайта (дни траура): раскомментировать
+html {
   filter: grayscale(100%);
 } */
 
-/* :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-} */
-
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-} */
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-/* html, body {
-  overscroll-behavior: none;
-} */
-
-/* @layer utilities { */
-  /* Hide scrollbar for Chrome, Safari and Opera */
-  /* .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  } */
-  /* Hide scrollbar for IE, Edge and Firefox */
-  /* .no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-} */
-
-/* Чтобы работало на элементе */
+/* Горизонтальная прокрутка без видимой полосы (кнопки годов в «Наших показателях») */
 .scroll-container {
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE/Edge */
+}
+.scroll-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
 }

@@ -44,11 +44,3 @@ export const SimpleSlider= () => {
     </Slider>
   );
 }
-
-// export const SimpleSlider= () => {
-//   return (
-//     <div className="w-[300px] h-[300px] bg-red-500">
-//       <h3>1</h3>
-//     </div>
-//   );
-// }

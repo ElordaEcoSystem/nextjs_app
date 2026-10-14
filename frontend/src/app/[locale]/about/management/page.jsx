@@ -1,4 +1,4 @@
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import React from "react";
 import Link from "next/link";
@@ -8,10 +8,11 @@ import { staticPageMetadata } from "../../needed/seo";
 
 export const generateMetadata = staticPageMetadata("/about/management", "header.about.management");
 
-export default async function About() {
-  const locale = useLocale();
-  const about = await fetchAbout(locale);
-  const directors = await fetchDirectors(locale);
+export default async function About({ params: { locale } }) {
+  const [about, directors] = await Promise.all([
+    fetchAbout(locale),
+    fetchDirectors(locale),
+  ]);
 
   return (
     <>
