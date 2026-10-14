@@ -2,13 +2,18 @@ export const API_URL =
   process.env.NEXT_PUBLIC_API_URL || "https://strapi.elordaecosystem.kz";
 const API_TOKEN = process.env.STRAPI_API_TOKEN;
 
+// Ответы Strapi кэшируются и обновляются раз в 5 минут. Сразу после публикации
+// кэш сбрасывает webhook Strapi через /api/revalidate (тег STRAPI_CACHE_TAG).
+export const STRAPI_CACHE_TAG = "strapi";
+const REVALIDATE_SECONDS = 300;
+
 // Функция для выполнения запросов. Возвращает null при любой ошибке (в т.ч. 404),
 // поэтому страницы должны сами решать, что показывать при отсутствии данных.
 async function fetchData(endpoint) {
   try {
     const res = await fetch(`${API_URL}/api/${endpoint}`, {
       headers: API_TOKEN ? { Authorization: `Bearer ${API_TOKEN}` } : {},
-      cache: "no-store",
+      next: { revalidate: REVALIDATE_SECONDS, tags: [STRAPI_CACHE_TAG] },
     });
     if (res.status === 404) return null;
     if (!res.ok) throw new Error(`Ошибка запроса: ${res.status} ${res.statusText}`);

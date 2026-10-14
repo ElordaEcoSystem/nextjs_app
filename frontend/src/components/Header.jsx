@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { MenuIcon, XIcon, ChevronDown } from 'lucide-react';
 import { LocaleButton } from './LocaleButton';
 
@@ -31,12 +32,12 @@ export const Header = ({ data }) => {
               href="/"
               className="text-prime font-medium text-2xl flex flex-col justify-center"
             >
-              <img
-                sizes="100vw"
+              <Image
                 src="/image/logo.png"
-                alt={"logo"}
-                width={0}
-                height={0}
+                alt="Elorda Eco System"
+                width={68}
+                height={50}
+                priority
                 className="h-[50px]  w-[68px] object-contain md:m-0 mx-auto block"
               />
             </Link>

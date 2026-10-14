@@ -25,17 +25,18 @@ export const SimpleSlider= () => {
   };
   return (
     <Slider className="w-[400px] h-full " {...settings}>
-      {photos.map((item) => {
+      {photos.map((item, index) => {
         return (
           <div key={item}>
-            <img
+            <Image
               src={item}
-              alt={item}
-              width={0}
-              height={0}
-              sizes="100vw"
+              alt=""
+              width={400}
+              height={300}
+              sizes="400px"
+              priority={index === 0}
               className="w-full h-full object-cover "
-            ></img>
+            />
           </div>
         );
       })}

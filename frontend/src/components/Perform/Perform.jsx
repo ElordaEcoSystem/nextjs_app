@@ -47,10 +47,10 @@ const PerfromItem = ({ title, icon, numberAndYear, unit, activeYear }) => {
 
         <Image
           src={icon}
-          alt={icon}
-          width={0}
-          height={0}
-          sizes="100vw"
+          alt=""
+          width={48}
+          height={48}
+          sizes="48px"
           className="w-12 object-cover justify-center"
         ></Image>
       </div>

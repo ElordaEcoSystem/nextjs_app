@@ -1,4 +1,4 @@
-import { API_URL } from "./[locale]/needed/services";
+import { API_URL, STRAPI_CACHE_TAG } from "./[locale]/needed/services";
 import { LOCALES, SITE_URL } from "./[locale]/needed/seo";
 
 const STATIC_PATHS = [
@@ -22,7 +22,7 @@ async function fetchAllEntries(collection, locale, fields) {
     const res = await fetch(
       `${API_URL}/api/${collection}?locale=${locale}&${query}` +
         `&pagination[page]=${page}&pagination[pageSize]=100`,
-      { next: { revalidate: 3600 } }
+      { next: { revalidate: 3600, tags: [STRAPI_CACHE_TAG] } }
     );
     if (!res.ok) break;
     const json = await res.json();
