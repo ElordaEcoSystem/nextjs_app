@@ -27,7 +27,7 @@ export default async function PressCenter({ params: { locale }, searchParams }) 
   const pageCount = blog?.meta?.pagination?.pageCount ?? 1;
 
   return (
-    <section className="container py-10 flex flex-col gap-8">
+    <section className="container py-10">
       <PageTitle>{t("title")}</PageTitle>
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {posts.map((post) => (
@@ -35,6 +35,7 @@ export default async function PressCenter({ params: { locale }, searchParams }) 
         ))}
       </div>
 
+      <div className="mt-10" />
       <Pagination
         page={page}
         pageCount={pageCount}

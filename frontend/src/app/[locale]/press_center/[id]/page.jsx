@@ -81,7 +81,7 @@ export default async function Post({ params: { id, locale } }) {
 
   return (
     <article className="container py-10">
-      <div className="max-w-3xl mx-auto flex flex-col gap-6">
+      <div className="max-w-3xl mx-auto flex flex-col gap-8">
         <Breadcrumbs
           items={[
             { label: t("ui.breadcrumbs_home"), href: `/${locale}` },
@@ -93,12 +93,12 @@ export default async function Post({ params: { id, locale } }) {
           {date_of_publication && (
             <time
               dateTime={date_of_publication}
-              className="text-xs font-medium uppercase tracking-wide text-accent"
+              className="block text-caption font-medium uppercase text-accent"
             >
               {formatDate(date_of_publication, locale)}
             </time>
           )}
-          <h1 className="mt-2 text-3xl md:text-4xl font-bold text-prime leading-tight">{title}</h1>
+          <h1 className="mt-3 text-h1-sm md:text-h1 font-bold text-prime">{title}</h1>
         </header>
 
         {cover?.url && (
@@ -115,7 +115,7 @@ export default async function Post({ params: { id, locale } }) {
 
         <RichText
           content={description_rich_text}
-          className="break-words text-base leading-relaxed text-def_black/90"
+          className="break-words text-body md:text-lead text-def_black/85"
         />
 
         <MyGallery data={post.attributes} />

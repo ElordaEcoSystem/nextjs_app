@@ -36,13 +36,13 @@ export const NewsCard = ({ post, locale, variant = "card", featured = false }) =
         )}
       </div>
       <div className={clsx("flex flex-col", compact ? "p-3 sm:p-4 justify-center" : "p-5 grow")}>
-        <time dateTime={date_of_publication} className="text-xs font-medium uppercase tracking-wide text-accent">
+        <time dateTime={date_of_publication} className="text-caption font-medium uppercase text-accent">
           {formatDate(date_of_publication, locale)}
         </time>
         <h3
           className={clsx(
-            "mt-2 font-bold text-prime leading-snug",
-            featured ? "text-xl md:text-2xl line-clamp-3" : compact ? "text-sm sm:text-base line-clamp-3" : "text-lg line-clamp-3"
+            "mt-2 font-bold text-prime",
+            featured ? "text-h3 md:text-h2-sm line-clamp-3" : compact ? "text-sm sm:text-h4 leading-snug tracking-[-0.005em] line-clamp-3" : "text-h4 line-clamp-3"
           )}
         >
           {/* Ссылка растянута на всю карточку */}
@@ -51,7 +51,7 @@ export const NewsCard = ({ post, locale, variant = "card", featured = false }) =
           </Link>
         </h3>
         {!compact && excerpt && (
-          <p className={clsx("mt-2 text-sm text-def_black/75 leading-relaxed", featured ? "line-clamp-3" : "line-clamp-3")}>
+          <p className={clsx("mt-3 text-sm text-def_black/70 leading-relaxed", featured ? "line-clamp-3" : "line-clamp-3")}>
             {excerpt}
           </p>
         )}

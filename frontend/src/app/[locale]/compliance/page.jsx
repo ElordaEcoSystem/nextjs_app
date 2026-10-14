@@ -24,7 +24,7 @@ export default async function Compliance({ params: { locale } }) {
     <section className="container py-10">
       <div className="max-w-3xl">
         <PageTitle>{entry?.title}</PageTitle>
-        <RichText content={entry?.description_2} className="text-base leading-relaxed" />
+        <RichText content={entry?.description_2} className="text-body text-def_black/85" />
         <DocumentList documents={entry?.document} title={t.title_doc_list} />
       </div>
     </section>

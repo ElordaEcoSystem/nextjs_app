@@ -22,9 +22,9 @@ export const Perform = ({ perform_data, title }) => {
   return (
     <section id="perform" className="py-12 lg:py-14 bg-secondary/50">
       <div className="container">
-        <h2 className="text-prime text-3xl font-bold">{title}</h2>
+        <h2 className="text-prime text-h2-sm md:text-h2 font-bold">{title}</h2>
         {/* Ряд годов прокручивается; градиент справа подсказывает, что есть ещё */}
-        <div className="relative mt-6">
+        <div className="relative mt-8">
           <div className="flex gap-2 overflow-auto scroll-container pr-8">
             {years.map((year) => (
               <button
@@ -43,7 +43,7 @@ export const Perform = ({ perform_data, title }) => {
           </div>
           <div className="pointer-events-none absolute right-0 top-0 h-full w-10 bg-gradient-to-l from-[#f2f4f6] md:hidden" />
         </div>
-        <div className="mt-6 grid grid-cols-2 md:grid-cols-3 gap-3">
+        <div className="mt-4 grid grid-cols-2 md:grid-cols-3 gap-3">
           {items.map((item) => (
             <PerformItem
               key={item.id}
@@ -80,7 +80,7 @@ const PerformItem = ({ title, icon, numberAndYear, unit, activeYear }) => {
         {(performNumber?.number ?? 0).toLocaleString("ru-RU")}
         <span className="ml-1 text-base font-semibold text-muted">{unit}</span>
       </div>
-      <div className="mt-2 text-def_black/80 text-sm leading-snug">{title}</div>
+      <div className="mt-1.5 text-def_black/75 text-sm leading-snug">{title}</div>
     </div>
   );
 };

@@ -16,7 +16,7 @@ export default async function About({ params: { locale } }) {
         <PageTitle>{entry?.title}</PageTitle>
         <RichText
           content={entry?.description}
-          className="max-w-3xl text-base leading-relaxed flex flex-col gap-3"
+          className="max-w-3xl text-body text-def_black/85"
         />
       </div>
     </section>

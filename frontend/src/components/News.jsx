@@ -18,7 +18,7 @@ export const News = async ({ data }) => {
   return (
     <section id="news" className="py-12 lg:py-14 container">
       <div className="flex justify-between items-end gap-4">
-        <h2 className="text-prime text-3xl font-bold">{page?.news_title}</h2>
+        <h2 className="text-prime text-h2-sm md:text-h2 font-bold">{page?.news_title}</h2>
         {button && (
           <Link
             href={`/${locale}/${button.link}`}
@@ -29,7 +29,7 @@ export const News = async ({ data }) => {
           </Link>
         )}
       </div>
-      <div className="grid md:grid-cols-2 gap-4 mt-6">
+      <div className="grid md:grid-cols-2 gap-4 mt-8">
         <NewsCard post={main} locale={locale} featured />
         <div className="grid md:grid-rows-3 gap-4">
           {rest.map((item) => (

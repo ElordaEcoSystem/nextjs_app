@@ -50,14 +50,14 @@ export default async function PaidServices({ params: { locale } }) {
     <div className="container py-10">
       <PageTitle>{tr(prices, "title")}</PageTitle>
       <div className="max-w-3xl">
-        <RichText content={entry?.content} className="text-base leading-relaxed flex flex-col gap-1" />
+        <RichText content={entry?.content} className="text-body text-def_black/85" />
         <DocumentList documents={entry?.document} title={t.doc} />
       </div>
 
       <div className="mt-12 flex flex-col gap-10">
         {prices?.categories?.map((category) => (
           <section key={category.id}>
-            <h2 className="text-lg md:text-xl font-bold text-white bg-prime px-4 py-3 md:text-center">
+            <h2 className="text-h4 md:text-h3 font-bold text-white bg-prime px-4 py-3.5 md:text-center">
               {tr(category, "title")}
             </h2>
 
@@ -129,8 +129,8 @@ export default async function PaidServices({ params: { locale } }) {
       {prices && (
         <aside className="mt-12 bg-prime text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
           <div className="grow">
-            <h2 className="text-xl font-bold">{tUi("order_title")}</h2>
-            <p className="mt-1 text-white/80">{tUi("order_text")}</p>
+            <h2 className="text-h3 font-bold">{tUi("order_title")}</h2>
+            <p className="mt-2 text-white/75 text-sm leading-relaxed max-w-xl">{tUi("order_text")}</p>
           </div>
           <a
             href={`tel:${PHONES.reception.tel}`}

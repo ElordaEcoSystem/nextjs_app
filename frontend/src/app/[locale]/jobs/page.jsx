@@ -16,11 +16,11 @@ export default async function JobsPage({ params: { locale } }) {
     <section className="container py-10">
       <div className="max-w-3xl">
         <PageTitle>{entry?.title}</PageTitle>
-        <RichText content={entry?.info} className="text-base leading-relaxed" />
+        <RichText content={entry?.info} className="text-body text-def_black/85" />
 
         {jobOpenings.length > 0 && (
-          <div className="mt-8">
-            <h2 className="text-xl font-bold text-prime mb-4">{entry.sub_title}</h2>
+          <div className="mt-10">
+            <h2 className="text-h3 font-bold text-prime mb-4">{entry.sub_title}</h2>
             <ul className="grid gap-2">
               {jobOpenings.map((text, i) => (
                 <li

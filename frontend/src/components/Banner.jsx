@@ -18,12 +18,12 @@ export const Banner = ({ data }) => {
     >
       <div className="container grid lg:grid-cols-[minmax(0,1fr)_480px] items-center gap-10">
         <div className="flex flex-col min-w-0">
-          <h1 className="text-prime text-3xl sm:text-4xl font-bold leading-tight flex flex-col">
+          <h1 className="text-prime text-display-sm lg:text-display font-bold flex flex-col">
             {entry?.title?.map((item, index) => (
               <span key={index}>{blockText(item)}</span>
             ))}
           </h1>
-          <p className="text-def_black/80 text-lg mt-5 max-w-xl">
+          <p className="text-def_black/75 text-lead mt-5 max-w-xl">
             {entry?.description}
           </p>
           <div className="mt-8 flex flex-wrap gap-3">

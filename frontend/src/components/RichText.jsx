@@ -38,7 +38,7 @@ const renderList = (block, key) => {
   return (
     <ListTag
       key={key}
-      className={`mt-2 pl-5 ${block.format === "ordered" ? "list-decimal" : "list-disc"}`}
+      className={`mt-4 first:mt-0 pl-5 space-y-1.5 ${block.format === "ordered" ? "list-decimal" : "list-disc"}`}
     >
       {block.children?.map((item, i) =>
         item.type === "list" ? (
@@ -58,7 +58,7 @@ const renderBlock = (block, index) => {
     case "heading": {
       const Tag = `h${block.level ?? 2}`;
       return (
-        <Tag key={index} className="font-bold text-xl mt-4 mb-2">
+        <Tag key={index} className="text-h3 font-bold text-prime mt-8 first:mt-0">
           {renderInline(children)}
         </Tag>
       );
@@ -67,13 +67,13 @@ const renderBlock = (block, index) => {
       return renderList(block, index);
     case "quote":
       return (
-        <blockquote key={index} className="mt-2 pl-4 border-l-4 border-secondary italic">
+        <blockquote key={index} className="mt-4 first:mt-0 pl-4 border-l-4 border-leaf italic">
           {renderInline(children)}
         </blockquote>
       );
     case "code":
       return (
-        <pre key={index} className="mt-2 p-3 bg-secondary overflow-x-auto text-sm">
+        <pre key={index} className="mt-4 first:mt-0 p-3 bg-secondary overflow-x-auto text-sm">
           {children.map((child) => child.text).join("")}
         </pre>
       );
@@ -84,15 +84,16 @@ const renderBlock = (block, index) => {
           key={index}
           src={mediaUrl(block.image.url)}
           alt={block.image.alternativeText ?? ""}
-          className="mt-2 max-w-full h-auto"
+          className="mt-6 first:mt-0 max-w-full h-auto"
           loading="lazy"
         />
       ) : null;
     case "paragraph":
     default:
-      if (isEmpty(children)) return <div key={index} className="h-4" />;
+      // Пустые абзацы редакторы ставят как отступ — ритм задают сами отступы абзацев
+      if (isEmpty(children)) return null;
       return (
-        <p key={index} className="mt-1">
+        <p key={index} className="mt-4 first:mt-0">
           {renderInline(children)}
         </p>
       );

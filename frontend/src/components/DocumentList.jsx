@@ -18,8 +18,8 @@ export const DocumentList = ({ documents, title }) => {
   if (items.length === 0) return null;
 
   return (
-    <section className="mt-8">
-      {title && <h2 className="text-xl font-bold text-prime mb-4">{title}</h2>}
+    <section className="mt-10">
+      {title && <h2 className="text-h3 font-bold text-prime mb-4">{title}</h2>}
       <ul className="grid gap-2">
         {items.map((item, index) => (
           <li key={index}>
@@ -33,11 +33,11 @@ export const DocumentList = ({ documents, title }) => {
                 <FileText className="h-5 w-5" />
               </span>
               <span className="grow min-w-0">
-                <span className="block text-def_black group-hover:text-accent transition-colors">
+                <span className="block text-sm sm:text-base leading-snug text-def_black group-hover:text-accent transition-colors">
                   {item.title}
                 </span>
                 {(item.ext || item.size) && (
-                  <span className="block text-xs text-muted mt-0.5">
+                  <span className="block text-xs text-muted mt-1">
                     {[item.ext, item.size].filter(Boolean).join(" · ")}
                   </span>
                 )}

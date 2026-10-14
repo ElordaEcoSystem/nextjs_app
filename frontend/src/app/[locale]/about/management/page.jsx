@@ -60,10 +60,10 @@ const DirectorCard = ({
         )}
       </div>
       <div className="flex flex-col grow p-5">
-        <h2 className="text-xl text-prime font-bold leading-snug">{full_name}</h2>
-        <div className="mt-1 text-def_black/75">{position}</div>
+        <h2 className="text-h3 text-prime font-bold">{full_name}</h2>
+        <div className="mt-2 text-sm leading-snug text-def_black/70">{position}</div>
         {(number || reception_schedule) && (
-          <dl className="mt-4 grid gap-2 text-sm">
+          <dl className="mt-5 grid gap-3 text-sm">
             {number && (
               <div>
                 <dt className="text-muted">{t("contact")}</dt>

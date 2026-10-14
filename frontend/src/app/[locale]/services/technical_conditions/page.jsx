@@ -12,7 +12,7 @@ export default async function RequestPTO({ params: { locale } }) {
   return (
     <div className="container py-10">
       <PageTitle>{entry?.title}</PageTitle>
-      <RichText content={entry?.text} className="max-w-3xl text-base leading-relaxed flex flex-col gap-1" />
+      <RichText content={entry?.text} className="max-w-3xl text-body text-def_black/85" />
     </div>
   );
 }
