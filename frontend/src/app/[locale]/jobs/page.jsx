@@ -2,6 +2,9 @@ import React from "react";
 import clsx from "clsx";
 import { fetchJobs } from "../needed/services";
 import { blockText } from "../needed/format";
+import { staticPageMetadata } from "../needed/seo";
+
+export const generateMetadata = staticPageMetadata("/jobs", "header.jobs");
 
 export default async function JobsPage({ params: { locale } }) {
   const data = await fetchJobs(locale);

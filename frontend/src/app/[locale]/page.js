@@ -6,6 +6,9 @@ import { Perform } from "@/components/Perform/Perform";
 import { useLocale } from "next-intl";
 import { fetchMainPage, fetchPerformBlocks } from "./needed/services";
 import { getTranslations } from "next-intl/server";
+import { staticPageMetadata } from "./needed/seo";
+
+export const generateMetadata = staticPageMetadata("");
 
 export default async function Home() {
   // const t = useTranslations("Index");

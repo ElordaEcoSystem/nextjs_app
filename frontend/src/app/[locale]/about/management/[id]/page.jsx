@@ -4,16 +4,44 @@ import {
   mediaUrl,
 } from "@/app/[locale]/needed/services";
 import { parseId } from "@/app/[locale]/needed/format";
+import { LOCALES, pageMetadata } from "@/app/[locale]/needed/seo";
 import { NoTranslation } from "@/components/NoTranslation";
 import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { notFound, redirect } from "next/navigation";
 import Image from "next/image";
 
-export default async function BiographyWrapper({ params: { locale, id } }) {
+async function getDirector(id) {
   const directorId = parseId(id);
   const data = directorId ? await fetchDirectorById(directorId) : null;
-  const director = data?.data;
+  return data?.data ?? null;
+}
+
+export async function generateMetadata({ params: { locale, id } }) {
+  const director = await getDirector(id);
+  if (!director) return {};
+  // Заглушка «нет перевода» не должна попадать в поиск
+  if (director.attributes.locale !== locale) return { robots: { index: false } };
+
+  const languages = {};
+  for (const lang of LOCALES) {
+    const langId = findLocalizationId(director, lang);
+    if (langId) languages[lang] = `/${lang}/about/management/${langId}`;
+  }
+  const base = pageMetadata(
+    locale,
+    `/about/management/${director.id}`,
+    director.attributes.full_name
+  );
+  return {
+    ...base,
+    description: director.attributes.position,
+    alternates: { canonical: base.alternates.canonical, languages },
+  };
+}
+
+export default async function BiographyWrapper({ params: { locale, id } }) {
+  const director = await getDirector(id);
   if (!director) notFound();
 
   // Открыта версия на другом языке — переходим на перевод, если он есть

@@ -1,6 +1,9 @@
 import { useLocale } from "next-intl";
 import { fetchPaidTable } from "../../needed/services";
 import Link from "next/link";
+import { staticPageMetadata } from "../../needed/seo";
+
+export const generateMetadata = staticPageMetadata("/services/paid_services", "header.services.paid_services");
 
 export default async function PaidServices() {
   const locale = useLocale();

@@ -4,6 +4,10 @@ import React from "react";
 import Link from "next/link";
 import { ArrowIcon } from "@/components/icons/ArrowIcon";
 import { fetchAbout, fetchDirectors, mediaUrl } from "../../needed/services";
+import { staticPageMetadata } from "../../needed/seo";
+
+export const generateMetadata = staticPageMetadata("/about/management", "header.about.management");
+
 export default async function About() {
   const locale = useLocale();
   const about = await fetchAbout(locale);

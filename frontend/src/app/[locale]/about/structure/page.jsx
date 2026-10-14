@@ -2,6 +2,10 @@ import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import React from "react";
 import Link from "next/link";
+import { staticPageMetadata } from "../../needed/seo";
+
+export const generateMetadata = staticPageMetadata("/about/structure", "header.about.structure");
+
 export default async function About() {
 
   return (

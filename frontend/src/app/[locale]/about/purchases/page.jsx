@@ -1,6 +1,9 @@
 import Link from "next/link";
 import React from "react";
 import { fetchProcurement, mediaUrl } from "../../needed/services";
+import { staticPageMetadata } from "../../needed/seo";
+
+export const generateMetadata = staticPageMetadata("/about/purchases", "header.about.purchases");
 
 export default async function Procurement({ params: { locale } }) {
   const data = await fetchProcurement(locale);

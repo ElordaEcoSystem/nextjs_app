@@ -1,6 +1,9 @@
 import React from "react";
 import { fetchAbout } from "../../needed/services";
 import { blockText } from "../../needed/format";
+import { staticPageMetadata } from "../../needed/seo";
+
+export const generateMetadata = staticPageMetadata("/about/general", "header.about.general");
 
 export default async function About({ params: { locale } }) {
   const about = await fetchAbout(locale);

@@ -2,6 +2,9 @@ import { getLocale } from "next-intl/server";
 import { fetchAntikor } from "../needed/services";
 import Link from "next/link";
 import { RichText } from "@/components/RichText";
+import { staticPageMetadata } from "../needed/seo";
+
+export const generateMetadata = staticPageMetadata("/compliance", "header.compliance");
 
 export default async function Compliance() {
   const domain = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:1337";

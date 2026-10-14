@@ -7,9 +7,8 @@ import {
 import { blocksToPlainText, formatDate, parseId } from "../../needed/format";
 import { RichText } from "@/components/RichText";
 import { NoTranslation } from "@/components/NoTranslation";
+import { LOCALES, pageMetadata } from "../../needed/seo";
 import { MyGallery } from "./MyGallery";
-
-const LOCALES = ["kk", "ru"];
 
 async function getPost(id) {
   const postId = parseId(id);
@@ -20,7 +19,9 @@ async function getPost(id) {
 
 export async function generateMetadata({ params: { id, locale } }) {
   const post = await getPost(id);
-  if (!post || post.attributes.locale !== locale) return {};
+  if (!post) return {};
+  // Заглушка «нет перевода» не должна попадать в поиск
+  if (post.attributes.locale !== locale) return { robots: { index: false } };
 
   const { title, description_rich_text, thumbnail } = post.attributes;
   const description = blocksToPlainText(description_rich_text).slice(0, 200);
@@ -32,11 +33,17 @@ export async function generateMetadata({ params: { id, locale } }) {
     if (langId) languages[lang] = `/${lang}/press_center/${langId}`;
   }
 
+  const base = pageMetadata(locale, `/press_center/${post.id}`, title);
   return {
-    title,
+    ...base,
     description,
-    alternates: { canonical: `/${locale}/press_center/${post.id}`, languages },
-    openGraph: { title, description, images: image ? [image] : undefined },
+    alternates: { canonical: base.alternates.canonical, languages },
+    openGraph: {
+      ...base.openGraph,
+      type: "article",
+      description,
+      images: image ? [image] : undefined,
+    },
   };
 }
 

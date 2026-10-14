@@ -3,12 +3,19 @@ import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { fetchBlog, mediaUrl } from "../needed/services";
 import { blocksToPlainText, formatDate, parseId } from "../needed/format";
+import { pageMetadata } from "../needed/seo";
 
 const PAGE_SIZE = 12;
 
-export async function generateMetadata() {
-  const t = await getTranslations("press_center");
-  return { title: t("title") };
+export async function generateMetadata({ params: { locale }, searchParams }) {
+  const t = await getTranslations({ locale, namespace: "press_center" });
+  const page = parseId(searchParams?.page) || 1;
+  const metadata = pageMetadata(locale, "/press_center", t("title"));
+  if (page > 1) {
+    metadata.title = `${t("title")} — ${t("page")} ${page}`;
+    metadata.alternates = { canonical: `/${locale}/press_center?page=${page}` };
+  }
+  return metadata;
 }
 
 export default async function PressCenter({ params: { locale }, searchParams }) {

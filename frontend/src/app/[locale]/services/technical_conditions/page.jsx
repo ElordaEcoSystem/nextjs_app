@@ -1,5 +1,8 @@
 import { fetchPTO } from "../../needed/services";
 import { blockText } from "../../needed/format";
+import { staticPageMetadata } from "../../needed/seo";
+
+export const generateMetadata = staticPageMetadata("/services/technical_conditions", "header.services.technical_conditions");
 
 export default async function RequestPTO({ params: { locale } }) {
   const data = await fetchPTO(locale);
