@@ -130,7 +130,7 @@ export default async function PaidServices({ params: { locale } }) {
         <aside className="mt-12 bg-prime text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
           <div className="grow">
             <h2 className="text-h3 font-bold">{tUi("order_title")}</h2>
-            <p className="mt-2 text-white/75 text-sm leading-relaxed max-w-xl">{tUi("order_text")}</p>
+            <p className="mt-2 text-white/75 text-sm leading-normal max-w-xl">{tUi("order_text")}</p>
           </div>
           <a
             href={`tel:${PHONES.reception.tel}`}

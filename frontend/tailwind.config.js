@@ -9,7 +9,7 @@ module.exports = {
     extend: {
       // Типографическая шкала сайта: размер, межстрочный интервал и трекинг.
       // Заголовки — плотные (1.1–1.3) с лёгким отрицательным трекингом,
-      // основной текст — 1.65 для удобного чтения.
+      // основной текст — 1.55, вводный — 1.45.
       fontSize: {
         display: ['2.5rem', { lineHeight: '1.1', letterSpacing: '-0.015em' }], // 40 — первый экран
         'display-sm': ['2rem', { lineHeight: '1.12', letterSpacing: '-0.01em' }], // 32
@@ -19,8 +19,8 @@ module.exports = {
         'h2-sm': ['1.5rem', { lineHeight: '1.25', letterSpacing: '-0.01em' }], // 24
         h3: ['1.25rem', { lineHeight: '1.3', letterSpacing: '-0.005em' }], // 20 — подзаголовок, карточка
         h4: ['1.0625rem', { lineHeight: '1.35' }], // 17 — мелкая карточка
-        lead: ['1.125rem', { lineHeight: '1.6' }], // 18 — вводный текст
-        body: ['1rem', { lineHeight: '1.65' }], // 16 — основной текст
+        lead: ['1.125rem', { lineHeight: '1.45' }], // 18 — вводный текст
+        body: ['1rem', { lineHeight: '1.55' }], // 16 — основной текст
         caption: ['0.75rem', { lineHeight: '1.3', letterSpacing: '0.06em' }], // 12 — даты, метки
       },
       boxShadow: {

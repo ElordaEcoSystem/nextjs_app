@@ -51,7 +51,7 @@ export const NewsCard = ({ post, locale, variant = "card", featured = false }) =
           </Link>
         </h3>
         {!compact && excerpt && (
-          <p className={clsx("mt-3 text-sm text-def_black/70 leading-relaxed", featured ? "line-clamp-3" : "line-clamp-3")}>
+          <p className={clsx("mt-2.5 text-sm text-def_black/70 leading-normal", featured ? "line-clamp-3" : "line-clamp-3")}>
             {excerpt}
           </p>
         )}
