@@ -1,320 +1,17 @@
-// export async function fetchNav(locale) {
-//   const options = {
-//     headers: {
-//       Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
-//     },
-//   };
-//   try {
-//     const res = await fetch(
-//       `http://0.0.0.0:1337/api/navs?locale=${locale}`, //
-//       options
-//     );
-//     const response = await res.json();
-//     return response;
-//   } catch (err) {
-//     console.error(err);
-//   }
-// }
-
-// // /api/perform-blocks
-
-// export async function fetchPerformBlocks(locale) {
-//   const options = {
-//     headers: {
-//       Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
-//     },
-//   };
-//   try {
-//     const res = await fetch(
-//       `http://0.0.0.0:1337/api/perform-items?populate=number&populate=icon&locale=${locale}`, //
-//       options
-//     );
-//     const response = await res.json();
-//     // console.log("response", response);
-//     return response;
-//   } catch (err) {
-//     console.error(err);
-//   }
-// }
-
-// //
-
-// export async function fetchMainPage(locale) {
-//   const options = {
-//     headers: {
-//       Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
-//     },
-//   };
-//   try {
-//     const res = await fetch(
-//       `http://0.0.0.0:1337/api/main-pages?populate=button&populate=news_button&locale=${locale}`,
-//       options
-//     );
-//     const response = await res.json();
-//     // console.log("response", response);
-//     return response;
-//   } catch (err) {
-//     console.error(err);
-//   }
-// }
-
-// export async function fetchFooter(locale) {
-//   const options = {
-//     headers: {
-//       Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
-//     },
-//   };
-//   try {
-//     const res = await fetch(
-//       `http://0.0.0.0:1337/api/footers?populate=item_social&locale=${locale}`,
-//       options
-//     );
-//     const response = await res.json();
-//     // console.log("response", response);
-//     return response;
-//   } catch (err) {
-//     console.error(err);
-//   }
-// }
-
-// export async function fetchAbout(locale) {
-//   const options = {
-//     headers: {
-//       Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
-//     },
-//   };
-//   try {
-//     const res = await fetch(
-//       `http://0.0.0.0:1337/api/abouts?populate=director&populate=director.photo&locale=${locale}`,
-//       options
-//     );
-//     const response = await res.json();
-//     // console.log("response", response);
-//     return response;
-//   } catch (err) {
-//     console.error(err);
-//   }
-// }
-
-// export async function fetchAntikor(locale) {
-//   const options = {
-//     headers: {
-//       Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
-//     },
-//   };
-//   try {
-//     const res = await fetch(
-//       `http://0.0.0.0:1337/api/antikors?populate=document&populate=document.item_document&locale=${locale}`,
-//       options
-//     );
-//     const response = await res.json();
-//     // console.log("response", response);
-//     return response;
-//   } catch (err) {
-//     console.error(err);
-//   }
-// }
-
-// export async function fetchJobs(locale) {
-//   const options = {
-//     headers: {
-//       Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
-//     },
-//   };
-//   try {
-//     const res = await fetch(
-//       `http://0.0.0.0:1337/api/jobs?locale=${locale}`,
-//       options
-//     );
-//     const response = await res.json();
-//     // console.log("response", response);
-//     return response;
-//   } catch (err) {
-//     console.error(err);
-//   }
-// }
-
-// export async function fetchBlog(locale) {
-//   const options = {
-//     headers: {
-//       Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
-//     },
-//   };
-//   try {
-//     const res = await fetch(
-//       `http://0.0.0.0:1337/api/blogs?populate=thumbnail&sort=date_of_publication:desc&locale=${locale}`,
-//       // `http://0.0.0.0:1337/api/blogs?pagination[page]=${currentPage}&pagination[pageSize]=2&populate=thumbnail&sort=date_of_publication:desc&locale=${locale}`,
-//       options
-//     );
-//     const response = await res.json();
-//     return response;
-//   } catch (err) {
-//     console.error(err);
-//   }
-// }
-
-// //api/main-pages?locale=kk
-
-// export async function fetchBlogById(locale, id) {
-//   const options = {
-//     headers: {
-//       Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
-//     },
-//   };
-//   try {
-//     const res = await fetch(
-//       `http://0.0.0.0:1337/api/blogs/${id}?populate=thumbnail&populate=photo_content&populate=video_content&populate=youtube_link&sort=date_of_publication:desc&locale=${locale}`,
-//       options
-//     );
-//     const response = await res.json();
-//     console.log("fetchBlogId", locale);
-
-//     return response;
-//   } catch (err) {
-//     console.error(err);
-//   }
-// }
-
-// export async function fetchProcurement(locale) {
-//   const options = {
-//     headers: {
-//       Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
-//     },
-//   };
-//   try {
-//     const res = await fetch(
-//       `http://0.0.0.0:1337/api/procurements?populate=document_2&populate=document_2.item_document&locale=${locale}`,
-//       options
-//     );
-//     const response = await res.json();
-//     // console.log("response", response);
-//     return response;
-//   } catch (err) {
-//     console.error(err);
-//   }
-// }
-
-// export async function fetchPTO(locale) {
-//   const options = {
-//     headers: {
-//       Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
-//     },
-//   };
-//   try {
-//     const res = await fetch(
-//       `http://0.0.0.0:1337/api/ptos?locale=${locale}`,
-//       options
-//     );
-//     const response = await res.json();
-//     // console.log("response", response);
-//     return response;
-//   } catch (err) {
-//     console.error(err);
-//   }
-// }
-
-// const API_WEBSITE =
-//   process.env.API_WEBSITE || "https://strapi.elordaecosystem.kz";
-// const API_TOKEN = process.env.STRAPI_API_TOKEN;
-
-// const options = {
-//   headers: {
-//     Authorization: `Bearer ${API_TOKEN}`,
-//   },
-// };
-
-// // Функция для выполнения запросов
-// async function fetchData(endpoint) {
-//   try {
-//     const res = await fetch(`${API_WEBSITE}/api/${endpoint}`, options);
-//     if (!res.ok) throw new Error(`Ошибка запроса: ${res.statusText}`);
-//     return await res.json();
-//   } catch (err) {
-//     console.error(`Ошибка при получении ${endpoint}:`, err);
-//     return null;
-//   }
-// }
-
-// // Функции для получения данных с API
-
-// export async function fetchNav(locale) {
-//   return fetchData(`navs?locale=${locale}`);
-// }
-
-// export async function fetchPerformBlocks(locale) {
-//   return fetchData(
-//     `perform-items?populate=number&populate=icon&locale=${locale}`
-//   );
-// }
-
-// export async function fetchMainPage(locale) {
-//   return fetchData(
-//     `main-pages?populate=button&populate=news_button&locale=${locale}`
-//   );
-// }
-
-// export async function fetchFooter(locale) {
-//   return fetchData(`footers?populate=item_social&locale=${locale}`);
-// }
-
-// export async function fetchAbout(locale) {
-//   return fetchData(
-//     `abouts?populate=director&populate=director.photo&locale=${locale}`
-//   );
-// }
-
-// export async function fetchAntikor(locale) {
-//   return fetchData(
-//     `antikors?populate=document&populate=document.item_document&locale=${locale}`
-//   );
-// }
-
-// export async function fetchJobs(locale) {
-//   return fetchData(`jobs?locale=${locale}`);
-// }
-
-// export async function fetchBlog(locale) {
-//   return fetchData(
-//     `blogs?populate=thumbnail&sort=date_of_publication:desc&locale=${locale}`
-//   );
-// }
-
-// export async function fetchBlogById(locale, id) {
-//   return fetchData(
-//     `blogs/${id}?populate=thumbnail&populate=photo_content&populate=video_content&populate=youtube_link&sort=date_of_publication:desc&locale=${locale}`
-//   );
-// }
-
-// export async function fetchProcurement(locale) {
-//   return fetchData(
-//     `procurements?populate=document_2&populate=document_2.item_document&locale=${locale}`
-//   );
-// }
-
-// export async function fetchPTO(locale) {
-//   return fetchData(`ptos?locale=${locale}`);
-// }
-
-const apiUrl =
+export const API_URL =
   process.env.NEXT_PUBLIC_API_URL || "https://strapi.elordaecosystem.kz";
 const API_TOKEN = process.env.STRAPI_API_TOKEN;
 
-const options = {
-  headers: {
-    Authorization: `Bearer ${API_TOKEN}`,
-    cache: "no-store",
-  },
-};
-
-// Функция для выполнения запросов
+// Функция для выполнения запросов. Возвращает null при любой ошибке (в т.ч. 404),
+// поэтому страницы должны сами решать, что показывать при отсутствии данных.
 async function fetchData(endpoint) {
   try {
-    const res = await fetch(`${apiUrl}/api/${endpoint}`, {
-      ...options,
+    const res = await fetch(`${API_URL}/api/${endpoint}`, {
+      headers: API_TOKEN ? { Authorization: `Bearer ${API_TOKEN}` } : {},
       cache: "no-store",
     });
-    // &populate=*
-    if (!res.ok) throw new Error(`Ошибка запроса: ${res.statusText}`);
+    if (res.status === 404) return null;
+    if (!res.ok) throw new Error(`Ошибка запроса: ${res.status} ${res.statusText}`);
     return await res.json();
   } catch (err) {
     console.error(`Ошибка при получении ${endpoint}:`, err);
@@ -322,18 +19,23 @@ async function fetchData(endpoint) {
   }
 }
 
-// async function fetchData(endpoint) {
-//   try {
-//     const res = await fetch(`${apiUrl}/api/${endpoint}?populate=*`, options);
+// Полный URL медиафайла из Strapi (или null, если файла нет)
+export function mediaUrl(path) {
+  if (!path) return null;
+  return path.startsWith("http") ? path : API_URL + path;
+}
 
-//     if (!res.ok) throw new Error(`Ошибка запроса: ${res.statusText}`);
-
-//     return await res.json();
-//   } catch (err) {
-//     console.error(`Ошибка при получении ${endpoint}:`, err);
-//     return null;
-//   }
-// }
+// В Strapi v4 каждая языковая версия записи имеет свой id, а версии связаны
+// через поле localizations. Возвращает id версии на нужном языке или null.
+export function findLocalizationId(entry, locale) {
+  const attributes = entry?.attributes;
+  if (!attributes) return null;
+  if (attributes.locale === locale) return entry.id;
+  const localization = attributes.localizations?.data?.find(
+    (item) => item.attributes?.locale === locale
+  );
+  return localization?.id ?? null;
+}
 
 // Функции для получения данных с API
 
@@ -358,21 +60,21 @@ export async function fetchFooter(locale) {
 }
 
 export async function fetchAbout(locale) {
-  // /api/abouts?populate=director&populate=director.photo&locale=${locale}
-  const response = await fetchData(
+  return fetchData(
     `abouts?populate=director&populate=director.photo&locale=${locale}`
   );
-
-  return response;
-  // return `abouts?populate=director&populate=director.photo&locale=${locale}`;
 }
 
 export async function fetchDirectors(locale) {
   return fetchData(`director-lists?populate=photo&locale=${locale}`);
 }
 
-export async function fetchDirectorById(locale, id) {
-  return fetchData(`director-lists/${id}?populate=photo&locale=${locale}`);
+// Strapi ищет запись по id без учёта языка, поэтому locale здесь не передаётся:
+// страница сама сверяет язык записи и при необходимости переходит на перевод.
+export async function fetchDirectorById(id) {
+  return fetchData(
+    `director-lists/${id}?populate[photo]=true&populate[localizations][fields][0]=locale`
+  );
 }
 
 export async function fetchAntikor(locale) {
@@ -385,15 +87,19 @@ export async function fetchJobs(locale) {
   return fetchData(`jobs?locale=${locale}&populate=*`);
 }
 
-export async function fetchBlog(locale) {
+export async function fetchBlog(locale, { page = 1, pageSize = 12 } = {}) {
   return fetchData(
-    `blogs?sort=date_of_publication:desc&locale=${locale}&populate=*`
+    `blogs?sort[0]=date_of_publication:desc&sort[1]=id:desc&locale=${locale}` +
+      `&populate[thumbnail]=true` +
+      `&pagination[page]=${page}&pagination[pageSize]=${pageSize}`
   );
 }
 
-export async function fetchBlogById(locale, id) {
+export async function fetchBlogById(id) {
   return fetchData(
-    `blogs/${id}?sort=date_of_publication:desc&locale=${locale}&populate=*`
+    `blogs/${id}?populate[thumbnail]=true&populate[photo_content]=true` +
+      `&populate[video_content]=true&populate[youtube_link]=true` +
+      `&populate[localizations][fields][0]=locale`
   );
 }
 
@@ -408,5 +114,7 @@ export async function fetchPTO(locale) {
 }
 
 export async function fetchPaidTable(locale) {
-  return fetchData(`paid-services?populate=document&populate=document.item_document&locale=${locale}`);
+  return fetchData(
+    `paid-services?populate=document&populate=document.item_document&locale=${locale}`
+  );
 }

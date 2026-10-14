@@ -12,12 +12,12 @@
     "about": {
       "about": "Об организации",
       "general": "Общая информация",
-      "management":"Руководство",
+      "management": "Руководство",
       "structure": "Структура",
       "purchases": "Закупки"
     },
-    "services":{
-      "services":"Услуги",
+    "services": {
+      "services": "Услуги",
       "paid_services": "Платные услуги",
       "technical_conditions": "Выдача технических условии"
     },
@@ -25,11 +25,21 @@
     "compliance": "Комплаенс",
     "jobs": "Вакансии"
   },
-  "purchases_page":{
+  "purchases_page": {
     "title": "Документы для строительства ЛК"
   },
   "press_center": {
-    "title": "Пресс-центр"
+    "title": "Пресс-центр",
+    "no_translation": "Этот материал пока не опубликован на русском языке.",
+    "read_original": "Читать на казахском",
+    "back_to_list": "Все новости",
+    "prev": "Назад",
+    "next": "Вперёд",
+    "page": "Страница"
+  },
+  "not_found": {
+    "title": "Страница не найдена",
+    "text": "Возможно, она была удалена или адрес указан неверно.",
+    "home": "На главную"
   }
-
 }

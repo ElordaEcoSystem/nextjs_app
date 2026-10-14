@@ -1,44 +1,35 @@
 import React from "react";
 import clsx from "clsx";
 import { fetchJobs } from "../needed/services";
-import { useLocale } from "next-intl";
+import { blockText } from "../needed/format";
 
-export default async function JobsPage() {
-  const locale = useLocale();
+export default async function JobsPage({ params: { locale } }) {
   const data = await fetchJobs(locale);
-  console.log("JOBSPAGE", data.data[0].attributes.job_openings[0].children[0].text)
-  const shouldRenderTable = !(
-    data.data[0].attributes.job_openings.length === 1 &&
-    data.data[0].attributes.job_openings[0].children[0].text === ''
-  );
- 
+  const entry = data?.data?.[0]?.attributes;
+  const jobOpenings = (entry?.job_openings ?? []).map(blockText).filter(Boolean);
+
   return (
     <section className="mb-auto container py-8">
-      <h2 className="text-3xl font-bold text-def_black">
-        {data.data[0].attributes.title}
-      </h2>
+      <h2 className="text-3xl font-bold text-def_black">{entry?.title}</h2>
       <div className="mt-4">
-        {data.data[0].attributes.info.map((item) => (
-          <div key={item.children[0].text}>{item.children[0].text}</div>
+        {entry?.info?.map((item, index) => (
+          <div key={index}>{blockText(item)}</div>
         ))}
       </div>
 
-      {shouldRenderTable && (
+      {jobOpenings.length > 0 && (
         <table className="mt-4 w-full">
           <thead>
             <tr>
               <th className="text-lg font-bold text-prime border-b-4 border-prime">
-                {data.data[0].attributes.sub_title}
+                {entry.sub_title}
               </th>
             </tr>
           </thead>
           <tbody>
-            {data.data[0].attributes.job_openings.map((item, i) => (
-              <tr
-                className={clsx(i % 2 === 0 ? 'bg-slate-100' : '')}
-                key={item.children[0].text}
-              >
-                <td>{item.children[0].text}</td>
+            {jobOpenings.map((text, i) => (
+              <tr className={clsx(i % 2 === 0 ? "bg-slate-100" : "")} key={i}>
+                <td>{text}</td>
               </tr>
             ))}
           </tbody>

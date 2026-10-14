@@ -1,95 +1,77 @@
-// import Image from "next/image";
-// import { useLocale } from "next-intl";
-// import Link from "next/link";
-// import { fetchBlogById } from "../../needed/services";
-
-// export default async function Post({ params }) {
-//   const locale = useLocale();
-//   console.log("LOCALE FORM COMPONENT POST", locale);
-//   let mod_id = params.id;
-//   console.log("MOD_ID_до", mod_id);
-//   if (locale === "ru" && params.id % 2 == 1) {
-//     mod_id = parseInt(mod_id) + 1;
-//   } else if (locale === "kk" && params.id % 2 == 0) {
-//     mod_id = parseInt(mod_id) - 1;
-//   } else {
-//     mod_id = params.id;
-//   }
-//   console.log("MOD_ID_после", mod_id);
-//   const blog = await fetchBlogById(locale, mod_id);
-
-//   // const blog = blog.data.find(
-//   //   (obj) => parseInt(obj.id, 10) === parseInt(params.id, 10)
-//   // );
-//   // const domain = "http://127.0.0.1:1337";
-//   // const imageUrl =
-//   //   domain + blog.data.attributes?.thumbnail?.data.attributes.url;
-//   console.log("BLOG", blog);
-
-//   return (
-//     <section className="container py-12 flex flex-col gap-4 ">
-//       <div className="flex justify-between items-center">
-//         <h2 className="text-3xl font-bold text-prime break-all">
-//           {blog?.data?.attributes?.title}
-//         </h2>
-//         {/* <Link
-//           className="px-5 py-1 bg-prime rounded-sm text-white font-semibold text-sm hover:scale-110 transition-all duration-300"
-//           href={`/${locale}/press_center`}
-//         >
-//           Назад
-//         </Link> */}
-//       </div>
-//       <p className="break-all text-sm">{blog?.data?.attributes?.description}</p>
-
-//       <div className="flex flex-col gap-5">
-//         <div className="flex">
-//           {/* <Image
-//             src={imageUrl}
-//             width={0}
-//             height={0}
-//             sizes="100vw"
-//             className="h-52 w-52 object-cover justify-center"
-//           ></Image> */}
-//         </div>
-//       </div>
-//     </section>
-//   );
-// }
-
-//vol 2
-
-import { fetchBlogById } from "../../needed/services";
+import { notFound, redirect } from "next/navigation";
+import {
+  fetchBlogById,
+  findLocalizationId,
+  mediaUrl,
+} from "../../needed/services";
+import { blocksToPlainText, formatDate, parseId } from "../../needed/format";
+import { RichText } from "@/components/RichText";
+import { NoTranslation } from "@/components/NoTranslation";
 import { MyGallery } from "./MyGallery";
 
-function distributorOfId(id, locale) {
-  let res = Number(id);
-  if (locale === "ru" && res % 2 === 1) {
-    res += 1;
-  } else if (locale === "kk" && res % 2 === 0) {
-    res -= 1;
-  }
-  return res;
+const LOCALES = ["kk", "ru"];
+
+async function getPost(id) {
+  const postId = parseId(id);
+  if (!postId) return null;
+  const res = await fetchBlogById(postId);
+  return res?.data ?? null;
 }
 
-export default async function Post({ params }) {
-  const { id, locale } = params; // Получаем `locale` и `id` из params
-  const blogById = await fetchBlogById(locale, distributorOfId(id, locale));
+export async function generateMetadata({ params: { id, locale } }) {
+  const post = await getPost(id);
+  if (!post || post.attributes.locale !== locale) return {};
+
+  const { title, description_rich_text, thumbnail } = post.attributes;
+  const description = blocksToPlainText(description_rich_text).slice(0, 200);
+  const image = mediaUrl(thumbnail?.data?.attributes?.url);
+
+  const languages = {};
+  for (const lang of LOCALES) {
+    const langId = findLocalizationId(post, lang);
+    if (langId) languages[lang] = `/${lang}/press_center/${langId}`;
+  }
+
+  return {
+    title,
+    description,
+    alternates: { canonical: `/${locale}/press_center/${post.id}`, languages },
+    openGraph: { title, description, images: image ? [image] : undefined },
+  };
+}
+
+export default async function Post({ params: { id, locale } }) {
+  const post = await getPost(id);
+  if (!post) notFound();
+
+  // Открыта версия на другом языке (например, после переключения языка) —
+  // переходим на перевод, если он есть.
+  if (post.attributes.locale !== locale) {
+    const translationId = findLocalizationId(post, locale);
+    if (translationId) redirect(`/${locale}/press_center/${translationId}`);
+
+    return (
+      <NoTranslation
+        originalHref={`/${post.attributes.locale}/press_center/${post.id}`}
+        backHref={`/${locale}/press_center`}
+      />
+    );
+  }
+
+  const { title, date_of_publication, description_rich_text } = post.attributes;
 
   return (
     <section className="container py-12 flex flex-col gap-4">
-      <h2 className="text-3xl font-bold text-prime ">
-        {blogById?.data?.attributes?.title}
-      </h2>
+      <h1 className="text-3xl font-bold text-prime">{title}</h1>
+      {date_of_publication && (
+        <time dateTime={date_of_publication} className="text-gray-400 text-sm">
+          {formatDate(date_of_publication, locale)}
+        </time>
+      )}
 
-      <div className="break-words text-sm">
-        {blogById?.data?.attributes?.description_rich_text?.map(
-          (item, index) => (
-            <div key={index}>{item.children[0]?.text}</div>
-          )
-        )}
-      </div>
+      <RichText content={description_rich_text} className="break-words text-sm" />
 
-      <MyGallery data={blogById?.data?.attributes} />
+      <MyGallery data={post.attributes} />
     </section>
   );
 }

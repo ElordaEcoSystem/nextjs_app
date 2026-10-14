@@ -1,25 +1,20 @@
-// import { REQUEST_PTO } from "@/app/needed/constans";
-
-import { useLocale } from "next-intl";
-import clsx from "clsx";
 import { fetchPTO } from "../../needed/services";
+import { blockText } from "../../needed/format";
 
-export default async function RequestPTO() {
-  const locale = useLocale();
+export default async function RequestPTO({ params: { locale } }) {
   const data = await fetchPTO(locale);
+  const entry = data?.data?.[0]?.attributes;
+
   return (
-    // <div>test</div>
     <div className="container py-8">
-      <h2 className="text-3xl font-bold text-def_black">
-        {data.data[0].attributes.title}
-      </h2>
+      <h2 className="text-3xl font-bold text-def_black">{entry?.title}</h2>
       <div className="mt-4">
-        {data.data[0].attributes.text.map((item) => {
-          return <div className="mt-2">{item.children[0].text}</div>;
-        })}
+        {entry?.text?.map((item, index) => (
+          <div key={index} className="mt-2">
+            {blockText(item)}
+          </div>
+        ))}
       </div>
     </div>
   );
 }
-
-//Request_PTO
