@@ -47,7 +47,8 @@ export async function generateMetadata({ params: { id, locale } }) {
       ...base.openGraph,
       type: "article",
       description,
-      images: image ? [image] : undefined,
+      // Без обложки в соцсетях показываем логотип предприятия
+      images: [image ?? "/image/logo.png"],
     },
   };
 }

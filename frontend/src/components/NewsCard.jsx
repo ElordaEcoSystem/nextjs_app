@@ -24,14 +24,23 @@ export const NewsCard = ({ post, locale, variant = "card", featured = false }) =
         compact ? "grid grid-cols-[132px_1fr] sm:grid-cols-[200px_1fr] lg:grid-cols-[232px_1fr] h-full" : "flex flex-col h-full"
       )}
     >
-      <div className={clsx("relative bg-secondary overflow-hidden", compact ? "h-full min-h-[96px]" : "aspect-[4/3]")}>
-        {image && (
+      <div className={clsx("relative overflow-hidden", image ? "bg-secondary" : "bg-secondary/40", compact ? "h-full min-h-[96px]" : "aspect-[4/3]")}>
+        {image ? (
           <Image
             src={image}
             alt=""
             fill
             sizes={featured ? "(min-width: 768px) 50vw, 100vw" : compact ? "232px" : "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"}
             className="object-cover group-hover:scale-[1.03] transition-transform duration-300"
+          />
+        ) : (
+          // Заглушка, если у поста нет обложки: логотип предприятия по центру
+          <Image
+            src="/image/logo.png"
+            alt=""
+            fill
+            sizes={compact ? "232px" : "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"}
+            className={clsx("object-contain", compact ? "p-4" : "p-10")}
           />
         )}
       </div>
