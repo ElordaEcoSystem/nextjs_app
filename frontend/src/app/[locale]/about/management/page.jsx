@@ -48,7 +48,7 @@ const DirectorCard = ({
 
   return (
     <article className="group relative flex flex-col border border-secondary bg-white overflow-hidden hover:shadow-lg transition-shadow">
-      <div className="relative w-full aspect-[4/3] bg-secondary">
+      <div className="relative w-full aspect-[4/5] bg-secondary">
         {imageUrl && (
           <Image
             src={imageUrl}
