@@ -92,7 +92,7 @@ const Biography = ({ data, locale }) => {
             </div>
           )}
           {(number || reception_schedule) && (
-            <dl className="grid gap-3 text-sm border-t border-secondary pt-5">
+            <dl className={`grid gap-3 text-sm ${imageUrl ? "border-t border-secondary pt-5" : ""}`}>
               {number && (
                 <div>
                   <dt className="text-muted">{t("contact")}</dt>
