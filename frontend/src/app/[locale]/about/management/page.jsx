@@ -48,8 +48,9 @@ const DirectorCard = ({
 
   return (
     <article className="group relative flex flex-col border border-secondary bg-white overflow-hidden hover:shadow-lg transition-shadow">
-      <div className="relative w-full aspect-[4/5] bg-secondary">
-        {imageUrl && (
+      {/* Без фото блок не выводится вовсе, карточка начинается с текста */}
+      {imageUrl && (
+        <div className="relative w-full aspect-[4/5] bg-secondary">
           <Image
             src={imageUrl}
             alt={full_name}
@@ -57,8 +58,8 @@ const DirectorCard = ({
             sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
             className="object-cover object-top"
           />
-        )}
-      </div>
+        </div>
+      )}
       <div className="flex flex-col grow p-5">
         <h2 className="text-h3 text-prime font-bold">{full_name}</h2>
         <div className="mt-2 text-sm leading-snug text-def_black/70">{position}</div>
