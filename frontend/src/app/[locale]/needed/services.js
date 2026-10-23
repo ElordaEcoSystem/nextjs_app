@@ -30,6 +30,23 @@ export function mediaUrl(path) {
   return path.startsWith("http") ? path : API_URL + path;
 }
 
+// Адрес файла для браузера посетителя. Сайт открыт по https, поэтому прямые
+// ссылки (видео, документы, картинки в тексте, og:image) всегда делаем https:
+// иначе браузер пишет «Не защищено». Запросы сервера к Strapi и картинки
+// через next/image по-прежнему идут по mediaUrl — сервер сайта обращается
+// к Strapi по адресу из NEXT_PUBLIC_API_URL.
+export function publicMediaUrl(path) {
+  const url = mediaUrl(path);
+  if (!url) return null;
+  try {
+    const { hostname } = new URL(url);
+    const isLocal = hostname === "localhost" || hostname === "127.0.0.1";
+    return isLocal ? url : url.replace(/^http:\/\//, "https://");
+  } catch {
+    return url;
+  }
+}
+
 // В Strapi v4 каждая языковая версия записи имеет свой id, а версии связаны
 // через поле localizations. Возвращает id версии на нужном языке или null.
 export function findLocalizationId(entry, locale) {

@@ -1,5 +1,5 @@
 // Отрисовка поля Strapi типа "blocks"
-import { mediaUrl } from "@/app/[locale]/needed/services";
+import { publicMediaUrl } from "@/app/[locale]/needed/services";
 import { ListMarker, BULLET_PREFIX, NUMBER_PREFIX } from "./ListMarker";
 
 const renderText = (node, key) => {
@@ -99,7 +99,7 @@ const renderBlock = (block, index) => {
         // eslint-disable-next-line @next/next/no-img-element -- размеры произвольные, картинка из Strapi
         <img
           key={index}
-          src={mediaUrl(block.image.url)}
+          src={publicMediaUrl(block.image.url)}
           alt={block.image.alternativeText ?? ""}
           className="mt-6 first:mt-0 max-w-full h-auto"
           loading="lazy"

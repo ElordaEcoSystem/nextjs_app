@@ -5,13 +5,18 @@ import "yet-another-react-lightbox/styles.css";
 import { useState } from "react";
 import Image from "next/image";
 import NextJsImage from "./NextJsImage";
-import { mediaUrl } from "../../needed/services";
+import { mediaUrl, publicMediaUrl } from "../../needed/services";
+import { youtubeEmbedUrl } from "../../needed/youtube";
 
 export const MyGallery = ({ data }) => {
   const [index, setIndex] = useState(-1);
 
   // Создаем массив изображений для лайтбокса
   const photos = data?.photo_content?.data ?? [];
+  // Ссылки на YouTube приводим к виду https://…/embed/ID; неправильные пропускаем
+  const youtubeEmbeds = (data?.youtube_link ?? [])
+    .map((item) => youtubeEmbedUrl(item?.src))
+    .filter(Boolean);
   const images =
     photos.map((item) => ({
       src: mediaUrl(item.attributes.url),
@@ -65,14 +70,15 @@ export const MyGallery = ({ data }) => {
       />
 
       {/* Видео YouTube */}
-      {data?.youtube_link?.length > 0 && (
+      {youtubeEmbeds.length > 0 && (
         <div className="flex flex-col gap-4">
-          {data.youtube_link.map((item, idx) => (
+          {youtubeEmbeds.map((src, idx) => (
             <iframe
               key={idx}
               className="w-full aspect-video"
-              src={item.src}
+              src={src}
               title={`YouTube video ${idx + 1}`}
+              loading="lazy"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerPolicy="strict-origin-when-cross-origin"
@@ -86,8 +92,8 @@ export const MyGallery = ({ data }) => {
       {data?.video_content?.data?.length > 0 && (
         <div className="flex flex-col gap-4">
           {data.video_content.data.map((item) => (
-            <video key={item.id} controls className="w-full max-h-[80vh] bg-black">
-              <source src={mediaUrl(item.attributes.url)} type={item.attributes.mime || "video/mp4"} />
+            <video key={item.id} controls preload="metadata" className="w-full max-h-[80vh] bg-black">
+              <source src={publicMediaUrl(item.attributes.url)} type={item.attributes.mime || "video/mp4"} />
               Your browser does not support the video tag.
             </video>
           ))}

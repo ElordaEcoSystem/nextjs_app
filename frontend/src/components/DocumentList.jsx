@@ -1,12 +1,12 @@
 import { FileText, Download } from "lucide-react";
-import { mediaUrl } from "@/app/[locale]/needed/services";
+import { publicMediaUrl } from "@/app/[locale]/needed/services";
 
 // Список документов из компонента Strapi ui.document: [{ title, item_document }]
 export const DocumentList = ({ documents, title }) => {
   const items = (documents ?? [])
     .map((doc) => {
       const file = doc?.item_document?.data?.attributes;
-      const href = mediaUrl(file?.url);
+      const href = publicMediaUrl(file?.url);
       if (!href) return null;
       const ext = (file.ext || href.split(".").pop() || "").replace(".", "").toUpperCase();
       // Strapi хранит размер в килобайтах

@@ -8,6 +8,7 @@ import {
   fetchBlogById,
   findBlogTranslationId,
   mediaUrl,
+  publicMediaUrl,
 } from "../../needed/services";
 import { blocksToPlainText, formatDate, parseId } from "../../needed/format";
 import { RichText } from "@/components/RichText";
@@ -30,7 +31,7 @@ export async function generateMetadata({ params: { id, locale } }) {
 
   const { title, description_rich_text, thumbnail } = post.attributes;
   const description = blocksToPlainText(description_rich_text).slice(0, 200);
-  const image = mediaUrl(thumbnail?.data?.attributes?.url);
+  const image = publicMediaUrl(thumbnail?.data?.attributes?.url);
 
   const languages = {};
   for (const lang of LOCALES) {
