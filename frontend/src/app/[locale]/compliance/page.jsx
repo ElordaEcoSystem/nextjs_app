@@ -25,7 +25,7 @@ export default async function Compliance({ params: { locale } }) {
       <div className="max-w-3xl">
         <PageTitle>{entry?.title}</PageTitle>
         <RichText content={entry?.description_2} className="text-body text-def_black/85" />
-        <DocumentList documents={entry?.document} title={t.title_doc_list} />
+        <DocumentList documents={entry?.document} title={t.title_doc_list} groupByYear />
       </div>
     </section>
   );
